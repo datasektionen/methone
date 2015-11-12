@@ -1,6 +1,6 @@
 
 
-The worlds first topbar-as-a-service, or TBaaS
+Methone: The worlds first topbar-as-a-service, or TBaaS
 ==============================================
 Because this is exactly what everybody really wanted.
 
@@ -34,14 +34,14 @@ How to use
         system-name: "meta-tv",
         target-id: "some-element-id"
         system-color: 0xE2007F,
+        fuzzy-file: "http://my.system.se/Fuzzyfile"
         topbar-items: [
           {
             name: "About us",
-            href: "my.system.data.se/about-us",
+            href: "http://my.system.data.se/about-us",
             active: true
           }, ...
-        ],
-        slugs: "my.system.data.se/slug"
+        ]
       }
     </script>    
     <script

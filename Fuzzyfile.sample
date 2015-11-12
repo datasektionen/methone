@@ -1,0 +1,10 @@
+{
+  "@type": "fuzzyfile",
+
+  "fuzzes": [
+    {
+      "str": "Lokalbokning",
+      "href": "href://datasektionen.se/sektionen/metadorerna/lokalbokning"
+    }
+  ]
+}
