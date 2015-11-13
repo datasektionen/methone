@@ -37,9 +37,8 @@ How to use
         fuzzy_file: "http://my.system.se/Fuzzyfile"
         topbar_items: [
           {
-            name: "About us",
-            href: "http://my.system.data.se/about-us",
-            active: true
+            str: "About us",
+            href: "http://my.system.data.se/about-us"
           }, ...
         ]
       }

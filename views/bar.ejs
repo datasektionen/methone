@@ -105,20 +105,43 @@
     display: none;
     opacity: 0;
   }
-  #startmenu ul {
+  #startmenu ul, #gobox ul {
     list-style: none;
     padding: 10px;
 
   }
-  #startmenu li {
+  #startmenu li, #gobox li {
     padding: 10px;
     font-family: Lato, sans-serif;
   }
-  #startmenu a {
+  #startmenu a , #gobox a {
     color: white;
     text-decoration: none;
     display: block;
   }
+  #gobox {
+    position: fixed;
+    top:200px;
+    left: 0;
+    z-index: 9000;
+    width: 95%;
+    display: none;
+  }
+  #inner_gobox {
+      background: #212121;
+      width: 400px;
+      margin: 0 auto;
+  }
+  #gobox input {
+    width: 380px;
+    font-size: 28px;
+    margin: 10px;
+    padding: 10px;
+    background: #333;
+    border: none;
+    color: white;
+  }
+
 </style>
 <header>
   <div id="widther">
@@ -139,11 +162,20 @@
       </ul>
     </div>
 
+    <div id="gobox">
+      <div id="inner_gobox">
+        <input type="text" id="txt_fuzzy" placeholder="Sök här">
+
+        <ul id="fuzzy_results">
+          <!-- Use listitem.ejs here -->
+        </ul>
+      </div>
+    </div>
+
     <a href="#" id="superdelta">
       <svg id="superdelta_img" width="26px" height="37px" viewBox="0 0 26 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-        <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
-        <title>path2802 copy</title>
-        <desc>Created with Sketch.</desc>
+        <title>Konglig Datasektionens Delta</title>
+        <desc>Konglig Datasektionens logotype</desc>
         <defs></defs>
         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
           <g id="Landing" sketch:type="MSArtboardGroup" transform="translate(-19.000000, -13.000000)" stroke="#000000" stroke-width="0.5" fill="#000000" stroke-linejoin="round">

@@ -1,0 +1,25 @@
+{
+  "@type": "master_fuzzyfile",
+
+  "fuzzes": [
+    {
+      "str": "Lokalbokning",
+      "href": "http://datasektionen.se/sektionen/lokalbokning"
+    },{
+      "str": "Protokoll",
+      "href": "http://datasektionen.se/sektionen/formalia/protokoll"
+    },{
+      "str": "Organisation",
+      "href": "http://datasektionen.se/sektionen/organisation"
+    },{
+      "str": "Näringsliv",
+      "href": "http://datasektionen.se/naringsliv"
+    },{
+      "str": "Mage",
+      "href": "http://mage.datasektionen.se"
+    },{
+      "str": "Cashflow",
+      "href": "http://cashflow.datasektionen.se"
+    }
+  ]
+}
