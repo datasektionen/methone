@@ -44,7 +44,8 @@ app.get('/bar.js', function (req, res) {
       menuitem_template: inline_template('views/menuitem.ejs')
     });
 
-    cached_js_file = UglifyJS.minify(cached_js_file, {fromString: true}).code;
+    if (process.env.DEV_MODE != "true")
+      cached_js_file = UglifyJS.minify(cached_js_file, {fromString: true}).code;
   }
 
   res.contentType('text/javascript');

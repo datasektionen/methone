@@ -83,54 +83,60 @@ window.Methone = new function() {
     primary_color: conf.primary_color || "#E2007F",
     secondary_color: conf.secondary_color || "black",
     fuzzyfile: conf.fuzzyfile || "/Fuzzyfile",
+    fuzzy_only: conf.fuzzy_only || false,
     topbar_items: conf.topbar_items ||  []
   };
 
-  /*****************************************************************************
-   * Injection!
-   */
+
+    /*****************************************************************************
+     * Injection!
+     */
 
   document.getElementById(conf.target_id).innerHTML = html;
 
-  /*****************************************************************************
-   * Menu building
-   */
 
-  var buildMenu = function() {
-    var str = "";
-    for (var i in conf.topbar_items) {
-      str += menuitem_template.parse(conf.topbar_items[i]);
+  if (!conf.fuzzy_only) {
+    /*****************************************************************************
+     * Menu building
+     */
+
+    var buildMenu = function() {
+      var str = "";
+      for (var i in conf.topbar_items) {
+        str += menuitem_template.parse(conf.topbar_items[i]);
+      }
+
+      document.getElementById('nav').innerHTML = str;
+      processFuzzyFile({
+        fuzzes: conf.topbar_items
+      });
     }
+    buildMenu();
 
-    document.getElementById('nav').innerHTML = str;
-    processFuzzyFile({
-      fuzzes: conf.topbar_items
-    });
-  }
-  buildMenu();
+    /*****************************************************************************
+     * StartMenu Setup
+     */
 
-  /*****************************************************************************
-   * StartMenu Setup
-   */
+    var superdelta = document.getElementById("superdelta");
+    var startmenu = document.getElementById("startmenu");
+    var loginbtn = document.getElementById("login");
 
-  var superdelta = document.getElementById("superdelta");
-  var startmenu = document.getElementById("startmenu");
-  var loginbtn = document.getElementById("login");
-  var gobox_inner = document.getElementById("inner_gobox");
+    superdelta.style.backgroundColor = conf.primary_color;
+    loginbtn.style.backgroundColor = conf.primary_color;
+    loginbtn.style.color = conf.secondary_color;
 
-  superdelta.style.backgroundColor = conf.primary_color;
-  loginbtn.style.backgroundColor = conf.primary_color;
-  loginbtn.style.color = conf.secondary_color;
-  gobox_inner.style.backgroundColor = conf.primary_color;
-
-  superdelta.onclick = function() {
-    if (startmenu.style.opacity == 1) {
-      startmenu.style.opacity = 0;
-      startmenu.style.display = "none";
-    } else {
-      startmenu.style.opacity = 1;
-      startmenu.style.display = "block";
+    superdelta.onclick = function() {
+      if (startmenu.style.opacity == 1) {
+        startmenu.style.opacity = 0;
+        startmenu.style.display = "none";
+      } else {
+        startmenu.style.opacity = 1;
+        startmenu.style.display = "block";
+      }
     }
+  } else { // Fuzz only
+    var mh = document.getElementById("methone_header");
+    mh.parentNode.removeChild(mh);
   }
 
   /*****************************************************************************
@@ -139,6 +145,8 @@ window.Methone = new function() {
   var fuzzyModule = function() {
     var txtfuzz = document.getElementById("txt_fuzzy");
     var resultfuzz = document.getElementById("fuzzy_results");
+    var gobox_inner = document.getElementById("inner_gobox");
+
     var selectedElementIndex = 0;
     var numberofresults = 0;
 
@@ -158,6 +166,8 @@ window.Methone = new function() {
 
       txtfuzz.addEventListener("keyup", this.onKeyEntered);
       document.body.addEventListener("keydown", this.onGlobalShortcut);
+
+      gobox_inner.style.backgroundColor = conf.primary_color;
     }
 
     this.onKeyEntered = function(event) {
