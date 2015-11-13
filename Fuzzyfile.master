@@ -3,6 +3,7 @@
 
   "fuzzes": [
     {
+      "str": "PURJO PAGES",
       "str": "Lokalbokning",
       "href": "http://datasektionen.se/sektionen/lokalbokning"
     },{
@@ -15,11 +16,55 @@
       "str": "Näringsliv",
       "href": "http://datasektionen.se/naringsliv"
     },{
+      "str": "Studier",
+      "href": "http://datasektionen.se/studier"
+    },{
+      "str": "Funktionärer",
+      "href": "http://datasektionen.se/sektionen/funktionarer"
+    },{
+      "str": "Valsidan",
+      "href": "http://datasektionen.se/sektionen/val"
+    },
+
+
+
+
+
+    {
+      "str": "VARIOUS SYSTEMS",
       "str": "Mage",
       "href": "http://mage.datasektionen.se"
     },{
+      "str": "Stön",
+      "href": "http://ston.datasektionen.se"
+    },{
+      "str": "META-TV",
+      "href": "http://tv.froyo.datasektionen.se"
+    },{
+      "str": "SL",
+      "href": "http://sl.froyo.datasektionen.se"
+    },{
       "str": "Cashflow",
       "href": "http://cashflow.datasektionen.se"
+    },{
+      "str": "Bawang",
+      "href": "http://datasektionen.se"
+    },{
+      "str": "Datasektionen.se",
+      "href": "http://datasektionen.se"
+    },{
+      "str": "dfunkt",
+      "href": "http://dfunkt.datasektionen.se"
+    },{
+      "str": "Motioner",
+      "href": "http://motioner.datasektionen.se"
+    },{
+      "str": "DJobb",
+      "href": "http://djobb.se"
+    },{
+      "str": "Metaspexet",
+      "href": "http://metaspexet.se"
     }
+
   ]
 }

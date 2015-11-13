@@ -17,24 +17,31 @@ which ofc must have been defined before including bar.js.
 
 Fuzzyfiles
 ----------
-Once the bar is loaded, the bar will load the Fuzzyfile (if
-specified) to learn how to fuzzy search pages on the site. Also,
-the master Fuzzyfile will be loaded from the server. The fuzzyfiles
-are used to support fuzzy-text search across all systems.
+Methone provides fuzzy navigation on sites where deployed. For this to work,
+you might need to supply methone with an Fuzzyfile, which describes what items
+it should be possible to search for. Once the bar is loaded, the bar will load
+the Fuzzyfile (if specified) to learn how to fuzzy search pages on the site. Also,
+the master Fuzzyfile will be loaded from the server. The menu items specified in
+the configuration will also be added for fuzzy searching.
 
 Please use the same system-name for all instances of your
 implementation, or there will be duplicates.
 
 How to use
 ----------
-    // Include this in the beginning
+
+    <div id="to-be-parent-element-for-bar">
+      <nav>This will be replaced</nav>
+    </div>
 
     <script>
       window.tbaas_conf = {
         system_name: "meta-tv",
-        target_id: "some-element-id"
-        system_color: 0xE2007F,
-        fuzzy_file: "http://my.system.se/Fuzzyfile"
+        target_id: "to-be-parent-element-for-bar"
+        primary_color: "#E2007F",
+        secondary_color "white",
+        fuzzy_file: "/Fuzzyfile",
+        fuzzy_only: false, /* Only add support for cmd+K shortcut, do not insert top bar
         topbar_items: [
           {
             str: "About us",
@@ -42,13 +49,24 @@ How to use
           }, ...
         ]
       }
-    </script>    
+    </script>
+
     <script
       src="//tbaas.datasektionen.se/bar.js"
-      type="text/javascript"/>
+      type="text/javascript"></script>
 
 
+An example Fuzzyfile:
+---
+Search is performed on the str value.
 
+    {
+      "@type": "fuzzyfile",
 
-* VanillaJS
-* Extensible
+      "fuzzes": [
+        {
+          "str": "Kapplöpning",
+          "href": "href://datasektionen.se/sektionen/metadorerna/kapplopning"
+        }
+      ]
+    }
