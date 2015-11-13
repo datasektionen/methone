@@ -1,5 +1,5 @@
 {
-  "name": "tbaas",
+  "name": "Methone",
   "version": "1.0.0",
   "description": "The worlds first Topbar-as-a-service",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "SDFA",
+  "license": "ARR",
   "dependencies": {
     "ejs": "^2.3.4",
     "express": "^4.13.3",

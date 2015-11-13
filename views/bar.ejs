@@ -22,15 +22,6 @@
     position: relative;
   }
 
-  button {
-    position: relative;
-    background-color: #FDDE00;
-    border: none;
-    font-size: 14px;
-    height: 50px;
-    padding: 0;
-    verticala-align: top;
-  }
 
   #superdelta {
     position: relative;
@@ -71,17 +62,18 @@
   }
 
   #login {
+    display: block;
     position: relative;
     background-color: #FDDE00;
     border: none;
     font-size: 14px;
-    height: 50px;
     padding: 0;
     verticala-align: top;
     width: 100px;
     font-family: Lato, Arial;
     text-transform: uppercase;
     cursor: pointer;
+    text-decoration: none;
   }
 
   #leftside {
@@ -90,11 +82,12 @@
     right: 0;
   }
 
-  #login_text: {
-    position: absolute;
-    top: 17px;
+  #login_text {
+    display: block;
     left: 0;
-    width: 100%;
+    text-align: center;
+    padding: 17px 11px 16px 11px;
+    text-decoration: none;
   }
 
   #startmenu {
@@ -107,8 +100,9 @@
   }
   #startmenu ul, #gobox ul {
     list-style: none;
-    padding: 10px;
-
+    padding: 0;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.247059);
   }
   #startmenu li, #gobox li {
     padding: 10px;
@@ -131,12 +125,15 @@
       background: #212121;
       width: 400px;
       margin: 0 auto;
-      box-shadow: 0 5px 10px #CCC;
+      box-shadow: rgba(8, 8, 8, .2) 0px 5px 10px;
+  }
+  #input_wrap {
+    box-shadow: 0 2px 2px rgba(0,0,0,.8);
   }
   #gobox input {
     width: 360px;
     font-size: 28px;
-    margin: 20px 20px 0 20px;
+    margin: 20px;
     padding: 5px 0;
     background: none;
     border: none;
@@ -149,8 +146,9 @@
 </style>
 <div id="gobox">
   <div id="inner_gobox">
-    <input type="text" id="txt_fuzzy" >
-
+    <div id="input_wrap">
+      <input type="text" id="txt_fuzzy" >
+    </div>
     <ul id="fuzzy_results">
       <!-- Use listitem.ejs here -->
     </ul>
@@ -200,7 +198,7 @@
         </a>-->
     </nav>
     <div id="leftside">
-      <button id="login" href="http://datasektionen.se/login">
+      <a id="login" href="http://datasektionen.se/login">
         <span id="login_text">
           Logga In
         </span>

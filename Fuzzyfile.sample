@@ -3,7 +3,8 @@
 
   "fuzzes": [
     {
-      "str": "Kapplöpning",
+      "name": "META-TV ▶ Kapplöpning"
+      "str": "Kapplöpning hästar ponies horse racing",
       "href": "href://datasektionen.se/sektionen/metadorerna/kapplopning"
     }
   ]

@@ -3,26 +3,32 @@
 
   "fuzzes": [
     {
-      "str": "PURJO PAGES",
-      "str": "Lokalbokning",
+      "name": "Lokalbokning - Datasektionen.se",
+      "str": "lokalbokning",
       "href": "http://datasektionen.se/sektionen/lokalbokning"
     },{
-      "str": "Protokoll",
+      "name": "Protokoll - Datasektionen.se",
+      "str": "protokoll minutes",
       "href": "http://datasektionen.se/sektionen/formalia/protokoll"
     },{
-      "str": "Organisation",
+      "name": "Organisation - Datasektionen.se",
+      "str": "organisation",
       "href": "http://datasektionen.se/sektionen/organisation"
     },{
-      "str": "Näringsliv",
+      "name": "Näringsliv - Datasektionen.se",
+      "str": "näringsliv industry contact",
       "href": "http://datasektionen.se/naringsliv"
     },{
-      "str": "Studier",
+      "name": "Studier - Datasektionen.se",
+      "str": "studier",
       "href": "http://datasektionen.se/studier"
     },{
-      "str": "Funktionärer",
+      "name": "Funktionärer - Datasektionen.se",
+      "str": "funktionärer officers",
       "href": "http://datasektionen.se/sektionen/funktionarer"
     },{
-      "str": "Valsidan",
+      "name": "Valsidan - Datasektionen.se",
+      "str": "valsidan elections",
       "href": "http://datasektionen.se/sektionen/val"
     },
 
@@ -31,38 +37,48 @@
 
 
     {
-      "str": "VARIOUS SYSTEMS",
-      "str": "Mage",
+      "name": "Mage",
+      "str": "mage",
       "href": "http://mage.datasektionen.se"
     },{
-      "str": "Stön",
+      "name": "Stön",
+      "str": "stön",
       "href": "http://ston.datasektionen.se"
     },{
-      "str": "META-TV",
+      "name": "META-TV",
+      "str": "meta-tv",
       "href": "http://tv.froyo.datasektionen.se"
     },{
-      "str": "SL",
+      "name": "SL",
+      "str": "SL tåg tunnelbana",
       "href": "http://sl.froyo.datasektionen.se"
     },{
-      "str": "Cashflow",
+      "name": "Cashflow",
+      "str": "cashflow",
       "href": "http://cashflow.datasektionen.se"
     },{
-      "str": "Bawang",
+      "name": "Bawang",
+      "str": "bawang",
       "href": "http://datasektionen.se"
     },{
-      "str": "Datasektionen.se",
+      "name": "Datasektionen.se",
+      "str": "datasektionen.se",
       "href": "http://datasektionen.se"
     },{
+      "name": "dfunkt",
       "str": "dfunkt",
       "href": "http://dfunkt.datasektionen.se"
     },{
-      "str": "Motioner",
+      "name": "Motioner",
+      "str": "motioner",
       "href": "http://motioner.datasektionen.se"
     },{
-      "str": "DJobb",
+      "name": "Djobb",
+      "str": "djobb work",
       "href": "http://djobb.se"
     },{
-      "str": "Metaspexet",
+      "name": "Metaspexet",
+      "str": "metaspexet",
       "href": "http://metaspexet.se"
     }
 

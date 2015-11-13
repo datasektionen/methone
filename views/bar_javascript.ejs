@@ -91,8 +91,9 @@ window.Methone = new function() {
     /*****************************************************************************
      * Injection!
      */
+     var root = document.getElementById(conf.target_id).createShadowRoot();
 
-  document.getElementById(conf.target_id).innerHTML = html;
+     root.innerHTML = html;
 
 
   if (!conf.fuzzy_only) {
@@ -106,10 +107,8 @@ window.Methone = new function() {
         str += menuitem_template.parse(conf.topbar_items[i]);
       }
 
-      document.getElementById('nav').innerHTML = str;
-      processFuzzyFile({
-        fuzzes: conf.topbar_items
-      });
+      root.getElementById('nav').innerHTML = str;
+
     }
     buildMenu();
 
@@ -117,9 +116,9 @@ window.Methone = new function() {
      * StartMenu Setup
      */
 
-    var superdelta = document.getElementById("superdelta");
-    var startmenu = document.getElementById("startmenu");
-    var loginbtn = document.getElementById("login");
+    var superdelta = root.getElementById("superdelta");
+    var startmenu = root.getElementById("startmenu");
+    var loginbtn = root.getElementById("login");
 
     superdelta.style.backgroundColor = conf.primary_color;
     loginbtn.style.backgroundColor = conf.primary_color;
@@ -135,7 +134,7 @@ window.Methone = new function() {
       }
     }
   } else { // Fuzz only
-    var mh = document.getElementById("methone_header");
+    var mh = root.getElementById("methone_header");
     mh.parentNode.removeChild(mh);
   }
 
@@ -143,9 +142,9 @@ window.Methone = new function() {
    * Fuzz!!!!!
    */
   var fuzzyModule = function() {
-    var txtfuzz = document.getElementById("txt_fuzzy");
-    var resultfuzz = document.getElementById("fuzzy_results");
-    var gobox_inner = document.getElementById("inner_gobox");
+    var txtfuzz = root.getElementById("txt_fuzzy");
+    var resultfuzz = root.getElementById("fuzzy_results");
+    var gobox_inner = root.getElementById("inner_gobox");
 
     var selectedElementIndex = 0;
     var numberofresults = 0;
@@ -153,6 +152,17 @@ window.Methone = new function() {
 
     this.setup = function() {
       processFuzzyFile(master_fuzzyfile);
+      var convd = [];
+
+      for(var i in conf.topbar_items) {
+        convd.push({
+          name: conf.topbar_items[i].str + " - " + conf.system_name,
+          str: conf.topbar_items[i].str,
+          href: conf.topbar_items[i].href});
+      }
+      processFuzzyFile({
+        fuzzes: convd
+      });
 
       if (!conf.fuzzyfile) return;
 
@@ -216,7 +226,7 @@ window.Methone = new function() {
       }
     };
 
-    setTimeout(this.setup, 1000); // Let the rest of the page load first
+    setTimeout(this.setup, 500); // Let the rest of the page load first
   }();
 
   /*****************************************************************************
@@ -233,5 +243,17 @@ window.Methone = new function() {
   this.setMenu = function(menuspec) {
     conf.topbar_items = menuspec;
     buildMenu();
+  }
+
+  this.setLoginButtonText = function(text) {
+    if (!text) {
+      loginbtn.style.display = "none";
+    } else  {
+      loginbtn.style.display = "block";
+      loginbtn.value = text;
+    }
+  }
+  this.setOnLoginButtonClicked = function(handler) {
+    loginbtn.addEventListener("click", handler);
   }
 };
