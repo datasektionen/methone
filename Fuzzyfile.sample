@@ -5,6 +5,9 @@
     {
       "str": "Lokalbokning",
       "href": "href://datasektionen.se/sektionen/metadorerna/lokalbokning"
+    },{
+      "str": "Kapplöpning",
+      "href": "href://datasektionen.se/sektionen/metadorerna/kapplopning"
     }
   ]
 }

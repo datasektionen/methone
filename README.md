@@ -31,11 +31,11 @@ How to use
 
     <script>
       window.tbaas_conf = {
-        system-name: "meta-tv",
-        target-id: "some-element-id"
-        system-color: 0xE2007F,
-        fuzzy-file: "http://my.system.se/Fuzzyfile"
-        topbar-items: [
+        system_name: "meta-tv",
+        target_id: "some-element-id"
+        system_color: 0xE2007F,
+        fuzzy_file: "http://my.system.se/Fuzzyfile"
+        topbar_items: [
           {
             name: "About us",
             href: "http://my.system.data.se/about-us",

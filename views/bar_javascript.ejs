@@ -1,0 +1,42 @@
+
+
+(function() {
+  var html = unescape("<%= html %>");
+  var conf = window.tbaas_conf;
+
+  if (conf === undefined) {
+    console.error("The config was not supplied!!");
+    return;
+  }
+
+  conf =  {
+    system_name: conf.system_name || "default",
+    target_id: conf.target_id,
+    system_color: conf.system_color || 0xE2007F,
+    fuzzyfile: conf.fuzzyfile || "",
+    topbar_items: conf.topbar_items || []
+  };
+
+  document.getElementById(conf.target_id).innerHTML = html;
+
+  var str = "";
+  for (var item of conf.topbar_items) {
+    str += "<a class='navelement' style='display: inline-block; font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; padding: 17px 11px 16px 11px; cursor: pointer; color: #f1f1f1;' href='" + item.href + "'>" + item.name + "</a>";
+  }
+
+  document.getElementById('nav').innerHTML = str;
+
+  var superdelta = document.getElementById("superdelta");
+  var startmenu = document.getElementById("startmenu");
+
+  superdelta.onclick = function() {
+    if(startmenu.style.opacity == 1) {
+      startmenu.style.opacity = 0;
+      startmenu.style.display = "none";
+    } else {
+      startmenu.style.opacity = 1;
+      startmenu.style.display = "block";
+    }
+  }
+
+})();
