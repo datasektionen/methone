@@ -131,15 +131,19 @@
       background: #212121;
       width: 400px;
       margin: 0 auto;
+      box-shadow: 0 5px 10px #CCC;
   }
   #gobox input {
-    width: 380px;
+    width: 360px;
     font-size: 28px;
-    margin: 10px;
-    padding: 10px;
-    background: #333;
+    margin: 20px 20px 0 20px;
+    padding: 5px 0;
+    background: none;
     border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.35);
     color: white;
+    outline: none;
+    text-transform: uppercase;
   }
 
 </style>
@@ -164,7 +168,7 @@
 
     <div id="gobox">
       <div id="inner_gobox">
-        <input type="text" id="txt_fuzzy" placeholder="Sök här">
+        <input type="text" id="txt_fuzzy" >
 
         <ul id="fuzzy_results">
           <!-- Use listitem.ejs here -->

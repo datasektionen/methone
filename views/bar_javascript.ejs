@@ -4,7 +4,7 @@
 /*****************************************************************************
  * Actual app code
  */
-(new function(global) {
+window.Methone = new function() {
 
   /*****************************************************************************
    * TEMPLATES
@@ -82,8 +82,7 @@
     target_id: conf.target_id,
     primary_color: conf.primary_color || "#E2007F",
     secondary_color: conf.secondary_color || "black",
-
-    fuzzyfile: conf.fuzzyfile || "",
+    fuzzyfile: conf.fuzzyfile || "/Fuzzyfile",
     topbar_items: conf.topbar_items ||  []
   };
 
@@ -99,8 +98,8 @@
 
   var buildMenu = function() {
     var str = "";
-    for (var item of conf.topbar_items) {
-      str += menuitem_template.parse(item);
+    for (var i in conf.topbar_items) {
+      str += menuitem_template.parse(conf.topbar_items[i]);
     }
 
     document.getElementById('nav').innerHTML = str;
@@ -117,10 +116,12 @@
   var superdelta = document.getElementById("superdelta");
   var startmenu = document.getElementById("startmenu");
   var loginbtn = document.getElementById("login");
+  var gobox_inner = document.getElementById("inner_gobox");
 
   superdelta.style.backgroundColor = conf.primary_color;
   loginbtn.style.backgroundColor = conf.primary_color;
   loginbtn.style.color = conf.secondary_color;
+  gobox_inner.style.backgroundColor = conf.primary_color;
 
   superdelta.onclick = function() {
     if (startmenu.style.opacity == 1) {
@@ -164,8 +165,8 @@
       var results = fuse.search(val);
 
       var str = "";
-      for (f of results) {
-        str += listitem_template.parse(f);
+      for (var i in results) {
+        str += listitem_template.parse(results[i]);
       }
       resultfuzz.innerHTML = str;
       numberofresults = results.length;
@@ -180,12 +181,15 @@
           break;
         case 13:
           document.location = results[selectedElementIndex].href;
+          resultfuzz.parentNode.parentNode.style.display = "none";
+          break;
         default:
+          selectedElementIndex = 0;
           break;
 
       }
 
-      resultfuzz.children[selectedElementIndex].style.backgroundColor = conf.primary_color;
+      resultfuzz.children[selectedElementIndex].style.background = "rgba(255,255,255,0.25)";
       resultfuzz.children[selectedElementIndex].style.color = conf.secondary_color;
 
     };
@@ -220,7 +224,4 @@
     conf.topbar_items = menuspec;
     buildMenu();
   }
-
-
-  window['Methone'] = this;
-});
+};
