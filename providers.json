@@ -1,6 +1,6 @@
 {
   "@type": "fuzzy-providers",
   "providers": [
-    "http://localhost:5000/Fuzzyfile"
+    "http://tv.froyo.datasektionen.se/Fuzzyfile"
   ]
 }

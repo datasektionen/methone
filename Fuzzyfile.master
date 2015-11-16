@@ -5,30 +5,37 @@
     {
       "name": "Lokalbokning - Datasektionen.se",
       "str": "lokalbokning",
+      "color": "#FDDE00",
       "href": "http://datasektionen.se/sektionen/lokalbokning"
     },{
       "name": "Protokoll - Datasektionen.se",
       "str": "protokoll minutes",
+      "color": "#FDDE00",
       "href": "http://datasektionen.se/sektionen/formalia/protokoll"
     },{
       "name": "Organisation - Datasektionen.se",
       "str": "organisation",
+      "color": "#FDDE00",
       "href": "http://datasektionen.se/sektionen/organisation"
     },{
       "name": "Näringsliv - Datasektionen.se",
       "str": "näringsliv industry contact",
+      "color": "#FDDE00",
       "href": "http://datasektionen.se/naringsliv"
     },{
       "name": "Studier - Datasektionen.se",
       "str": "studier",
+      "color": "#FDDE00",
       "href": "http://datasektionen.se/studier"
     },{
       "name": "Funktionärer - Datasektionen.se",
       "str": "funktionärer officers",
+      "color": "#FDDE00",
       "href": "http://datasektionen.se/sektionen/funktionarer"
     },{
       "name": "Valsidan - Datasektionen.se",
       "str": "valsidan elections",
+      "color": "#FDDE00",
       "href": "http://datasektionen.se/sektionen/val"
     },
 
@@ -39,46 +46,57 @@
     {
       "name": "Mage",
       "str": "mage",
+      "color": "#E2007F",
       "href": "http://mage.datasektionen.se"
     },{
       "name": "Stön",
       "str": "stön",
+      "color": "#E2007F",
       "href": "http://ston.datasektionen.se"
     },{
       "name": "META-TV",
       "str": "meta-tv",
+      "color": "#BA68C8",
       "href": "http://tv.froyo.datasektionen.se"
     },{
       "name": "SL",
       "str": "SL tåg tunnelbana",
+      "color": "red",
       "href": "http://sl.froyo.datasektionen.se"
     },{
       "name": "Cashflow",
       "str": "cashflow",
+      "color": "#BA68C8",
       "href": "http://cashflow.datasektionen.se"
     },{
       "name": "Bawang",
       "str": "bawang",
+      "color": "#FDDE00",
       "href": "http://datasektionen.se"
     },{
       "name": "Datasektionen.se",
       "str": "datasektionen.se",
+      "color": "#FDDE00",
       "href": "http://datasektionen.se"
     },{
       "name": "dfunkt",
       "str": "dfunkt",
+      "color": "blue",
       "href": "http://dfunkt.datasektionen.se"
     },{
       "name": "Motioner",
       "str": "motioner",
+      "color": "white",
       "href": "http://motioner.datasektionen.se"
     },{
       "name": "Djobb",
       "str": "djobb work",
+      "color": "#E2007F",
       "href": "http://djobb.se"
     },{
       "name": "Metaspexet",
       "str": "metaspexet",
+      "color": "red",
       "href": "http://metaspexet.se"
     }
 

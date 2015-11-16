@@ -117,6 +117,9 @@ window.Methone = new function() {
     var buildMenu = function() {
       var str = "";
       for (var i in conf.topbar_items) {
+        if ("new_window" in conf.topbar_items[i] && conf.topbar_items[i].new_window) {
+          conf.topbar_items[i].target = 'target="_blank"';
+        }
         str += menuitem_template.parse(conf.topbar_items[i]);
       }
 
@@ -166,6 +169,20 @@ window.Methone = new function() {
     this.setup = function() {
       processFuzzyFile(master_fuzzyfile);
 
+      /*
+      var convd = [];
+
+      for (var i in conf.topbar_items) {
+        convd.push({
+          name: conf.topbar_items[i].str + " - " + conf.system_name,
+          str: conf.topbar_items[i].str,
+          href: conf.topbar_items[i].href
+        });
+      }
+      processFuzzyFile({
+        fuzzes: convd
+      });*/
+
       txtfuzz.addEventListener("keyup", this.onKeyEntered);
       document.body.addEventListener("keydown", this.onGlobalShortcut);
 
@@ -205,7 +222,7 @@ window.Methone = new function() {
         case 40: // Down
           selectedElementIndex = (selectedElementIndex + 1) % numberofresults;
           break;
-        case 13:
+        case 13: // Enter
           document.location = results[selectedElementIndex].href;
           resultfuzz.parentNode.parentNode.style.display = "none";
           break;

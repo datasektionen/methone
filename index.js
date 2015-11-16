@@ -24,7 +24,7 @@ function inline_template(file) {
 }
 
 /**
-  Fetch the fuzzyfiles from all the specified providers
+  Fetch the fuzzyfiles from all the specified providers.
 */
 function construct_master_fuzz(callback) {
   var file = JSON.parse(fs.readFileSync('providers.json', 'utf8'));
@@ -42,6 +42,8 @@ function construct_master_fuzz(callback) {
         console.error("Failed to fetch " + path + ": " + e);
       } finally {
         if (num <= 0) {
+          // Add the master file aswell
+          fuzzes.push(JSON.parse(fs.readFileSync('Fuzzyfile.master', 'utf8')).fuzzes);
           callback({fuzzes:[].concat.apply([], fuzzes)});
         }
       }
@@ -63,7 +65,7 @@ app.get('/Fuzzyfile', function (req, res) {
 
 app.get('/bar.js', function (req, res) {
 
-  if (cached_js_file == null || process.env.DEV_MODE == "true") {
+  if (cached_js_file == null || process.env.DEV_MODE) {
 
     construct_master_fuzz(function(master_fuzzyfile) {
       cached_js_file = ejs.render(fs.readFileSync('views/bar_javascript.ejs', 'utf8'), {
@@ -73,7 +75,7 @@ app.get('/bar.js', function (req, res) {
         menuitem_template: inline_template('views/menuitem.ejs')
       });
 
-      //cached_js_file = UglifyJS.minify(cached_js_file, {fromString: true}).code;
+      cached_js_file = UglifyJS.minify(cached_js_file, {fromString: true}).code;
       res.contentType('text/javascript');
       res.send(cached_js_file);
     });

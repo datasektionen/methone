@@ -13,7 +13,9 @@
   header {
     background-color: #212121;
     font-family: Lato, Arial;
-    height: 50px;
+    position: fixed;
+    right:0; left: 0;
+
   }
 
   #widther {
@@ -44,21 +46,10 @@
     margin-left: 1.5px;
   }
 
-  nav {
+  #methone_nav {
     display: inline-block;
     margin-left: 9px;
     vertical-align: top;
-  }
-
-  .navelement {
-    display: inline-block;
-    font-size: 15px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #f1f1f1 !important;
-    text-decoration: none;
-    padding: 17px 11px 16px 11px;
-    cursor: pointer;
   }
 
   #login {
@@ -80,6 +71,7 @@
     display: inline-block;
     position: absolute;
     right: 0;
+    top: 0;
   }
 
   #login_text {
@@ -118,7 +110,7 @@
     top:200px;
     left: 0;
     z-index: 9000;
-    width: 95%;
+    width: 100%;
     display: none;
   }
   #inner_gobox {

@@ -41,11 +41,11 @@ How to use
         primary_color: "#E2007F",
         secondary_color "white",
         fuzzy_file: "/Fuzzyfile",
-        fuzzy_only: false, /* Only add support for cmd+K shortcut, do not insert top bar
         topbar_items: [
           {
             str: "About us",
-            href: "http://my.system.data.se/about-us"
+            href: "http://my.system.data.se/about-us",
+            new_window: true // Optional, default false
           }, ...
         ]
       }
