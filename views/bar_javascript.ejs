@@ -9,7 +9,7 @@ window.Methone = new function() {
   /*****************************************************************************
    * TEMPLATES
    */
-   var Template = function(str) {
+  var Template = function(str) {
     this.template = str || '';
 
     Object.defineProperties(this, {
@@ -88,12 +88,15 @@ window.Methone = new function() {
   };
 
 
-    /*****************************************************************************
-     * Injection!
-     */
-     var root = document.getElementById(conf.target_id).createShadowRoot();
+  /*****************************************************************************
+   * Injection!
+   */
+  var root = document.getElementById(conf.target_id);
+  if ("createShadowRoot" in root) {
+    root = root.createShadowRoot();
+  }
 
-     root.innerHTML = html;
+  root.innerHTML = html;
 
 
   if (!conf.fuzzy_only) {
@@ -154,11 +157,12 @@ window.Methone = new function() {
       processFuzzyFile(master_fuzzyfile);
       var convd = [];
 
-      for(var i in conf.topbar_items) {
+      for (var i in conf.topbar_items) {
         convd.push({
           name: conf.topbar_items[i].str + " - " + conf.system_name,
           str: conf.topbar_items[i].str,
-          href: conf.topbar_items[i].href});
+          href: conf.topbar_items[i].href
+        });
       }
       processFuzzyFile({
         fuzzes: convd
@@ -248,7 +252,7 @@ window.Methone = new function() {
   this.setLoginButtonText = function(text) {
     if (!text) {
       loginbtn.style.display = "none";
-    } else  {
+    } else {
       loginbtn.style.display = "block";
       loginbtn.value = text;
     }
