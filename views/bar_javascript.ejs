@@ -92,9 +92,19 @@ window.Methone = new function() {
    * Injection!
    */
   var root = document.getElementById(conf.target_id);
+  var getElementFun = function(d) {
+    return document.getElementById(d);
+  }
+
+
   if ("createShadowRoot" in root) {
     root = root.createShadowRoot();
+    getElementFun = function(d) {
+      return root.getElementById(d);
+    }
   }
+
+
 
   root.innerHTML = html;
 
@@ -110,7 +120,7 @@ window.Methone = new function() {
         str += menuitem_template.parse(conf.topbar_items[i]);
       }
 
-      root.getElementById('nav').innerHTML = str;
+      getElementFun('methone_nav').innerHTML = str;
 
     }
     buildMenu();
@@ -119,9 +129,9 @@ window.Methone = new function() {
      * StartMenu Setup
      */
 
-    var superdelta = root.getElementById("superdelta");
-    var startmenu = root.getElementById("startmenu");
-    var loginbtn = root.getElementById("login");
+    var superdelta = getElementFun("superdelta");
+    var startmenu = getElementFun("startmenu");
+    var loginbtn = getElementFun("login");
 
     superdelta.style.backgroundColor = conf.primary_color;
     loginbtn.style.backgroundColor = conf.primary_color;
@@ -137,7 +147,7 @@ window.Methone = new function() {
       }
     }
   } else { // Fuzz only
-    var mh = root.getElementById("methone_header");
+    var mh = getElementFun("methone_header");
     mh.parentNode.removeChild(mh);
   }
 
@@ -145,9 +155,9 @@ window.Methone = new function() {
    * Fuzz!!!!!
    */
   var fuzzyModule = function() {
-    var txtfuzz = root.getElementById("txt_fuzzy");
-    var resultfuzz = root.getElementById("fuzzy_results");
-    var gobox_inner = root.getElementById("inner_gobox");
+    var txtfuzz = getElementFun("txt_fuzzy");
+    var resultfuzz = getElementFun("fuzzy_results");
+    var gobox_inner = getElementFun("inner_gobox");
 
     var selectedElementIndex = 0;
     var numberofresults = 0;
@@ -178,7 +188,7 @@ window.Methone = new function() {
       };
       r.send();
 
-      txtfuzz.addEventListener("keyup", this.onKeyEntered);
+      txtfuzz.addEventListener("keypress", this.onKeyEntered);
       document.body.addEventListener("keydown", this.onGlobalShortcut);
 
       gobox_inner.style.backgroundColor = conf.primary_color;
@@ -220,6 +230,7 @@ window.Methone = new function() {
 
     this.onGlobalShortcut = function(event) {
       if ((event.metaKey === true || event.ctrlKey === true) && event.keyCode === 75) {
+        event.preventDefault();
         var box = resultfuzz.parentNode.parentNode;
         if (box.style.display == "none") {
           box.style.display = "block";
