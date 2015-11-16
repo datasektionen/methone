@@ -188,7 +188,7 @@ window.Methone = new function() {
       };
       r.send();
 
-      txtfuzz.addEventListener("keypress", this.onKeyEntered);
+      txtfuzz.addEventListener("keyup", this.onKeyEntered);
       document.body.addEventListener("keydown", this.onGlobalShortcut);
 
       gobox_inner.style.backgroundColor = conf.primary_color;
