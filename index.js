@@ -1,5 +1,6 @@
 var express = require('express');
 var juice = require('juice');
+var request = require('request');
 var UglifyJS = require("uglify-js");
 var app = express();
 
@@ -19,7 +20,33 @@ function getJuiced() {
 }
 
 function inline_template(file) {
-  return escape(juice(ejs.render(fs.readFileSync(file, 'utf8'))))
+  return juice(ejs.render(fs.readFileSync(file, 'utf8'))).replace(/"/g, '\\"').replace(/[\n\s]+/g, " ");
+}
+
+/**
+  Fetch the fuzzyfiles from all the specified providers
+*/
+function construct_master_fuzz(callback) {
+  var file = JSON.parse(fs.readFileSync('providers.json', 'utf8'));
+  var num = file.providers.length;
+  var fuzzes = [];
+
+  for (var path of file.providers) {
+    request.get(path, {timeout: 2500}, function(err, resp, body) {
+      num--;
+      try {
+        if (resp.statusCode == 200) {
+            fuzzes.push(JSON.parse(body).fuzzes);
+        }
+      } catch (e) {
+        console.error("Failed to fetch " + path + ": " + e);
+      } finally {
+        if (num <= 0) {
+          callback({fuzzes:[].concat.apply([], fuzzes)});
+        }
+      }
+    });
+  }
 }
 
 app.get('/bar.html', function (req, res) {
@@ -31,24 +58,30 @@ app.get('/test', function (req, res) {
 });
 
 app.get('/Fuzzyfile', function (req, res) {
-  res.send(fs.readFileSync('Fuzzyfile.sample', 'utf8'));
+  res.send(fs.readFileSync('Fuzzyfile.master', 'utf8'));
 });
 
 app.get('/bar.js', function (req, res) {
 
   if (cached_js_file == null || process.env.DEV_MODE == "true") {
-    cached_js_file = ejs.render(fs.readFileSync('views/bar_javascript.ejs', 'utf8'), {
-      html: inline_template('views/bar.ejs'),
-      master_fuzzyfile: fs.readFileSync('Fuzzyfile.master', 'utf8'),
-      listitem_template: inline_template('views/listitem.ejs'),
-      menuitem_template: inline_template('views/menuitem.ejs')
+
+    construct_master_fuzz(function(master_fuzzyfile) {
+      cached_js_file = ejs.render(fs.readFileSync('views/bar_javascript.ejs', 'utf8'), {
+        html: inline_template('views/bar.ejs'),
+        master_fuzzyfile: JSON.stringify(master_fuzzyfile),
+        listitem_template: inline_template('views/listitem.ejs'),
+        menuitem_template: inline_template('views/menuitem.ejs')
+      });
+
+      //cached_js_file = UglifyJS.minify(cached_js_file, {fromString: true}).code;
+      res.contentType('text/javascript');
+      res.send(cached_js_file);
     });
+  } else {
 
-    cached_js_file = UglifyJS.minify(cached_js_file, {fromString: true}).code;
+    res.contentType('text/javascript');
+    res.send(cached_js_file);
   }
-
-  res.contentType('text/javascript');
-  res.send(cached_js_file);
 });
 
 var server = app.listen(process.env.PORT || 5000, function () {

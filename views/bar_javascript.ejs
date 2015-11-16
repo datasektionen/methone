@@ -47,12 +47,12 @@ window.Methone = new function() {
    * State vars
    */
 
-  var html = unescape("<%= html %>");
+  var html = "<%- html %>";
   var master_fuzzyfile = <%- master_fuzzyfile %>;
   var conf = window.tbaas_conf;
 
-  var listitem_template = new Template(unescape("<%= listitem_template %>"));
-  var menuitem_template = new Template(unescape("<%= menuitem_template %>"));
+  var listitem_template = new Template("<%- listitem_template %>");
+  var menuitem_template = new Template("<%- menuitem_template %>");
 
   var fuzz = [];
 
@@ -82,7 +82,7 @@ window.Methone = new function() {
     target_id: conf.target_id,
     primary_color: conf.primary_color || "#E2007F",
     secondary_color: conf.secondary_color || "black",
-    fuzzyfile: conf.fuzzyfile || "/Fuzzyfile",
+    fuzzyfile: conf.fuzzyfile || false,
     fuzzy_only: conf.fuzzy_only || false,
     topbar_items: conf.topbar_items ||  []
   };
@@ -165,19 +165,16 @@ window.Methone = new function() {
 
     this.setup = function() {
       processFuzzyFile(master_fuzzyfile);
-      var convd = [];
 
-      for (var i in conf.topbar_items) {
-        convd.push({
-          name: conf.topbar_items[i].str + " - " + conf.system_name,
-          str: conf.topbar_items[i].str,
-          href: conf.topbar_items[i].href
-        });
-      }
-      processFuzzyFile({
-        fuzzes: convd
-      });
+      txtfuzz.addEventListener("keyup", this.onKeyEntered);
+      document.body.addEventListener("keydown", this.onGlobalShortcut);
 
+      gobox_inner.style.backgroundColor = conf.primary_color;
+
+      fetchLocalFuzzyFile()
+    }
+
+    function fetchLocalFuzzyFile() {
       if (!conf.fuzzyfile) return;
 
       var r = new XMLHttpRequest();
@@ -187,11 +184,6 @@ window.Methone = new function() {
         processFuzzyFile(JSON.parse(r.responseText));
       };
       r.send();
-
-      txtfuzz.addEventListener("keyup", this.onKeyEntered);
-      document.body.addEventListener("keydown", this.onGlobalShortcut);
-
-      gobox_inner.style.backgroundColor = conf.primary_color;
     }
 
     this.onKeyEntered = function(event) {
