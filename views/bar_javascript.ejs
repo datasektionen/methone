@@ -187,8 +187,6 @@ window.Methone = new function() {
       txtfuzz.addEventListener("keyup", this.onKeyEntered);
       document.body.addEventListener("keydown", this.onGlobalShortcut);
 
-      input_wrap.style.backgroundColor = conf.primary_color;
-
       fetchLocalFuzzyFile()
     }
 
@@ -218,6 +216,7 @@ window.Methone = new function() {
 
       switch (event.keyCode) {
         case 38: // UP
+          event.preventDefault();
           selectedElementIndex = (selectedElementIndex - 1) % numberofresults;
           break;
         case 40: // Down
@@ -233,23 +232,65 @@ window.Methone = new function() {
 
       }
 
-      resultfuzz.children[selectedElementIndex].style.background = "rgba(255,255,255,0.25)";
-      resultfuzz.children[selectedElementIndex].style.color = conf.secondary_color;
+      resultfuzz.children[selectedElementIndex].style.background = "rgba(0,0,0,.1)";
 
     };
 
     this.onGlobalShortcut = function(event) {
+
+      var box = resultfuzz.parentNode.parentNode;
+      if (event.keyCode == 27 && box.style.display != "none") { //escape
+        hideDialog()
+        return;
+      }
       if ((event.metaKey === true || event.ctrlKey === true) && event.keyCode === 75) {
         event.preventDefault();
         var box = resultfuzz.parentNode.parentNode;
         if (box.style.display == "none") {
-          box.style.display = "block";
-          txtfuzz.focus();
+          showDialog();
         } else {
-          box.style.display = "none";
+          hideDialog();
         }
       }
     };
+
+    function setFilter(elem, filter) {
+      if (elem==null || !("style" in elem)) return;
+      if ("webkitFilter" in elem.style) elem.style.webkitFilter = filter;
+      if ("filter" in elem.style) elem.style.filter = filter;
+    }
+
+    function showDialog() {
+      var box = resultfuzz.parentNode.parentNode;
+
+      box.style.display = "block";
+      box.style.transform = "scale(1)"
+      txtfuzz.focus();
+
+      setFilter(root.getElementById("methone_header"), "grayscale(1)");
+      var me = document.getElementById("h"),
+          parent = document.body;
+      for (var i in parent.children) {
+        if (parent.children[i] != me && "style" in parent.children[i]) {
+          parent.children[i].style.transition = "all 200ms ease-out";
+          parent.children[i].style.transform = "scale(.8)";
+          setFilter(parent.children[i], "grayscale(1) blur(2px)");
+        }
+      }
+    }
+    function hideDialog() {
+      var box = resultfuzz.parentNode.parentNode;
+      box.style.display = "none";
+      setFilter(root.getElementById("methone_header"), "");
+      var me = document.getElementById("h"),
+          parent = document.body;
+      for (var i in parent.children) {
+        if (parent.children[i] != me && "style" in parent.children[i]) {
+          parent.children[i].style.transform = "";
+          parent.children[i].style.webkitFilter = "";
+        }
+      }
+    }
 
     setTimeout(this.setup, 500); // Let the rest of the page load first
   }();
