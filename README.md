@@ -29,10 +29,14 @@ implementation, or there will be duplicates.
 
 How to use
 ----------
+Everything works best when the parent element is an immidiate child of the body
+tag.
 
-    <div id="to-be-parent-element-for-bar">
-      <nav>This will be replaced</nav>
-    </div>
+    <body>
+      <div id="to-be-parent-element-for-bar">
+        <nav>This will be replaced</nav>
+      </div>
+      ....
 
     <script>
       window.tbaas_conf = {
@@ -65,8 +69,10 @@ Search is performed on the str value.
 
       "fuzzes": [
         {
-          "str": "Kapplöpning",
-          "href": "href://datasektionen.se/sektionen/metadorerna/kapplopning"
+          "name": "Lokalbokning - Datasektionen.se",
+          "str": "lokalbokning",
+          "color": "#FDDE00",
+          "href": "http://datasektionen.se/sektionen/lokalbokning"
         }
       ]
     }

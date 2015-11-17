@@ -82,30 +82,6 @@
     text-decoration: none;
   }
 
-  #startmenu {
-    background-color: #212121;
-    width: 300px;
-    position: absolute;
-    top:50px;
-    display: none;
-    opacity: 0;
-  }
-  #startmenu ul, #gobox ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    transition: height 200ms ease-out;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-  }
-  #startmenu li, #gobox li {
-    padding: 10px;
-    font-family: Lato, sans-serif;
-  }
-  #startmenu a , #gobox a {
-    color: white;
-    text-decoration: none;
-    display: block;
-  }
   #gobox {
     position: fixed;
     top: 0;
@@ -140,7 +116,39 @@
     outline: none;
     text-transform: uppercase;
   }
+  #gobox ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    transition: height 200ms ease-out;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+  }
+  #gobox li {
+    padding: 10px;
+    font-family: Lato, sans-serif;
+  }
+  #gobox a {
+    color: white;
+    text-decoration: none;
+    display: block;
+  }
 
+
+
+  #startmenu {
+    background-color: #212121;
+    width: 100%;
+    position: absolute;
+    top:50px;
+    display: none;
+    opacity: 0;
+    padding: 0 0 5px 0;
+  }
+  #startmenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 
 </style>
 <div id="gobox">
@@ -158,18 +166,6 @@
   <div id="widther">
     <div id="startmenu">
       <ul>
-        <li>
-          <a href="http://mage.datasektionen.se">MAGE</a>
-        </li>
-        <li>
-          <a href="http://mage.datasektionen.se">MAGE</a>
-        </li>
-        <li>
-          <a href="http://mage.datasektionen.se">MAGE</a>
-        </li>
-        <li>
-          <a href="http://mage.datasektionen.se">MAGE</a>
-        </li>
       </ul>
     </div>
 

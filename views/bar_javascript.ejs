@@ -49,10 +49,13 @@ window.Methone = new function() {
 
   var html = "<%- html %>";
   var master_fuzzyfile = <%- master_fuzzyfile %>;
+  var providers = <%- providers %>;
   var conf = window.tbaas_conf;
 
   var listitem_template = new Template("<%- listitem_template %>");
   var menuitem_template = new Template("<%- menuitem_template %>");
+  var startmenuitem_template = new Template("<%- startmenuitem_template %>");
+  var startmenudivider_template = new Template("<%- startmenudivider_template %>");
 
   var fuzz = [];
 
@@ -109,6 +112,20 @@ window.Methone = new function() {
   root.innerHTML = html;
 
 
+
+      /*****************************************************************************
+       * Coloring
+       */
+
+      var superdelta = getElementFun("superdelta");
+      var startmenu = getElementFun("startmenu");
+      var loginbtn = getElementFun("login");
+
+      superdelta.style.backgroundColor = conf.primary_color;
+      loginbtn.style.backgroundColor = conf.primary_color;
+      loginbtn.style.color = conf.secondary_color;
+
+
   if (!conf.fuzzy_only) {
     /*****************************************************************************
      * Menu building
@@ -128,19 +145,11 @@ window.Methone = new function() {
     }
     buildMenu();
 
+
     /*****************************************************************************
      * StartMenu Setup
      */
-
-    var superdelta = getElementFun("superdelta");
-    var startmenu = getElementFun("startmenu");
-    var loginbtn = getElementFun("login");
-
-    superdelta.style.backgroundColor = conf.primary_color;
-    loginbtn.style.backgroundColor = conf.primary_color;
-    loginbtn.style.color = conf.secondary_color;
-
-    superdelta.onclick = function() {
+    superdelta.addEventListener("click", function(event) {
       if (startmenu.style.opacity == 1) {
         startmenu.style.opacity = 0;
         startmenu.style.display = "none";
@@ -148,7 +157,24 @@ window.Methone = new function() {
         startmenu.style.opacity = 1;
         startmenu.style.display = "block";
       }
+    });
+
+    var buildStartMenu = function() {
+      var str = "";
+      for (var i in providers.providers) {
+        var p=providers.providers[i];
+        if ("divider" in p) {
+          str += startmenudivider_template.parse(p)
+        } else {
+          str += startmenuitem_template.parse(p);
+        }
+      }
+
+      startmenu.children[0].innerHTML = str;
     }
+    buildStartMenu();
+
+
   } else { // Fuzz only
     var mh = getElementFun("methone_header");
     mh.parentNode.removeChild(mh);

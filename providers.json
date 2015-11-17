@@ -1,6 +1,49 @@
 {
   "@type": "fuzzy-providers",
   "providers": [
-    "http://tv.froyo.datasektionen.se/Fuzzyfile"
+    {
+      "name": "Datasektionen.se",
+      "href": "http://datasektionen.se/",
+      "fuzzy_file": "http://datasektionen.se/Fuzzyfile",
+      "color": "#FFEB3B"
+    },
+    {
+      "name": "Styrdokument",
+      "href": "http://styrdokument.datasektionen.se",
+      "fuzzy_file": "http://styrdokument.datasektionen.se/Fuzzyfile",
+      "color": "#9C27B0"
+    },
+    {
+      "name": "Utilities",
+      "divider":true
+    },
+    {
+      "name": "Motioner",
+      "href": "http://motioner.datasektionen.se",
+      "fuzzy_file": "http://motioner.datasektionen.se/Fuzzyfile",
+      "color": "#795548"
+    },
+    {
+      "name": "Internal Systems",
+      "divider":true
+    },
+    {
+      "name": "Cashflow",
+      "href": "http://tv.froyo.datasektionen.se/",
+      "fuzzy_file": "http://tv.froyo.datasektionen.se/Fuzzyfile",
+      "color": "#E2007F"
+    },
+    {
+      "name": "META-TV",
+      "href": "http://tv.froyo.datasektionen.se/",
+      "fuzzy_file": "http://tv.froyo.datasektionen.se/Fuzzyfile",
+      "color": "#2196F3"
+    },
+    {
+      "name": "Publishd",
+      "href": "http://publishd.datasektionen.se/",
+      "fuzzy_file": "http://publishd.datasektionen.se/Fuzzyfile",
+      "color": "#607D8B"
+    }
   ]
 }

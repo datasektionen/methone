@@ -6,8 +6,7 @@ var app = express();
 
 
 var ejs = require('ejs')
-  , fs = require('fs')
-  , str = fs.readFileSync('views/bar.ejs', 'utf8');
+  , fs = require('fs');
 
 app.set('view engine', 'ejs');
 
@@ -31,15 +30,19 @@ function construct_master_fuzz(callback) {
   var num = file.providers.length;
   var fuzzes = [];
 
-  for (var path of file.providers) {
-    request.get(path, {timeout: 2500}, function(err, resp, body) {
+  for (var provider of file.providers) {
+    if("divider" in provider) {
+      num--;
+      continue;
+    }
+    request.get(provider.fuzzy_file, {timeout: 2500}, function(err, resp, body) {
       num--;
       try {
         if (resp.statusCode == 200) {
             fuzzes.push(JSON.parse(body).fuzzes);
         }
       } catch (e) {
-        console.error("Failed to fetch " + path + ": " + e);
+        console.error("Failed to fetch: " + e);
       } finally {
         if (num <= 0) {
           // Add the master file aswell
@@ -52,7 +55,7 @@ function construct_master_fuzz(callback) {
 }
 
 app.get('/bar.html', function (req, res) {
-  res.send(getJuiced());
+  res.send(inline_template('views/bar.ejs'));
 });
 
 app.get('/test', function (req, res) {
@@ -71,11 +74,14 @@ app.get('/bar.js', function (req, res) {
       cached_js_file = ejs.render(fs.readFileSync('views/bar_javascript.ejs', 'utf8'), {
         html: inline_template('views/bar.ejs'),
         master_fuzzyfile: JSON.stringify(master_fuzzyfile),
+        providers: fs.readFileSync('providers.json', 'utf8'),
         listitem_template: inline_template('views/listitem.ejs'),
-        menuitem_template: inline_template('views/menuitem.ejs')
+        menuitem_template: inline_template('views/menuitem.ejs'),
+        startmenuitem_template: inline_template('views/start_menu_item.ejs'),
+        startmenudivider_template: inline_template('views/start_menu_divider.ejs')
       });
 
-      cached_js_file = UglifyJS.minify(cached_js_file, {fromString: true}).code;
+      //cached_js_file = UglifyJS.minify(cached_js_file, {fromString: true}).code;
       res.contentType('text/javascript');
       res.send(cached_js_file);
     });
