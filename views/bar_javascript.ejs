@@ -268,7 +268,7 @@ window.Methone = new function() {
       txtfuzz.focus();
 
       setFilter(root.getElementById("methone_header"), "grayscale(1)");
-      var me = document.getElementById("h"),
+      var me = document.getElementById(conf.target_id),
           parent = document.body;
       for (var i in parent.children) {
         if (parent.children[i] != me && "style" in parent.children[i]) {
