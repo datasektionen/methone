@@ -2,6 +2,8 @@ var express = require('express');
 var juice = require('juice');
 var request = require('request');
 var UglifyJS = require("uglify-js");
+var htmlparser = require("htmlparser");
+var url = require('url');
 var app = express();
 
 
@@ -91,6 +93,15 @@ app.get('/bar.js', function (req, res) {
     res.send(cached_js_file);
   }
 });
+
+app.get('/enlighten', function (req, res) {
+  request.get(req.query.p, {timeout: 2500}, function(err, resp, body) {
+    var d = url.parse(req.query.p).host;
+    res.send(body.split('"/').join('"http://'+d+"/").split("'/").join("'http://"+d+"/") +
+      "<div id=barx></div><script>window.tbaas_conf={target_id:'barx', fuzzy_only:true}</script><script src='/bar.js'></script>");
+  });
+});
+
 
 var server = app.listen(process.env.PORT || 5000, function () {
   var host = server.address().address;
