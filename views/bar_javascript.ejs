@@ -290,16 +290,15 @@ window.Methone = new function() {
       var box = resultfuzz.parentNode.parentNode;
 
       box.style.display = "block";
-      box.style.transform = "scale(1)"
+      txtfuzz.parentNode.style.background = conf.primary_color;
       txtfuzz.focus();
 
-      setFilter(root.getElementById("methone_header"), "grayscale(1)");
+      setFilter(root.getElementById("methone_header"), "grayscale(1) blur(2px)");
       var me = document.getElementById(conf.target_id),
           parent = document.body;
       for (var i in parent.children) {
         if (parent.children[i] != me && "style" in parent.children[i]) {
           parent.children[i].style.transition = "all 200ms ease-out";
-          parent.children[i].style.transform = "scale(.8)";
           setFilter(parent.children[i], "grayscale(1) blur(2px)");
         }
       }
