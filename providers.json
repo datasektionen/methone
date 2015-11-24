@@ -40,10 +40,10 @@
       "color": "#2196F3"
     },
     {
-      "name": "Publishd",
-      "href": "http://publishd.datasektionen.se/",
-      "fuzzy_file": "http://publishd.datasektionen.se/Fuzzyfile",
-      "color": "#607D8B"
+      "name": "dJulkalendern",
+      "href": "http://djul.datasektionen.se/",
+      "fuzzy_file": "http://djul.datasektionen.se/public/fuzzyfile",
+      "color": "rgb(190, 27, 0)"
     }
   ]
 }
