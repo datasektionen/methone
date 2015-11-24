@@ -2,7 +2,6 @@ var express = require('express');
 var juice = require('juice');
 var request = require('request');
 var UglifyJS = require("uglify-js");
-var htmlparser = require("htmlparser");
 var url = require('url');
 var app = express();
 
