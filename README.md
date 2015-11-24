@@ -33,7 +33,7 @@ Everything works best when the parent element is an immidiate child of the body
 tag.
 
     <body>
-      <div id="to-be-parent-element-for-bar">
+      <div id="to-be-parent-element-for-bar"> <!-- Should be a direct child of body -->
         <nav>This will be replaced</nav>
       </div>
       ....
@@ -44,7 +44,7 @@ tag.
         target_id: "to-be-parent-element-for-bar"
         primary_color: "#E2007F",
         secondary_color "white",
-        fuzzy_file: "/Fuzzyfile",
+        fuzzy_file: "/Fuzzyfile", // OBSOLETE. Not  used.
         topbar_items: [
           {
             str: "About us",
@@ -55,14 +55,13 @@ tag.
       }
     </script>
 
-    <script
-      src="//tbaas.datasektionen.se/bar.js"
-      type="text/javascript"></script>
+    <script async src="http://methone.datasektionen.se"></script>
 
 
 An example Fuzzyfile:
 ---
-Search is performed on the str value.
+Search is performed on the str value. The name MUST be of the form "Some Name -
+Service name"
 
     {
       "@type": "fuzzyfile",
@@ -70,7 +69,7 @@ Search is performed on the str value.
       "fuzzes": [
         {
           "name": "Lokalbokning - Datasektionen.se",
-          "str": "lokalbokning",
+          "str": "lokalbokning booking",
           "color": "#FDDE00",
           "href": "http://datasektionen.se/sektionen/lokalbokning"
         }
