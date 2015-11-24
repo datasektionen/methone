@@ -96,8 +96,9 @@
   #inner_gobox {
       width: 600px;
       margin: 200px auto 0 auto;
-      -box-shadow: 0 6px 15px rgba(0,0,0,0.4);
       background: aliceblue;
+      transition: all 2s ease-out;
+      opacity: 0;
   }
   #input_wrap {
     background: #E91E63;
@@ -141,14 +142,26 @@
     top:50px;
     display: none;
     opacity: 0;
-    padding: 0 0 5px 0;
+    background-color: #FAFAFA;
+    left: 0;
+    width: 300px;
+    box-shadow: 0 0 20px black;
+    bottom: 0;
   }
   #startmenu ul {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-
+  #meth_tip_ux {
+    position: absolute;
+    bottom: 0px;
+    font-size: 12px;
+    left: -30px;
+    text-decoration: none;
+    color: #666666;
+    transition: opacity 2s ease-out;
+  }
 </style>
 <div id="gobox">
   <div id="inner_gobox">
@@ -161,15 +174,18 @@
   </div>
 </div>
 
+
+  <div id="startmenu">
+    <ul>
+    </ul>
+  </div>
+
 <header id="methone_header">
   <div id="widther">
-    <div id="startmenu">
-      <ul>
-      </ul>
-    </div>
 
 
     <a href="#" id="superdelta">
+      <span id="meth_tip_ux">⌘+K</span>
       <svg id="superdelta_img" width="26px" height="37px" viewBox="0 0 26 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
         <title>Konglig Datasektionens Delta</title>
         <desc>Konglig Datasektionens logotype</desc>

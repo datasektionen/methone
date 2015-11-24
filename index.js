@@ -69,6 +69,11 @@ app.get('/Fuzzyfile', function (req, res) {
 });
 
 app.get('/bar.js', function (req, res) {
+  res.redirect('/');
+});
+
+
+app.get('/', function (req, res) {
 
   if (cached_js_file == null || process.env.DEV_MODE) {
 
@@ -83,7 +88,7 @@ app.get('/bar.js', function (req, res) {
         startmenudivider_template: inline_template('views/start_menu_divider.ejs')
       });
 
-      cached_js_file = UglifyJS.minify(cached_js_file, {fromString: true}).code;
+      //cached_js_file = UglifyJS.minify(cached_js_file, {fromString: true}).code;
       res.contentType('text/javascript');
       res.send(cached_js_file);
     });
@@ -96,12 +101,17 @@ app.get('/bar.js', function (req, res) {
 
 app.get('/enlighten', function (req, res) {
   request.get(req.query.p, {timeout: 2500}, function(err, resp, body) {
-    var d = url.parse(req.query.p).host;
-    res.send(body.split('"/').join('"http://'+d+"/").split("'/").join("'http://"+d+"/") +
+    var host = url.parse(req.query.p).host;
+    res.send(body.split('"/').join('"http://'+host+"/").split("'/").join("'http://"+host+"/") +
       "<div id=barx></div><script>window.tbaas_conf={target_id:'barx', fuzzy_only:true}</script><script src='/bar.js'></script>");
   });
 });
 
+
+app.get('/cache/u-dun-goofed', function (req, res) {
+  cached_js_file = null;
+  res.redirect('/test');
+});
 
 var server = app.listen(process.env.PORT || 5000, function () {
   var host = server.address().address;

@@ -57,6 +57,7 @@ window.Methone = new function() {
   var startmenuitem_template = new Template("<%- startmenuitem_template %>");
   var startmenudivider_template = new Template("<%- startmenudivider_template %>");
 
+  var fuzzyModule;
   var fuzz = [];
 
   var options = {
@@ -148,8 +149,9 @@ window.Methone = new function() {
 
     /*****************************************************************************
      * StartMenu Setup
-     */
+     *
     superdelta.addEventListener("click", function(event) {
+      fuzzyModule.showDialog(); return;
       if (startmenu.style.opacity == 1) {
         startmenu.style.opacity = 0;
         startmenu.style.display = "none";
@@ -171,8 +173,7 @@ window.Methone = new function() {
       }
 
       startmenu.children[0].innerHTML = str;
-    }
-    buildStartMenu();
+    }*/
 
 
   } else { // Fuzz only
@@ -183,7 +184,7 @@ window.Methone = new function() {
   /*****************************************************************************
    * Fuzz!!!!!
    */
-  var fuzzyModule = function() {
+  fuzzyModule = function() {
     var txtfuzz = getElementFun("txt_fuzzy");
     var resultfuzz = getElementFun("fuzzy_results");
     var gobox_inner = getElementFun("inner_gobox");
@@ -214,6 +215,13 @@ window.Methone = new function() {
       document.body.addEventListener("keydown", this.onGlobalShortcut);
 
       fetchLocalFuzzyFile()
+
+      superdelta.addEventListener("click", function(event) {
+      writeProviders();
+        showDialog();
+      });
+
+      getElementFun('meth_tip_ux').style.opacity = 0;
     }
 
     function fetchLocalFuzzyFile() {
@@ -231,13 +239,21 @@ window.Methone = new function() {
     this.onKeyEntered = function(event) {
       var val = txtfuzz.value;
       var results = fuse.search(val);
+      var items;
 
-      var str = "";
-      for (var i in results) {
-        str += listitem_template.parse(results[i]);
+      if (!val) {
+        writeProviders();
+      } else {
+        var str = "";
+        for (var i in results) {
+          if ("divider" in results[i]) continue;
+          str += listitem_template.parse(results[i]);
+        }
+        resultfuzz.innerHTML = str;
+        numberofresults = results.length;
       }
-      resultfuzz.innerHTML = str;
-      numberofresults = results.length;
+
+
 
 
       switch (event.keyCode) {
@@ -261,6 +277,16 @@ window.Methone = new function() {
       resultfuzz.children[selectedElementIndex].style.background = "rgba(0,0,0,.1)";
 
     };
+
+    function writeProviders() {
+      var str = "";
+      for (var i in providers.providers) {
+        if ("divider" in providers.providers[i]) continue;
+        str += listitem_template.parse(providers.providers[i]);
+      }
+      resultfuzz.innerHTML = str;
+      numberofresults = providers.providers.length;
+    }
 
     this.onGlobalShortcut = function(event) {
 
@@ -286,30 +312,48 @@ window.Methone = new function() {
       if ("filter" in elem.style) elem.style.filter = filter;
     }
 
-    function showDialog() {
+    this.showDialog = function() {
       var box = resultfuzz.parentNode.parentNode;
 
+
+      gobox_inner.style.opacity = 0;
+      gobox_inner.style.marginTop = 200;
       box.style.display = "block";
+      gobox_inner.style.opacity = 1;
+      gobox_inner.style.marginTop = 210;
       txtfuzz.parentNode.style.background = conf.primary_color;
       txtfuzz.focus();
 
-      setFilter(root.getElementById("methone_header"), "grayscale(1) blur(2px)");
+
+
+      setFilter(getElementFun("methone_header"), "grayscale(1) blur(2px)");
       var me = document.getElementById(conf.target_id),
           parent = document.body;
       for (var i in parent.children) {
+        if(typeof parent.children[i] == "number") break; //WTFBBQ
         if (parent.children[i] != me && "style" in parent.children[i]) {
           parent.children[i].style.transition = "all 200ms ease-out";
           setFilter(parent.children[i], "grayscale(1) blur(2px)");
         }
       }
+
+
+
     }
+
+
     function hideDialog() {
       var box = resultfuzz.parentNode.parentNode;
+
+      gobox_inner.style.opacity = 0;
+      gobox_inner.style.marginTop = "210px";
       box.style.display = "none";
       setFilter(root.getElementById("methone_header"), "");
       var me = document.getElementById("h"),
           parent = document.body;
       for (var i in parent.children) {
+        if(typeof parent.children[i] == "number") break; //WTFBBQ
+
         if (parent.children[i] != me && "style" in parent.children[i]) {
           parent.children[i].style.transform = "";
           parent.children[i].style.webkitFilter = "";

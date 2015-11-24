@@ -11,7 +11,6 @@
   "dependencies": {
     "ejs": "^2.3.4",
     "express": "^4.13.3",
-    "htmlparser": "^1.7.7",
     "jade": "^1.11.0",
     "juice": "^1.7.1",
     "request": "^2.65.0",
