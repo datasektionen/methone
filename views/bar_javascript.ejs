@@ -100,6 +100,10 @@ window.Methone = new function() {
     return document.getElementById(d);
   }
 
+  if (!root) {
+    console.error("Did not find target element " + conf.target_id);
+    return;
+  }
 
   if ("createShadowRoot" in root) {
     root = root.createShadowRoot();
@@ -348,7 +352,7 @@ window.Methone = new function() {
       gobox_inner.style.opacity = 0;
       gobox_inner.style.marginTop = "210px";
       box.style.display = "none";
-      setFilter(root.getElementById("methone_header"), "");
+      setFilter(getElementFun("methone_header"), "");
       var me = document.getElementById("h"),
           parent = document.body;
       for (var i in parent.children) {
@@ -356,7 +360,7 @@ window.Methone = new function() {
 
         if (parent.children[i] != me && "style" in parent.children[i]) {
           parent.children[i].style.transform = "";
-          parent.children[i].style.webkitFilter = "";
+          setFilter(parent.children[i], "");
         }
       }
     }

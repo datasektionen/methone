@@ -87,7 +87,7 @@ app.get('/', function (req, res) {
         startmenudivider_template: inline_template('views/start_menu_divider.ejs')
       });
 
-      //cached_js_file = UglifyJS.minify(cached_js_file, {fromString: true}).code;
+      cached_js_file = UglifyJS.minify(cached_js_file, {fromString: true}).code;
       res.contentType('text/javascript');
       res.send(cached_js_file);
     });
