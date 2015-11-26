@@ -54,11 +54,6 @@
       "color": "#E2007F",
       "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://ston.datasektionen.se"
     },{
-      "name": "META-TV",
-      "str": "meta-tv",
-      "color": "#BA68C8",
-      "href": "http://tv.froyo.datasektionen.se"
-    },{
       "name": "SL",
       "str": "SL tåg tunnelbana",
       "color": "red",
