@@ -40,11 +40,14 @@ tag.
 
     <script>
       window.tbaas_conf = {
-        system_name: "meta-tv",
-        target_id: "to-be-parent-element-for-bar"
+        system_name: "meta-tv", // The only required var
+        target_id: "to-be-parent-element-for-bar",
         primary_color: "#E2007F",
         secondary_color "white",
-        fuzzy_file: "/Fuzzyfile", // OBSOLETE. Not  used.
+        login_text: "Login with trisslott", // Default null, null hides button
+        login_href: "/login",
+        logo_invert: true,
+
         topbar_items: [
           {
             str: "About us",
