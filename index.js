@@ -98,13 +98,13 @@ app.get('/', function (req, res) {
   }
 });
 
-app.get('/enlighten', function (req, res) {
+/*app.get('/enlighten', function (req, res) {
   request.get(req.query.p, {timeout: 2500}, function(err, resp, body) {
     var host = url.parse(req.query.p).host;
     res.send(body.split('"/').join('"http://'+host+"/").split("'/").join("'http://"+host+"/") +
       "<div id=barx></div><script>window.tbaas_conf={target_id:'barx', fuzzy_only:true}</script><script src='/bar.js'></script>");
   });
-});
+});*/
 
 
 app.get('/cache/u-dun-goofed', function (req, res) {
