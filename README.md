@@ -58,7 +58,7 @@ tag. You should probably lower your page content by 50 pixels.
       }
     </script>
 
-    <script async src="http://methone.datasektionen.se"></script>
+    <script async src="//methone.datasektionen.se"></script>
 
 
 An example Fuzzyfile:
