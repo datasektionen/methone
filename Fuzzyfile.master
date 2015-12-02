@@ -6,37 +6,37 @@
       "name": "Lokalbokning - Datasektionen.se",
       "str": "lokalbokning",
       "color": "#FDDE00",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://datasektionen.se/sektionen/lokalbokning"
+      "href": "http://datasektionen.se/sektionen/lokalbokning"
     },{
       "name": "Protokoll - Datasektionen.se",
       "str": "protokoll minutes",
       "color": "#FDDE00",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://datasektionen.se/sektionen/formalia/protokoll"
+      "href": "http://datasektionen.se/sektionen/formalia/protokoll"
     },{
       "name": "Organisation - Datasektionen.se",
       "str": "organisation",
       "color": "#FDDE00",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://datasektionen.se/sektionen/organisation"
+      "href": "http://datasektionen.se/sektionen/organisation"
     },{
       "name": "Näringsliv - Datasektionen.se",
       "str": "näringsliv industry contact",
       "color": "#FDDE00",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://datasektionen.se/naringsliv"
+      "href": "http://datasektionen.se/naringsliv"
     },{
       "name": "Studier - Datasektionen.se",
       "str": "studier",
       "color": "#FDDE00",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://datasektionen.se/studier"
+      "href": "http://datasektionen.se/studier"
     },{
       "name": "Funktionärer - Datasektionen.se",
       "str": "funktionärer officers",
       "color": "#FDDE00",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://datasektionen.se/sektionen/funktionarer"
+      "href": "http://datasektionen.se/sektionen/funktionarer"
     },{
       "name": "Valsidan - Datasektionen.se",
       "str": "valsidan elections",
       "color": "#FDDE00",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://datasektionen.se/sektionen/val"
+      "href": "http://datasektionen.se/sektionen/val"
     },
 
 
@@ -47,52 +47,52 @@
       "name": "Mage",
       "str": "mage",
       "color": "#E2007F",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://mage.datasektionen.se"
+      "href": "http://mage.datasektionen.se"
     },{
       "name": "Stön",
       "str": "stön",
       "color": "#E2007F",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://ston.datasektionen.se"
+      "href": "http://ston.datasektionen.se"
     },{
       "name": "SL",
       "str": "SL tåg tunnelbana",
       "color": "red",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://sl.froyo.datasektionen.se/metro"
+      "href": "http://sl.froyo.datasektionen.se/metro"
     },{
       "name": "Cashflow",
       "str": "cashflow",
       "color": "#BA68C8",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://cashflow.datasektionen.se"
+      "href": "http://cashflow.datasektionen.se"
     },{
       "name": "Bawang",
       "str": "bawang",
       "color": "#FDDE00",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://datasektionen.se"
+      "href": "http://datasektionen.se"
     },{
       "name": "Datasektionen.se",
       "str": "datasektionen.se",
       "color": "#FDDE00",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://datasektionen.se"
+      "href": "http://datasektionen.se"
     },{
       "name": "dfunkt",
       "str": "dfunkt",
       "color": "blue",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://dfunkt.datasektionen.se"
+      "href": "http://dfunkt.datasektionen.se"
     },{
       "name": "Motioner",
       "str": "motioner",
       "color": "white",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://motioner.datasektionen.se"
+      "href": "http://motioner.datasektionen.se"
     },{
       "name": "Djobb",
       "str": "djobb work",
       "color": "#E2007F",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://djobb.se"
+      "href": "http://djobb.se"
     },{
       "name": "Metaspexet",
       "str": "metaspexet",
       "color": "red",
-      "href": "http://methone.froyo.datasektionen.se/enlighten?p=http://metaspexet.se"
+      "href": "http://metaspexet.se"
     }
 
   ]
