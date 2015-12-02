@@ -30,7 +30,7 @@ implementation, or there will be duplicates.
 How to use
 ----------
 Everything works best when the parent element is an immidiate child of the body
-tag.
+tag. You should probably lower your page content by 50 pixels.
 
     <body>
       <div id="to-be-parent-element-for-bar"> <!-- Should be a direct child of body -->
