@@ -69,6 +69,28 @@ window.Methone = new function() {
   }
   var fuse;
 
+  var quick_access_items = [{
+    "name": "Lokalbokning - Datasektionen.se",
+    "color": "#FDDE00",
+    "href": "http://datasektionen.se/sektionen/lokalbokning"
+  }, {
+    "name": "Protokoll - Datasektionen.se",
+    "color": "#FDDE00",
+    "href": "http://datasektionen.se/sektionen/formalia/protokoll"
+  }, {
+    "name": "Organisation - Datasektionen.se",
+    "color": "#FDDE00",
+    "href": "http://datasektionen.se/sektionen/organisation"
+  }, {
+    "name": "Näringsliv - Datasektionen.se",
+    "color": "#FDDE00",
+    "href": "http://datasektionen.se/naringsliv"
+  }, ];
+
+
+  /*****************************************************************************
+   * Helper methods.
+   */
   var processFuzzyFile = function(obj) {
     fuzz = fuzz.concat(obj.fuzzes);
     fuse = new Fuse(fuzz, options);
@@ -81,7 +103,16 @@ window.Methone = new function() {
   }
 
 
+  function get_brightness(hexCode) {
+    // strip off any leading #
+    hexCode = hexCode.replace('#', '');
 
+    var c_r = parseInt(hexCode.substr(0, 2), 16);
+    var c_g = parseInt(hexCode.substr(2, 2), 16);
+    var c_b = parseInt(hexCode.substr(4, 2), 16);
+
+    return ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+  }
 
   /*****************************************************************************
    * Conf parsing
@@ -100,7 +131,7 @@ window.Methone = new function() {
     fuzzy_only: conf.fuzzy_only || false,
     topbar_items: conf.topbar_items ||  [],
     login_text: conf.login_text || null,
-    login_href: conf.login_href || "#",
+    login_href: conf.login_href ||  "#",
     delta_invert: conf.delta_invert || false
   };
 
@@ -185,6 +216,9 @@ window.Methone = new function() {
   fuzzyModule = function() {
     var txtfuzz = getElementFun("txt_fuzzy");
     var resultfuzz = getElementFun("fuzzy_results");
+    var quick_access_elem = getElementFun("quick_access");
+
+    var box = getElementFun("gobox");
     var gobox_inner = getElementFun("inner_gobox");
     var input_wrap = getElementFun("input_wrap");
 
@@ -195,34 +229,31 @@ window.Methone = new function() {
     this.setup = function() {
       processFuzzyFile(master_fuzzyfile);
 
-      /*
-      var convd = [];
-
-      for (var i in conf.topbar_items) {
-        convd.push({
-          name: conf.topbar_items[i].str + " - " + conf.system_name,
-          str: conf.topbar_items[i].str,
-          href: conf.topbar_items[i].href
-        });
-      }
-      processFuzzyFile({
-        fuzzes: convd
-      });*/
-
       txtfuzz.addEventListener("keyup", this.onKeyEntered);
       document.body.addEventListener("keydown", this.onGlobalShortcut);
 
-      fetchLocalFuzzyFile()
-
       superdelta.addEventListener("click", function(event) {
-        writeProviders();
+        //writeProviders();
         showDialog();
       });
 
+
+      renderQuickAccessList();
       getElementFun('meth_tip_ux').style.opacity = 0;
     }
 
-    function fetchLocalFuzzyFile() {
+    function renderQuickAccessList() {
+
+      var str = "";
+      var count = 0;
+      for (var i in quick_access_items) {
+        quick_access_items[i].cmd = "CTRL+" + (++count);
+        str += listitem_template.parse(quick_access_items[i]);
+      }
+      quick_access_elem.innerHTML = str;
+    }
+
+    /*function fetchLocalFuzzyFile() {
       if (!conf.fuzzyfile) return;
 
       var r = new XMLHttpRequest();
@@ -232,7 +263,7 @@ window.Methone = new function() {
         processFuzzyFile(JSON.parse(r.responseText));
       };
       r.send();
-    }
+    }*/
 
     this.onKeyEntered = function(event) {
       var val = txtfuzz.value;
@@ -240,24 +271,22 @@ window.Methone = new function() {
       var items;
 
       if (!val) {
-        writeProviders();
-      } else {
-        var str = "";
-        for (var i in results) {
-          if ("divider" in results[i]) continue;
-          str += listitem_template.parse(results[i]);
-        }
-        resultfuzz.innerHTML = str;
-        numberofresults = results.length;
+        results = providers.providers;
+
       }
-
-
+      var str = "";
+      for (var i in results) {
+        if ("divider" in results[i]) continue;
+        str += listitem_template.parse(results[i]);
+      }
+      resultfuzz.innerHTML = str;
+      numberofresults = results.length;
 
 
       switch (event.keyCode) {
         case 38: // UP
           event.preventDefault();
-          selectedElementIndex = (selectedElementIndex - 1) % numberofresults;
+          selectedElementIndex = Math.max((selectedElementIndex - 1) % numberofresults, 0);
           break;
         case 40: // Down
           selectedElementIndex = (selectedElementIndex + 1) % numberofresults;
@@ -272,31 +301,31 @@ window.Methone = new function() {
 
       }
 
-      resultfuzz.children[selectedElementIndex].style.background = "rgba(0,0,0,.1)";
+      //quick_access
+      if (event.keyCode >= 49 && event.keyCode <= 55 && event.ctrlKey) {
+        window.location = quick_access_items[event.keyCode - 49].href;
+      }
+
+      var color = results[selectedElementIndex % numberofresults].color;
+
+      var element = resultfuzz.children[selectedElementIndex % numberofresults];
+
+      element.children[0].children[1].style.color = (get_brightness(color) > 200) ? "black" : "white";
+      element.style.background = color;
 
     };
 
-    function writeProviders() {
-      var str = "";
-      for (var i in providers.providers) {
-        if ("divider" in providers.providers[i]) continue;
-        str += listitem_template.parse(providers.providers[i]);
-      }
-      resultfuzz.innerHTML = str;
-      numberofresults = providers.providers.length;
-    }
 
     this.onGlobalShortcut = function(event) {
 
-      var box = resultfuzz.parentNode.parentNode;
       if (event.keyCode == 27 && box.style.display != "none") { //escape
         hideDialog()
         return;
       }
       if ((event.metaKey === true || event.ctrlKey === true) && event.keyCode === 75) {
         event.preventDefault();
-        var box = resultfuzz.parentNode.parentNode;
         if (box.style.display == "none") {
+
           showDialog();
         } else {
           hideDialog();
@@ -305,27 +334,28 @@ window.Methone = new function() {
     };
 
     this.showDialog = function() {
-      var box = resultfuzz.parentNode.parentNode;
-
-
       gobox_inner.style.opacity = 0;
-      gobox_inner.style.marginTop = 200;
+      gobox_inner.style.marginTop = 50;
       box.style.display = "block";
+      box.style.top = window.innerHeight;
+      box.style.transition = "top 500ms cubic-bezier(0.000, 1.185, 0.000, 0.885)";
+      setTimeout(function() {
+        box.style.top = "50px"
+      }, 10);
+
       gobox_inner.style.opacity = 1;
-      gobox_inner.style.marginTop = 210;
-      txtfuzz.parentNode.style.background = conf.primary_color;
       txtfuzz.focus();
 
 
 
-      setFilter(getElementFun("methone_header"), "grayscale(1) blur(2px)");
+      //setFilter(getElementFun("methone_header"), "grayscale(1) blur(2px)");
       var me = document.getElementById(conf.target_id),
         parent = document.body;
       for (var i in parent.children) {
         if (typeof parent.children[i] == "number") break; //WTFBBQ
         if (parent.children[i] != me && "style" in parent.children[i]) {
-          parent.children[i].style.transition = "all 200ms ease-out";
-          setFilter(parent.children[i], "grayscale(1) blur(2px)");
+          parent.children[i].style.transition = "all 900ms ease-out";
+          setFilter(parent.children[i], "grayscale(1) ");
         }
       }
 
@@ -335,13 +365,12 @@ window.Methone = new function() {
 
 
     function hideDialog() {
-      var box = resultfuzz.parentNode.parentNode;
 
       gobox_inner.style.opacity = 0;
       gobox_inner.style.marginTop = "210px";
       box.style.display = "none";
-      setFilter(getElementFun("methone_header"), "");
-      var me = document.getElementById("h"),
+      //setFilter(getElementFun("methone_header"), "");
+      var me = document.getElementById(conf.target_id),
         parent = document.body;
       for (var i in parent.children) {
         if (typeof parent.children[i] == "number") break; //WTFBBQ

@@ -14,18 +14,10 @@
       "color": "#9C27B0"
     },
     {
-      "name": "Utilities",
-      "divider":true
-    },
-    {
       "name": "Motioner",
       "href": "http://motioner.datasektionen.se",
       "fuzzy_file": "http://motioner.datasektionen.se/Fuzzyfile",
       "color": "#795548"
-    },
-    {
-      "name": "Internal Systems",
-      "divider":true
     },
     {
       "name": "Cashflow",

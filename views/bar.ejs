@@ -10,12 +10,17 @@
     padding: 0;
   }
 
+  * {
+    line-height: normal;
+  }
+
   header {
     background-color: #212121;
     font-family: Lato, Arial;
     position: fixed;
     right:0; left: 0; top: 0;
-    z-index: 9000
+    z-index: 9000;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, .2);
   }
 
   #widther {
@@ -83,45 +88,41 @@
   }
 
   #gobox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9006;
-    width: 100%;
-    height: 100%;
-    display: none;
-    background-color: rgba(0, 0, 0, 0.5);
-    transition: all 200ms ease-out;
+        margin: 0px;
+        padding: 0px;
+        position: fixed;
+        top: 50px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        display: none;
+        z-index: 9006;
+        background-color: rgba(0, 0, 0, 0.75);
   }
   #inner_gobox {
-      width: 600px;
-      margin: 200px auto 0 auto;
-      background: aliceblue;
-      transition: all 2s ease-out;
-      opacity: 0;
-  }
-  #input_wrap {
-    background: #E91E63;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    padding: 0px;
+    margin: 40px auto 0px;
+    max-width: 1000px;
+    transition: all 2s ease-out;
+    opacity: 1;
   }
   #gobox input {
-    width: 560px;
+    width: 100%;
     font-size: 28px;
-    margin: 20px;
+    font-weight: 200;
+    margin: 20px 0;
     padding: 5px 0;
     background: none;
     border: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
     color: #FAFAFA;
     outline: none;
-    text-transform: uppercase;
   }
   #gobox ul {
     list-style: none;
     padding: 0;
     margin: 0;
     transition: height 200ms ease-out;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
   }
   #gobox li {
     padding: 10px;
@@ -134,25 +135,6 @@
   }
 
 
-
-  #startmenu {
-    background-color: #212121;
-    width: 100%;
-    position: absolute;
-    top:50px;
-    display: none;
-    opacity: 0;
-    background-color: #FAFAFA;
-    left: 0;
-    width: 300px;
-    box-shadow: 0 0 20px black;
-    bottom: 0;
-  }
-  #startmenu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
   #meth_tip_ux {
     position: absolute;
     bottom: 0px;
@@ -162,23 +144,51 @@
     color: #666666;
     transition: opacity 2s ease-out;
   }
+  .m_column {
+    float:left;
+    width:460px;
+  }
+
+  .m_column.m_last {
+    float: right;
+  }
+  .m_h3 {
+    line-height: normal;
+    font-family: Lato;
+    color: #BBB;
+    margin-bottom: 25px;
+    display: block;
+  }
+  #m_help {
+    line-height: normal;
+    font-family: Lato, sans-serif;
+    color: #AAA;
+    display: block;
+    float: right;
+    font-size: smaller;
+  }
 </style>
 <div id="gobox">
   <div id="inner_gobox">
+    <span id="m_help">▲ ▼ navigation &emsp; ✖ esc to close &emsp;  ⌨ Alt-Enter to open in new tab </span>
     <div id="input_wrap">
-      <input type="text" id="txt_fuzzy" >
+      <input type="text" id="txt_fuzzy" placeholder="Search for systems, pages or keywords..." >
     </div>
-    <ul id="fuzzy_results">
-      <!-- Use listitem.ejs here -->
-    </ul>
+    <div class="m_column">
+
+      <span class="m_h3">MY SOFTWARE</span>
+      <ul id="fuzzy_results">
+        <!-- Use listitem.ejs here -->
+      </ul>
+    </div>
+    <div class="m_column m_last">
+      <span class="m_h3">MOST USED</span>
+      <ul id="quick_access">
+        <!-- Use listitem.ejs here -->
+      </ul>
+    </div>
   </div>
 </div>
-
-
-  <div id="startmenu">
-    <ul>
-    </ul>
-  </div>
 
 <header id="methone_header">
   <div id="widther">
@@ -202,12 +212,12 @@
         </g>
       </svg>
     </a>
-    <nav id="methone_nav">
+    <div id="methone_nav">
       <!-- Use menuitem.ejs -->
       <!--<a class="navelement" href="http://datasektionen.se/">
           Nyheter/Events
         </a>-->
-    </nav>
+    </div>
     <div id="leftside">
       <a id="login" href="http://datasektionen.se/login">
         <span id="login_text">
