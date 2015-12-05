@@ -345,19 +345,17 @@ window.Methone = new function() {
     };
 
     this.showDialog = function() {
-      gobox_inner.style.opacity = 0;
-      gobox_inner.style.marginTop = 50;
+      gobox_inner.style.marginTop = 200;
       box.style.display = "block";
-      box.style.top = window.innerHeight;
+      box.style.top = "50px";
       box.style.opacity = 0;
-      box.style.transition = "all 500ms cubic-bezier(0.000, 1.185, 0.000, 0.885)";
+      box.style.transition = "opacity 500ms ease-out";
+      gobox_inner.style.transition = "margin-top 500ms cubic-bezier(0.4, 0, 0.2, 1)";
       setTimeout(function() {
-        box.style.top = "50px"
+        gobox_inner.style.marginTop = 50;
         setFilter(box, "");
         box.style.opacity = 1;
       }, 10);
-
-      gobox_inner.style.opacity = 1;
       txtfuzz.focus();
 
       //Dirty trigger menu render
@@ -371,8 +369,8 @@ window.Methone = new function() {
       for (var i in parent.children) {
         if (typeof parent.children[i] == "number") break; //WTFBBQ
         if (parent.children[i] != me && "style" in parent.children[i]) {
-          parent.children[i].style.transition = "all 900ms ease-out";
-          setFilter(parent.children[i], "grayscale(1) ");
+          parent.children[i].style.transition = "all 100ms ease-out";
+          setFilter(parent.children[i], "grayscale(1) blur(20px)");
         }
       }
 
@@ -381,8 +379,6 @@ window.Methone = new function() {
 
 
     function hideDialog() {
-
-      gobox_inner.style.opacity = 0;
       box.style.display = "none";
       box.style.top = window.innerHeight;
       //setFilter(getElementFun("methone_header"), "");
