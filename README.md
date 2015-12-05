@@ -61,6 +61,25 @@ tag. You should probably lower your page content by 50 pixels.
     <script async src="//methone.datasektionen.se"></script>
 
 
+JS API
+------
+Available functions:
+
+    //Add something to the fuzzy search
+    Methone.addFuzzyEntry("Some function", "function fn", "#234234", "http://sf.se");
+
+    // Update the menu. Menuspec can be seen in example above.
+    Methone.setMenu(menuspec);
+
+    Methone.setLoginButtonText("LOGIN");
+
+    Methone.setOnLoginButtonClicked(function() {...});
+
+    // Fn called when the overlay is shown/hidden.
+    Methone.setOnShowHandler(fn);
+    Methone.setOnHideHandler(fn);
+
+
 An example Fuzzyfile:
 ---
 Search is performed on the str value. The name MUST be of the form "Some Name -

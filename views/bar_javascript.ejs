@@ -87,6 +87,8 @@ window.Methone = new function() {
     "href": "http://datasektionen.se/naringsliv"
   }, ];
 
+  var onShowHandler;
+  var onHideHandler;
 
   /*****************************************************************************
    * Helper methods.
@@ -246,6 +248,7 @@ window.Methone = new function() {
 
       superdelta.addEventListener("click", toggleVisibility);
       box.addEventListener("click", function(event) {
+        //Exit by clicking outside of the thing, but do not trigger when content is clicked.
         if (event.target == box) toggleVisibility();
       });
 
@@ -373,8 +376,7 @@ window.Methone = new function() {
         }
       }
 
-
-
+      if (onShowHandler) onShowHandler();
     }
 
 
@@ -394,6 +396,8 @@ window.Methone = new function() {
           setFilter(parent.children[i], "");
         }
       }
+      if (onHideHandler) onHideHandler();
+
     }
 
     setTimeout(this.setup, 500); // Let the rest of the page load first
@@ -403,17 +407,19 @@ window.Methone = new function() {
    * API
    */
 
-  this.addFuzzyEntry = function(str, href) {
+  this.addFuzzyEntry = function(name, str, color, href) {
     fuzz.push({
       str: str,
+      name: name,
+      color: color,
       href: href
     });
-  }
+  };
 
   this.setMenu = function(menuspec) {
     conf.topbar_items = menuspec;
     buildMenu();
-  }
+  };
 
   this.setLoginButtonText = function(text) {
     if (!text) {
@@ -422,8 +428,15 @@ window.Methone = new function() {
       loginbtn.style.display = "block";
       loginbtn.value = text;
     }
-  }
+  };
   this.setOnLoginButtonClicked = function(handler) {
     loginbtn.addEventListener("click", handler);
-  }
+  };
+  this.setOnShowHandler = function(handler) {
+    onShowHandler = handler;
+  };
+  this.setOnHideHandler = function(handler) {
+    onHideHandler = handler;
+  };
+
 };
