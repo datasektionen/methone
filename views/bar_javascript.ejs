@@ -225,6 +225,18 @@ window.Methone = new function() {
     var selectedElementIndex = 0;
     var numberofresults = 0;
 
+    function isVisible() {
+      return box.style.display != "none";
+    }
+
+    function toggleVisibility() {
+      if (!isVisible()) {
+        showDialog();
+      } else {
+        hideDialog();
+      }
+    }
+
 
     this.setup = function() {
       processFuzzyFile(master_fuzzyfile);
@@ -232,11 +244,10 @@ window.Methone = new function() {
       txtfuzz.addEventListener("keyup", this.onKeyEntered);
       document.body.addEventListener("keydown", this.onGlobalShortcut);
 
-      superdelta.addEventListener("click", function(event) {
-        //writeProviders();
-        showDialog();
+      superdelta.addEventListener("click", toggleVisibility);
+      box.addEventListener("click", function(event) {
+        if (event.target == box) toggleVisibility();
       });
-
 
       renderQuickAccessList();
       getElementFun('meth_tip_ux').style.opacity = 0;
@@ -318,18 +329,15 @@ window.Methone = new function() {
 
     this.onGlobalShortcut = function(event) {
 
+
+
       if (event.keyCode == 27 && box.style.display != "none") { //escape
         hideDialog()
         return;
       }
       if ((event.metaKey === true || event.ctrlKey === true) && event.keyCode === 75) {
         event.preventDefault();
-        if (box.style.display == "none") {
-
-          showDialog();
-        } else {
-          hideDialog();
-        }
+        toggleVisibility();
       }
     };
 
@@ -349,6 +357,9 @@ window.Methone = new function() {
       gobox_inner.style.opacity = 1;
       txtfuzz.focus();
 
+      //Dirty trigger menu render
+      var ev = {keyCode: 0, ctrlKey: false};
+      this.onKeyEntered(ev);
 
 
       //setFilter(getElementFun("methone_header"), "grayscale(1) blur(2px)");
