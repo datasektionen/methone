@@ -40,18 +40,18 @@ tag. You should probably lower your page content by 50 pixels.
 
     <script>
       window.tbaas_conf = {
-        system_name: "meta-tv", // The only required var
-        target_id: "to-be-parent-element-for-bar",
+        system_name: "meta-tv",
+        target_id: "to-be-parent-element-for-bar", // The only required var
         primary_color: "#E2007F",
         secondary_color "white",
         login_text: "Login with trisslott", // Default null, null hides button
         login_href: "/login",
-        logo_invert: true,
+        delta_invert: true,
 
         topbar_items: [
           {
             str: "About us",
-            href: "http://my.system.data.se/about-us",
+            href: "http://my.system.se/about-us",
             new_window: true // Optional, default false
           }, ...
         ]
