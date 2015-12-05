@@ -78,3 +78,11 @@ Service name"
         }
       ]
     }
+
+I want my links in the search!
+----
+1. Add a fuzzyfile to your system and publish it. It might be dynamically
+generated.
+2. Add your system to providers.json
+3. Pull request
+4. Ask ior to rebuild methone
