@@ -3,6 +3,7 @@ var juice = require('juice');
 var request = require('request');
 var UglifyJS = require("uglify-js");
 var url = require('url');
+var bodyParser = require('body-parser');
 var app = express();
 
 
@@ -10,14 +11,10 @@ var ejs = require('ejs')
   , fs = require('fs');
 
 app.set('view engine', 'ejs');
+app.use(bodyParser.json());
 
 var cached_js_file = null;
-
-function getJuiced() {
-  var ret = ejs.render(fs.readFileSync('views/bar.ejs', 'utf8'));
-
-  return juice(ret);
-}
+var cached_term_file = null;
 
 function inline_template(file) {
   return juice(ejs.render(fs.readFileSync(file, 'utf8'))).replace(/"/g, '\\"').replace(/[\n\s]+/g, " ");
@@ -98,14 +95,56 @@ app.get('/', function (req, res) {
   }
 });
 
-/*app.get('/enlighten', function (req, res) {
-  request.get(req.query.p, {timeout: 2500}, function(err, resp, body) {
-    var host = url.parse(req.query.p).host;
-    res.send(body.split('"/').join('"http://'+host+"/").split("'/").join("'http://"+host+"/") +
-      "<div id=barx></div><script>window.tbaas_conf={target_id:'barx', fuzzy_only:true}</script><script src='/bar.js'></script>");
-  });
-});*/
+app.get('/term.js', function (req, res) {
+  if (cached_term_file == null || process.env.DEV_MODE) {
+    cached_term_file = ejs.render(fs.readFileSync('views/terminal_javascript.ejs', 'utf8'), {});
 
+    cached_term_file = UglifyJS.minify(cached_term_file, {fromString: true}).code;
+  }
+
+  res.contentType('text/javascript');
+  res.send(cached_term_file);
+});
+
+app.post('/rpc', function(req,res) {
+  try {
+    var rpc = req.body;
+    console.log(rpc)
+
+    if (!("jsonrpc" in rpc)) {
+      res.status(400).send("No jsonrpc version specified");
+      return;
+    }
+
+    var response = {
+      jsonrpc: "2.0",
+      id: rpc.id,
+      result: ""
+    };
+
+    switch (rpc.method) {
+      case "flush":
+        cached_js_file = null;
+        cached_term_file = null;
+        response.result = {
+          success: true,
+          message: "Flushed caches"
+        };
+        break;
+      default:
+        delete response.result;
+        response.error = {code: -32601, message: "Method not found"};
+
+    }
+
+    res.send(response);
+
+
+
+  } finally {
+
+  }
+});
 
 app.get('/cache/u-dun-goofed', function (req, res) {
   cached_js_file = null;

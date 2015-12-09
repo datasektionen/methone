@@ -134,7 +134,8 @@ window.Methone = new function() {
     topbar_items: conf.topbar_items ||  [],
     login_text: conf.login_text || null,
     login_href: conf.login_href ||  "#",
-    delta_invert: conf.delta_invert || false
+    delta_invert: conf.delta_invert || false,
+    json_rpc_api_url: conf.json_rpc_api_url || false
   };
 
 
@@ -332,15 +333,23 @@ window.Methone = new function() {
 
     this.onGlobalShortcut = function(event) {
 
-
+      //console.log(event)
 
       if (event.keyCode == 27 && box.style.display != "none") { //escape
         hideDialog()
         return;
       }
-      if ((event.metaKey === true || event.ctrlKey === true) && event.keyCode === 75) {
+      if ((event.metaKey === true || event.ctrlKey === true) && event.keyCode === 75) { // cmd+k
         event.preventDefault();
         toggleVisibility();
+      }
+      if ((event.metaKey === true || event.ctrlKey === true) && event.keyCode === 73) { // cmd+i
+        console.log("Trigger term");
+        event.preventDefault();
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.src = "/term.js";
+        document.body.appendChild(s);
       }
     };
 
@@ -435,4 +444,6 @@ window.Methone = new function() {
     onHideHandler = handler;
   };
 
+  //Export conf
+  this.conf = conf;
 };
