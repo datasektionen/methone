@@ -109,7 +109,6 @@ app.get('/term.js', function (req, res) {
 app.post('/rpc', function(req,res) {
   try {
     var rpc = req.body;
-    console.log(rpc)
 
     if (!("jsonrpc" in rpc)) {
       res.status(400).send("No jsonrpc version specified");
@@ -131,6 +130,12 @@ app.post('/rpc', function(req,res) {
           message: "Flushed caches"
         };
         break;
+      case "help":
+        response.result =
+          "Supported rpc commands: \n" +
+          "flush - drop the caches \n" +
+          "inform [text] - move text to the masses. \n";
+        break;
       default:
         delete response.result;
         response.error = {code: -32601, message: "Method not found"};
@@ -144,11 +149,6 @@ app.post('/rpc', function(req,res) {
   } finally {
 
   }
-});
-
-app.get('/cache/u-dun-goofed', function (req, res) {
-  cached_js_file = null;
-  res.redirect('/test');
 });
 
 var server = app.listen(process.env.PORT || 5000, function () {

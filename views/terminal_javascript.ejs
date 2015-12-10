@@ -289,7 +289,12 @@ var Terminal = (function () {
 				};
 
 				makeRequest(Methone.conf.json_rpc_api_url, JSON.stringify(message), function(data) {
-					xterm.print(data);
+					data = JSON.parse(data);
+					if ("error" in data) {
+						xterm.print("Error: " + JSON.stringify(data.error));
+					} else {
+						xterm.print(data.result);
+					}
 				}, function(r) {
 					xterm.print("RPC Error: " + r.status + " " + r.responseText);
 				});
@@ -343,6 +348,15 @@ var Terminal = (function () {
 		    term.print("&emsp;"+key);
 		  }
 		}
+
+	});
+
+	dispatch.register("eval", function(cmd, xterm) {
+		if (cmd.length < 2) {
+			xterm.print("Usage: eval \"js code\"");
+			return;
+		}
+		eval(cmd[1]);
 	});
 
 	dispatch.register("loglevel", function(cmd, xterm) {
@@ -367,6 +381,14 @@ var Terminal = (function () {
 		}
 	})
 
+
+
 	dispatch.awaitInput();
+
+	var event = document.createEvent('Event');
+
+	// Define that the event name is 'build'.
+	event.initEvent('methone:term:load', true, true);
+	document.body.dispatchEvent(event);
 
 })();

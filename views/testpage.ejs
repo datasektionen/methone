@@ -46,6 +46,16 @@ button {
         }
       ]
     }
+
+    document.body.addEventListener("methone:term:load", function(event) {
+      Methone.dispatch.register("alert", function(cmd, term) {
+        if(cmd.length < 2) {
+          term.print("Usage: alert MESSAGE");
+          return;
+        }
+        alert(cmd[1]);
+      });
+    });
   </script>
   <script src="/bar.js"></script>
 
