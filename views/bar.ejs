@@ -167,6 +167,11 @@
     float: right;
     font-size: smaller;
   }
+  #fuzzy_results {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  }
 </style>
 <div id="gobox">
   <div id="inner_gobox">
@@ -174,14 +179,14 @@
     <div id="input_wrap">
       <input type="text" id="txt_fuzzy" placeholder="Search for systems, pages or keywords..." >
     </div>
-    <div class="m_column">
+    <div class="m_column" style="width:580px">
 
       <span class="m_h3">MY SOFTWARE</span>
       <ul id="fuzzy_results">
         <!-- Use listitem.ejs here -->
       </ul>
     </div>
-    <div class="m_column m_last">
+    <div class="m_column m_last" style="width:380px">
       <span class="m_h3">MOST USED</span>
       <ul id="quick_access">
         <!-- Use listitem.ejs here -->
@@ -192,8 +197,6 @@
 
 <header id="methone_header">
   <div id="widther">
-
-
     <a href="#" id="superdelta">
       <span id="meth_tip_ux">⌘+K</span>
       <svg id="superdelta_img" width="26px" height="37px" viewBox="0 0 26 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">

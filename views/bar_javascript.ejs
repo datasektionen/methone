@@ -285,7 +285,7 @@ window.Methone = new function() {
       resultfuzz.innerHTML = str;
       numberofresults = results.length;
 
-
+      console.log(event)
       switch (event.keyCode) {
         case 38: // UP
           event.preventDefault();
@@ -293,6 +293,10 @@ window.Methone = new function() {
           break;
         case 40: // Down
           selectedElementIndex = (selectedElementIndex + 1) % numberofresults;
+          break;
+        case 39: // right
+        case 37: //left
+          selectedElementIndex = (selectedElementIndex + numberofresults/2) % numberofresults;
           break;
         case 13: // Enter
           document.location = results[selectedElementIndex].href;
