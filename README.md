@@ -1,7 +1,7 @@
 
 
-Methone: The worlds first topbar-as-a-service, or TBaaS
-==============================================
+Methone: The worlds first responsive topbar-as-a-service, or TBaaS
+==================================================================
 Because this is exactly what everybody really wanted.
 
 All of datasektionen's systems should have the unified top bar. The
