@@ -51,13 +51,13 @@
     margin-left: 1.5px;
   }
 
-  #methone_nav {
+  #methone_nav, #methone_compact_naw {
     display: inline-block;
     margin-left: 9px;
     vertical-align: top;
   }
 
-  #login {
+  .methone_right_btn {
     display: block;
     position: relative;
     background-color: #FDDE00;
@@ -79,7 +79,7 @@
     top: 0;
   }
 
-  #login_text {
+  .methone_right_btn span {
     display: block;
     left: 0;
     text-align: center;
@@ -221,12 +221,19 @@
           Nyheter/Events
         </a>-->
     </div>
+
     <div id="leftside">
-      <a id="login" href="http://datasektionen.se/login">
+
+      <a id="login" class="methone_right_btn" href="http://datasektionen.se/login">
         <span id="login_text">
           Logga In
         </span>
-      </button>
+      </a>
+      <a id="methone_menu_btn" class="methone_right_btn" href="#">
+        <span>
+          Menu
+        </span>
+      </a>
     </div>
   </div>
 </header>

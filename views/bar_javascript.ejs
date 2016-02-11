@@ -60,6 +60,7 @@ window.Methone = new function() {
   var menuitem_template = new Template("<%- menuitem_template %>");
   var startmenuitem_template = new Template("<%- startmenuitem_template %>");
   var startmenudivider_template = new Template("<%- startmenudivider_template %>");
+  var option_template = new Template("<option data-href='#{href}'>#{str}</option>");
 
   var fuzzyModule;
   var fuzz = [];
@@ -172,6 +173,8 @@ window.Methone = new function() {
   var superdelta = getElementFun("superdelta");
   var startmenu = getElementFun("startmenu");
   var loginbtn = getElementFun("login");
+  var nav = getElementFun("methone_nav");
+  var menu_btn = getElementFun("methone_menu_btn");
 
   superdelta.style.backgroundColor = conf.primary_color;
   loginbtn.style.backgroundColor = conf.primary_color;
@@ -202,7 +205,7 @@ window.Methone = new function() {
         str += menuitem_template.parse(conf.topbar_items[i]);
       }
 
-      getElementFun('methone_nav').innerHTML = str;
+      nav.innerHTML = str;
 
     }
     buildMenu();
@@ -398,6 +401,42 @@ window.Methone = new function() {
 
     setTimeout(this.setup, 500); // Let the rest of the page load first
   }();
+
+  /*****************************************************************************
+   * Resize mgmt
+   */
+
+  function showNav(retainMenu) {
+    nav.style.display = "inline-block";
+    if (!retainMenu) menu_btn.style.display = "none";
+    loginbtn.style.display="inline-block";
+  }
+
+  function hideNav() {
+    nav.style.display = "none";
+    menu_btn.style.display="inline-block"
+    loginbtn.style.display="none";
+  }
+
+  function updateNav() {
+    if(window.innerWidth < 600) {
+      hideNav();
+    } else {
+      showNav();
+    }
+  }
+
+  window.addEventListener('resize', updateNav);
+
+  menu_btn.addEventListener('click', function() {
+    if(nav.style.display == "none") {
+      showNav(true);
+    } else {
+      hideNav();
+    }
+  });
+
+  updateNav();
 
   /*****************************************************************************
    * API
