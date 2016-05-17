@@ -342,13 +342,6 @@ window.Methone = new function() {
         event.preventDefault();
         toggleVisibility();
       }
-      if ((event.metaKey === true || event.ctrlKey === true) && event.keyCode === 73) { // cmd+i
-        event.preventDefault();
-        var s = document.createElement("script");
-        s.type = "text/javascript";
-        s.src = "//methone.datasektionen.se/term.js";
-        document.body.appendChild(s);
-      }
     };
 
     this.showDialog = function() {
