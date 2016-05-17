@@ -180,6 +180,10 @@ window.Methone = new function() {
   loginbtn.style.backgroundColor = conf.primary_color;
   loginbtn.style.color = conf.secondary_color;
 
+  menu_btn.style.backgroundColor = conf.primary_color;
+  menu_btn.style.color = conf.secondary_color;
+
+
   if (conf.login_text) {
     loginbtn.children[0].innerHTML = conf.login_text;
   } else {
@@ -236,7 +240,7 @@ window.Methone = new function() {
     }
 
     function toggleVisibility() {
-      if (!isVisible()) {
+      if (!isVisible() && window.innerWidth >= 600) {
         showDialog();
       } else {
         hideDialog();
