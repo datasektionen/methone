@@ -33,22 +33,28 @@ function construct_master_fuzz(callback) {
       num--;
       continue;
     }
-    request.get(provider.fuzzy_file, {timeout: 2500}, function(err, resp, body) {
-      num--;
-      try {
-        if (resp.statusCode == 200) {
-            fuzzes.push(JSON.parse(body).fuzzes);
-        }
-      } catch (e) {
-        console.error("Failed to fetch: " + e);
-      } finally {
-        if (num <= 0) {
-          // Add the master file aswell
-          fuzzes.push(JSON.parse(fs.readFileSync('Fuzzyfile.master', 'utf8')).fuzzes);
-          callback({fuzzes:[].concat.apply([], fuzzes)});
+
+    request.get(provider.fuzzy_file, {timeout: 2500}, function(color) {
+      return function(err, resp, body) {
+        num--;
+        try {
+          if (resp.statusCode == 200) {
+            fuzzes.push(JSON.parse(body).fuzzes.map(function(item) {
+              item.color = item.color || color;
+              return item;
+            }));
+          }
+        } catch (e) {
+          console.error("Failed to fetch: " + e);
+        } finally {
+          if (num <= 0) {
+            // Add the master file aswell
+            fuzzes.push(JSON.parse(fs.readFileSync('Fuzzyfile.master', 'utf8')).fuzzes);
+            callback({fuzzes:[].concat.apply([], fuzzes)});
+          }
         }
       }
-    });
+    }(provider.color));
   }
 }
 
@@ -92,62 +98,6 @@ app.get('/', function (req, res) {
 
     res.contentType('text/javascript');
     res.send(cached_js_file);
-  }
-});
-
-app.get('/term.js', function (req, res) {
-  if (cached_term_file == null || process.env.DEV_MODE) {
-    cached_term_file = ejs.render(fs.readFileSync('views/terminal_javascript.ejs', 'utf8'), {});
-
-    cached_term_file = UglifyJS.minify(cached_term_file, {fromString: true}).code;
-  }
-
-  res.contentType('text/javascript');
-  res.send(cached_term_file);
-});
-
-app.post('/rpc', function(req,res) {
-  try {
-    var rpc = req.body;
-
-    if (!("jsonrpc" in rpc)) {
-      res.status(400).send("No jsonrpc version specified");
-      return;
-    }
-
-    var response = {
-      jsonrpc: "2.0",
-      id: rpc.id,
-      result: ""
-    };
-
-    switch (rpc.method) {
-      case "flush":
-        cached_js_file = null;
-        cached_term_file = null;
-        response.result = {
-          success: true,
-          message: "Flushed caches"
-        };
-        break;
-      case "help":
-        response.result =
-          "Supported rpc commands: \n" +
-          "flush - drop the caches \n" +
-          "inform [text] - move text to the masses. \n";
-        break;
-      default:
-        delete response.result;
-        response.error = {code: -32601, message: "Method not found"};
-
-    }
-
-    res.send(response);
-
-
-
-  } finally {
-
   }
 });
 

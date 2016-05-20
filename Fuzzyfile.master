@@ -5,54 +5,41 @@
     {
       "name": "Lokalbokning - Datasektionen.se",
       "str": "lokalbokning",
-      "color": "#FDDE00",
-      "href": "http://datasektionen.se/sektionen/lokalbokning"
-    },{
-      "name": "Protokoll - Datasektionen.se",
-      "str": "protokoll minutes",
-      "color": "#FDDE00",
-      "href": "http://datasektionen.se/sektionen/formalia/protokoll"
+      "color": "#e83d84",
+      "href": "https://datasektionen.se/sektionen/lokalbokning"
     },{
       "name": "Organisation - Datasektionen.se",
       "str": "organisation",
-      "color": "#FDDE00",
-      "href": "http://datasektionen.se/sektionen/organisation"
+      "color": "#e83d84",
+      "href": "https://datasektionen.se/organisation"
     },{
       "name": "Näringsliv - Datasektionen.se",
       "str": "näringsliv industry contact",
-      "color": "#FDDE00",
-      "href": "http://datasektionen.se/naringsliv"
+      "color": "#e83d84",
+      "href": "https://datasektionen.se/naringsliv"
     },{
       "name": "Studier - Datasektionen.se",
       "str": "studier",
-      "color": "#FDDE00",
-      "href": "http://datasektionen.se/studier"
-    },{
-      "name": "Funktionärer - Datasektionen.se",
-      "str": "funktionärer officers",
-      "color": "#FDDE00",
-      "href": "http://datasektionen.se/sektionen/funktionarer"
-    },{
-      "name": "Valsidan - Datasektionen.se",
-      "str": "valsidan elections",
-      "color": "#FDDE00",
-      "href": "http://datasektionen.se/sektionen/val"
+      "color": "#e83d84",
+      "href": "https://datasektionen.se/studier"
     },
 
 
-
-
-
     {
-      "name": "Mage",
-      "str": "mage",
-      "color": "#E2007F",
-      "href": "http://mage.datasektionen.se"
+      "name": "Redigera nyheter - Prometheus",
+      "str": "nyheter prometheus event post news",
+      "color": "#8bc34a",
+      "href": "https://prometheus.datasektionen.se"
+    },{
+      "name": "Zfinger",
+      "str": "xfinger zfinger bilder foton ansikte face photo",
+      "color": "#26c6da",
+      "href": "https://zfinger.datasektionen.se"
     },{
       "name": "Stön",
       "str": "stön",
       "color": "#E2007F",
-      "href": "http://ston.datasektionen.se"
+      "href": "https://ston.datasektionen.se"
     },{
       "name": "SL",
       "str": "SL tåg tunnelbana",
@@ -67,22 +54,22 @@
       "name": "Bawang",
       "str": "bawang",
       "color": "#FDDE00",
-      "href": "http://datasektionen.se"
+      "href": "https://datasektionen.se"
     },{
       "name": "Datasektionen.se",
       "str": "datasektionen.se",
       "color": "#FDDE00",
-      "href": "http://datasektionen.se"
+      "href": "https://datasektionen.se"
     },{
       "name": "dfunkt",
       "str": "dfunkt",
       "color": "blue",
-      "href": "http://dfunkt.datasektionen.se"
+      "href": "https://dfunkt.datasektionen.se"
     },{
       "name": "Motioner",
       "str": "motioner",
       "color": "white",
-      "href": "http://motioner.datasektionen.se"
+      "href": "https://motioner.datasektionen.se"
     },{
       "name": "Djobb",
       "str": "djobb work",
@@ -94,6 +81,5 @@
       "color": "red",
       "href": "http://metaspexet.se"
     }
-
   ]
 }
