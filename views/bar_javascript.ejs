@@ -399,7 +399,8 @@ window.Methone = new function() {
   function showNav(retainMenu) {
     nav.style.display = "inline-block";
     if (!retainMenu) menu_btn.style.display = "none";
-    loginbtn.style.display="inline-block";
+    if(conf.login_text)
+      loginbtn.style.display="inline-block";
   }
 
   function hideNav() {

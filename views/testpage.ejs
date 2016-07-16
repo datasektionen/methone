@@ -19,10 +19,8 @@ button {
       bar_color: "#334455",
       primary_color: "#BA68C8",
       secondary_color: "#F3E5F5",
-      delta_invert: true,
       login_text: "Login",
       fuzzy_only: false,
-      json_rpc_api_url: "/rpc",
       topbar_items: [
         {
           str: "About us",
@@ -47,20 +45,10 @@ button {
         }
       ]
     }
-
-    document.body.addEventListener("methone:term:load", function(event) {
-      Methone.dispatch.register("alert", function(cmd, term) {
-        if(cmd.length < 2) {
-          term.print("Usage: alert MESSAGE");
-          return;
-        }
-        alert(cmd[1]);
-      });
-    });
   </script>
   <script src="/bar.js"></script>
 
-  <img src="http://datasektionen.se//static/gfx/bg.jpg" width="100%">
+  <img src="https://datasektionen.se/static/gfx/bg.jpg" width="100%">
 
 
 </body>
