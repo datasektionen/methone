@@ -390,23 +390,28 @@ window.Methone = new function() {
    */
    var width = Array.prototype
                      .slice
-                     .call(getElementFun("methone_nav").children)
+                     .call(nav.children)
                      .map(function(element) {return element.offsetWidth})
                      .reduce(function(total, item) {return total + item}, 0)
-                     + getElementFun("superdelta").offsetWidth
-                     + getElementFun("methone_menu_btn").offsetWidth;
+                     + superdelta.offsetWidth * 2 + menu_btn.offsetWidth;
 
   function showNav(retainMenu) {
     nav.style.display = "inline-block";
-    if (!retainMenu) menu_btn.style.display = "none";
+    if (!retainMenu) {
+      menu_btn.style.display = "none";
+      [].slice.call(nav.children).forEach(function(el) {el.style.display = "inline-block"})
+    }
     if(conf.login_text)
       loginbtn.style.display="inline-block";
+
   }
 
   function hideNav() {
     nav.style.display = "none";
     menu_btn.style.display="inline-block"
     loginbtn.style.display="none";
+
+    [].slice.call(nav.children).forEach(function(el) {el.style.display = "block"})
   }
 
   function updateNav() {
