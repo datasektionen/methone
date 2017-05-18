@@ -16,7 +16,7 @@ function materialScheme(color, dark) {
 }
 
 export default {
-    amber: materialScheme("amber"),
+    amber: materialScheme("amber", true),
     blue: materialScheme("blue"),
     blue_grey: materialScheme("blue-grey"),
     cerise: cerise,
@@ -28,7 +28,7 @@ export default {
     indigo: materialScheme("indigo"),
     light_blue: materialScheme("light-blue"),
     light_green: materialScheme("light-green"),
-    lime: materialScheme("lime"),
+    lime: materialScheme("lime", true),
     money_green: moneyGreen,
     orange: materialScheme("orange"),
     pink: materialScheme("pink"),

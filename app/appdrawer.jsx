@@ -5,6 +5,7 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
 import Person from 'material-ui/svg-icons/social/person';
+import Search from './search.jsx';
 
 class AppDrawer extends React.Component {
 
@@ -30,6 +31,8 @@ class AppDrawer extends React.Component {
         return (
             <div>
                 <div style={blockStyle}>{this.props.config.system_name}</div>
+                <Search drawerOpen={this.props} />
+                <Divider />
                 <Subheader>Navigation</Subheader>
                 <MenuItem primaryText="Startsida" leftIcon={<Home />} onTouchTap={() => window.location.href='/'} />
                 <Divider />

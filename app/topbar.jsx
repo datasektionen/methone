@@ -63,7 +63,7 @@ class TopBar extends React.Component {
         const loginButton = this.props.config.login_text ?
             <a style={loginLinkStyle} href={this.props.config.login_href}>{this.props.config.login_text}</a> : false;
         const mobileNavigation =
-            <a style={loginLinkStyle} onTouchTap={this.props.openDrawer}><Menu style={{color: "white", marginTop: -4}} /></a>;
+            <a style={loginLinkStyle} onTouchTap={this.props.openDrawer}><Menu style={{color: this.props.muiTheme.palette.alternateTextColor, marginTop: -4}} /></a>;
         const links = this.props.config.links.map(link =>
             <a key={link.href} href={link.href} style={linkStyle}>{link.str}</a>
         );

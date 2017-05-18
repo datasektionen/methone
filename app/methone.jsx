@@ -1,25 +1,38 @@
 import React from 'react';
 import TopBar from './topbar.jsx';
 import Drawer from 'material-ui/Drawer';
+import Dialog from 'material-ui/Dialog';
 import AppDrawer from './appdrawer.jsx';
+import Search from './search.jsx';
 
 class Methone extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            drawerOpen: true
+            drawerOpen: true,
+            isMobile: window.innerWidth < 768
         };
-        this.state.isMobile = window.innerWidth < 768;
         this.updateDimensions = this.updateDimensions.bind(this);
-        this.openDrawer = this.openDrawer.bind(this);
+        this.keydown = this.keydown.bind(this);
     }
 
     updateDimensions () {
         this.setState({ isMobile: window.innerWidth < 768 });
     }
 
+    keydown (event) {
+        console.log()
+        if (event.keyCode == 27) { // escape
+            this.setState({drawerOpen: false});
+        } else if ((event.metaKey === true || event.ctrlKey === true) && event.keyCode === 75) { // cmd+k
+            event.preventDefault();
+            this.setState({drawerOpen: !this.state.drawerOpen});
+        }
+    };
+
     componentDidMount () {
+        document.body.addEventListener("keydown", this.keydown);
         window.addEventListener("resize", this.updateDimensions);
     }
 
@@ -27,21 +40,36 @@ class Methone extends React.Component {
         window.removeEventListener("resize", this.updateDimensions);
     }
 
-    openDrawer () {
-        this.setState({ drawerOpen: true });
-    }
-
     render() {
         return (
             <div style={{fontFamily: "Lato"}}>
-                <TopBar config={this.props.config} isMobile={this.state.isMobile} openDrawer={this.openDrawer} />
-                <Drawer
-                    style={{fontFamily: "Lato"}}
-                    docked={false}
-                    open={this.state.drawerOpen}
-                    onRequestChange={(open) => this.setState({drawerOpen: open})}>
-                    <AppDrawer config={this.props.config} />
-                </Drawer>
+                <TopBar 
+                    config={this.props.config}
+                    isMobile={this.state.isMobile}
+                    openDrawer={() => this.setState({drawerOpen: true})} />
+                {this.state.isMobile ? 
+                    (<Drawer
+                        style={{fontFamily: "Lato"}}
+                        open={this.state.drawerOpen}
+                        docked={false}
+                        onRequestChange={(open) => this.setState({drawerOpen: open})}
+                    >
+                        <AppDrawer
+                            config={this.props.config}
+                            isMobile={this.state.isMobile}
+                            drawerOpen={this.state.drawerOpen}
+                        />
+                    </Drawer>) : 
+                    (<Dialog
+                        open={this.state.drawerOpen}
+                        onRequestClose={() => this.setState({drawerOpen: false})}
+                        style={{paddingTop: 0}}
+                        contentStyle={{paddingTop: 0}}
+                        bodyStyle={{paddingTop: 0}}
+                    >
+                        <Search drawerOpen={this.state} />
+                    </Dialog>)
+                }
             </div>
         )
     }
