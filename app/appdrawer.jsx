@@ -31,7 +31,7 @@ class AppDrawer extends React.Component {
         return (
             <div>
                 <div style={blockStyle}>{this.props.config.system_name}</div>
-                <Search drawerOpen={this.props} />
+                <Search drawerOpen={this.props} isMobile={true} />
                 <Divider />
                 <Subheader>Navigation</Subheader>
                 <MenuItem primaryText="Startsida" leftIcon={<Home />} onTouchTap={() => window.location.href='/'} />

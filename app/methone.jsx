@@ -61,11 +61,15 @@ class Methone extends React.Component {
                         />
                     </Drawer>) : 
                     (<Dialog
+                        repositionOnUpdate={false}
+                        autoDetectWindowHeight={false}
+                        autoScrollBodyContent={true}
+                        modal={false}
+                        contentStyle={{width: '100%', transform: 'translate(0, 0)'}}
+                        bodyStyle={{padding: 0}}
+                        style={{paddingTop: "50px", height: '90vh'}}
                         open={this.state.drawerOpen}
                         onRequestClose={() => this.setState({drawerOpen: false})}
-                        style={{paddingTop: 0}}
-                        contentStyle={{paddingTop: 0}}
-                        bodyStyle={{paddingTop: 0}}
                     >
                         <Search drawerOpen={this.state} />
                     </Dialog>)
