@@ -3,11 +3,11 @@ import TextField from 'material-ui/TextField';
 import {List, ListItem} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Subheader from 'material-ui/Subheader';
-import fuzzes from '../Fuzzyfile';
+import fuzzes from '../fuzzyfile';
 import Fuse from 'fuse.js';
 
 const fuseOptions = {
-    keys: ['key', 'str']
+    keys: ['str']
 }
 
 class Search extends React.Component {
@@ -20,17 +20,16 @@ class Search extends React.Component {
             fuse: new Fuse(fuzzes.fuzzes, fuseOptions)
         }
 
-        fetch('/Fuzzyfile')
-           .then(res => {
-                if(res.statusCode == 200) res.json();
-                else throw "Couldn't find Fuzzyfile";
-            }).then(res => {
-                if(res.fuzzes.length)
-                    this.setState({
-                        fuse: new Fuse(fuzzes.fuzzes.concat(res.fuzzes), fuseOptions)
-                    })
-            }).catch(() => {
-                console.warn("Methone can't find a Fuzzyfile for this system!");
+        fetch('/fuzzyfile').then(res => {
+                if(res.ok) return res.json();
+                else throw res;
+            }).then(json => {
+                if(json.fuzzes.length) this.setState({
+                    fuse: new Fuse(fuzzes.fuzzes.concat(json.fuzzes), fuseOptions)
+                })
+                this.handleOpen();
+            }).catch(res => {
+                console.warn("Methone can't find a fuzzyfile for this system! Response was:", res);
             });
 
         this.handleOpen = this.handleOpen.bind(this)
@@ -40,11 +39,10 @@ class Search extends React.Component {
 
     focusActive(newActive) {
         this.state.results.forEach(({ref}, index) => {
-            if(index === newActive) {
-                ref.setState({hovered: true})
-            }
+            if(index === newActive)
+                ref.setState({hovered: true});
             else
-                ref.setState({hovered: false})
+                ref.setState({hovered: false});
         })
     }
 
@@ -106,7 +104,7 @@ class Search extends React.Component {
                 <List children={
                     this.state.results.map((result, index) =>
                         <ListItem key={result.name}
-                                  leftAvatar={<Avatar backgroundColor={result.color} />}
+                                  leftAvatar={result.color ? <Avatar backgroundColor={result.color} /> : undefined}
                                   onMouseEnter={() => this.setState({active: index})}
                                   onKeyboardFocus={() => this.setState({active: index})}
                                   ref={ref => result.ref = ref}

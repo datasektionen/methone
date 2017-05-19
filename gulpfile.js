@@ -5,8 +5,8 @@ let source = require('vinyl-source-stream'); // Used to stream bundle for furthe
 let browserify = require('browserify');
 let serve = require('gulp-serve');
 
-gulp.task('app', function() {
-    return browserify('./app/main.jsx')
+gulp.task('build', function() {
+    return browserify('./src/main.jsx')
         .transform("babelify", {presets: ["es2015", "react"]})
         .bundle()
         .pipe(source('main.js'))
@@ -15,9 +15,14 @@ gulp.task('app', function() {
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
-    gulp.watch(['./app/**/*.jsx'], ['app']);
+    gulp.watch(['./src/**/*.jsx'], ['build']);
 });
 
-gulp.task('serve', serve(['public', 'build']));
+gulp.task('serve', serve({
+  root: ['public', 'build'],
+  hostname: '0.0.0.0',
+  port: process.env.PORT || 5000
+}));
 
-gulp.task('default', ['app', 'serve']);
+
+gulp.task('default', ['build']);

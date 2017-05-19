@@ -10,7 +10,7 @@ class Methone extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            drawerOpen: true,
+            drawerOpen: false,
             isMobile: window.innerWidth < 768
         };
         this.updateDimensions = this.updateDimensions.bind(this);

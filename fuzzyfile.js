@@ -1,18 +1,19 @@
 export default {
+  "@type": "defaultFuzz",
   "fuzzes": [
     {
       "name": "Organisation - Datasektionen.se",
-      "key": "organisation",
+      "str": "organisation",
       "color": "#e83d84",
       "href": "https://datasektionen.se/organisation"
     },{
       "name": "Näringsliv - Datasektionen.se",
-      "key": "näringsliv industry contact",
+      "str": "näringsliv industry contact",
       "color": "#e83d84",
       "href": "https://datasektionen.se/naringsliv"
     },{
       "name": "Studier - Datasektionen.se",
-      "key": "studier",
+      "str": "studier",
       "color": "#e83d84",
       "href": "https://datasektionen.se/studier"
     },
@@ -20,62 +21,62 @@ export default {
 
     {
       "name": "Prometheus - Nyhetssystemet",
-      "key": "nyheter prometheus event post news",
+      "str": "nyheter prometheus event post news",
       "color": "#8bc34a",
       "href": "https://prometheus.datasektionen.se"
     },{
       "name": "Zfinger",
-      "key": "xfinger zfinger",
+      "str": "xfinger zfinger",
       "color": "#26c6da",
       "href": "https://zfinger.datasektionen.se"
     },{
       "name": "Skywhale - Valsystemet",
-      "key": "val valsystem skywhale",
+      "str": "val valsystem skywhale",
       "color": "#26c6da",
       "href": "https://val.datasektionen.se"
     },{
       "name": "Pandora - Bokningssystemet",
-      "key": "bandora bokning bil kamera lokalbokning",
+      "str": "bandora bokning bil kamera lokalbokning",
       "color": "#26c6da",
       "href": "https://bokning.datasektionen.se"
     },{
       "name": "Stön",
-      "key": "stön",
+      "str": "stön",
       "color": "#E2007F",
       "href": "https://ston.datasektionen.se"
     },{
       "name": "SL",
-      "key": "SL tåg tunnelbana",
+      "str": "SL tåg tunnelbana",
       "color": "red",
       "href": "http://sl.datasektionen.se/metro"
     },{
       "name": "Bawang",
-      "key": "bawang",
+      "str": "bawang",
       "color": "#FDDE00",
       "href": "https://datasektionen.se"
     },{
       "name": "Datasektionen.se",
-      "key": "datasektionen.se",
+      "str": "datasektionen.se",
       "color": "#FDDE00",
       "href": "https://datasektionen.se"
     },{
       "name": "dfunkt",
-      "key": "dfunkt",
+      "str": "dfunkt",
       "color": "blue",
       "href": "https://dfunkt.datasektionen.se"
     },{
       "name": "dbuggen",
-      "key": "dbuggen tidning",
+      "str": "dbuggen tidning",
       "color": "blue",
       "href": "https://dbu.gg"
     },{
       "name": "Motioner",
-      "key": "motioner",
+      "str": "motioner",
       "color": "white",
       "href": "https://motioner.datasektionen.se"
     },{
       "name": "Metaspexet",
-      "key": "metaspexet",
+      "str": "metaspexet",
       "color": "red",
       "href": "http://metaspexet.se"
     }

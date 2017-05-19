@@ -5,9 +5,9 @@
   "main": "gulp.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp app serve watch",
-    "build": "gulp app",
-    "postinstall": "gulp app"
+    "start": "gulp serve",
+    "dev": "gulp build serve watch",
+    "postinstall": "gulp build"
   },
   "author": "mauritzz@kth.se",
   "license": "MIT",
@@ -17,9 +17,7 @@
     "material-ui": "^0.16.4",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-tap-event-plugin": "^2.0.1"
-  },
-  "devDependencies": {
+    "react-tap-event-plugin": "^2.0.1",
     "babel-core": "^6.10.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",

@@ -1,8 +1,9 @@
 {
+  "@type": "fuzzyfile"
   "fuzzes": [
     {
       "name": "Lokalbokning - Datasektionen.se",
-      "key": "lokalbokning",
+      "str": "lokalbokning",
       "color": "#e83d84",
       "href": "https://datasektionen.se/sektionen/lokalbokning"
     }
