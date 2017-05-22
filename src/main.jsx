@@ -38,6 +38,17 @@ const App = () => (
     </MuiThemeProvider>
 );
 
+var metaEl = document.querySelector('meta[name="theme-color"]');
+if(metaEl) {
+    metaEl.content = color_scheme.palette.primary1Color;
+} else {
+    const headEl = document.querySelector('head');
+    var metaEl = document.createElement('meta');
+    metaEl.name = "theme-color";
+    metaEl.content = color_scheme.palette.primary1Color;
+    headEl.appendChild(metaEl);
+}
+
 ReactDOM.render(
     <App />,
     document.getElementById('methone-container-replace')
