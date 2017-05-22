@@ -8,8 +8,8 @@ function materialScheme(color, dark) {
     return {
         fontFamily: 'Lato, sans-serif',
         palette: {
-            primary1Color: colors[color + '400'],
-            primary2Color: colors[color + '500'],
+            primary1Color: colors[color + '500'],
+            primary2Color: colors[color + '400'],
             alternateTextColor: dark ? "#222" : "#fff"
         }
     }
