@@ -27,22 +27,22 @@ export default {
     },{
       "name": "Zfinger",
       "str": "xfinger zfinger",
-      "color": "#26c6da",
+      "color": "#00bcd4",
       "href": "https://zfinger.datasektionen.se"
     },{
       "name": "Skywhale - Valsystemet",
       "str": "val valsystem skywhale",
-      "color": "#26c6da",
+      "color": "#06b",
       "href": "https://val.datasektionen.se"
     },{
       "name": "Pandora - Bokningssystemet",
       "str": "bandora bokning bil kamera lokalbokning",
-      "color": "#26c6da",
+      "color": "#42a5f5",
       "href": "https://bokning.datasektionen.se"
     },{
       "name": "Stön",
       "str": "stön",
-      "color": "#E2007F",
+      "color": "#ec5f99",
       "href": "https://ston.datasektionen.se"
     },{
       "name": "SL",
@@ -50,24 +50,19 @@ export default {
       "color": "red",
       "href": "http://sl.datasektionen.se/metro"
     },{
-      "name": "Bawang",
-      "str": "bawang",
-      "color": "#FDDE00",
-      "href": "https://datasektionen.se"
-    },{
       "name": "Datasektionen.se",
-      "str": "datasektionen.se",
+      "str": "bawang datasektionen.se",
       "color": "#FDDE00",
       "href": "https://datasektionen.se"
     },{
       "name": "dfunkt",
       "str": "dfunkt",
-      "color": "blue",
+      "color": "#ab47bc",
       "href": "https://dfunkt.datasektionen.se"
     },{
       "name": "dbuggen",
       "str": "dbuggen tidning",
-      "color": "blue",
+      "color": "#0ab87a",
       "href": "https://dbu.gg"
     },{
       "name": "Motioner",
