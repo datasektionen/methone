@@ -40,11 +40,6 @@ export default {
       "color": "#42a5f5",
       "href": "https://bokning.datasektionen.se"
     },{
-      "name": "Stön",
-      "str": "stön",
-      "color": "#ec5f99",
-      "href": "https://ston.datasektionen.se"
-    },{
       "name": "SL",
       "str": "SL tåg tunnelbana",
       "color": "red",
