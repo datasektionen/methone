@@ -32,7 +32,6 @@ class TopBar extends React.Component {
             display: "inline-block",
             fontSize: 15,
             lineHeight: 1.2,
-            textTransform: "uppercase",
             letterSpacing: "0.5px",
             color: this.props.muiTheme.palette.alternateTextColor,
             textDecoration: "none",
@@ -65,7 +64,7 @@ class TopBar extends React.Component {
         const mobileNavigation =
             <a style={loginLinkStyle} onTouchTap={this.props.openDrawer}><Menu style={{color: this.props.muiTheme.palette.alternateTextColor, marginTop: -4}} /></a>;
         const links = this.props.config.links.map(link =>
-            <a key={link.href} href={link.href} style={linkStyle}>{link.str}</a>
+            <a key={link.href} href={link.href} style={linkStyle}>{link.barStr || link.str.toUpperCase()}</a>
         );
 
         return (
