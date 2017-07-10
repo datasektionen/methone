@@ -20,7 +20,9 @@ class Search extends React.Component {
             fuse: new Fuse(fuzzes.fuzzes, fuseOptions)
         }
 
-        fetch('/fuzzyfile').then(res => {
+        fetch('/fuzzyfile', {
+            credentials: 'same-origin'
+        }).then(res => {
                 if(res.ok) return res.json();
                 else throw res;
             }).then(json => {
