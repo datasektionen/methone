@@ -105,8 +105,8 @@ class Search extends React.Component {
                 </Subheader>
                 <List children={
                     this.state.results.map((result, index) =>
-                        <ListItem key={result.name}
-                                  leftAvatar={result.color ? <Avatar backgroundColor={result.color} /> : undefined}
+                        <ListItem key={result.str}
+                                  leftAvatar={result.image ? <div style={{background: 'url(' + result.image + ')', borderRadius: '20px', backgroundSize: 'cover', height: '40px', width: '40px'}} ></div> : result.color ? <Avatar backgroundColor={result.color} /> : undefined}
                                   onMouseEnter={() => this.setState({active: index})}
                                   onKeyboardFocus={() => this.setState({active: index})}
                                   ref={ref => result.ref = ref}
