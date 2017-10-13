@@ -50,6 +50,14 @@ tag. You should probably lower your page content by 50 pixels.
     </script>
 
     <script async src="//methone.datasektionen.se/main.js"></script>
+    <script>
+      // The config can be updated dynamically!
+      window.methone_conf.update({
+        login_text: "Log out",
+        login_href: "/logout"
+      })
+      // Only the provided keys will be updated.
+    </script>
 
 Usage as a React component
 --------------------------

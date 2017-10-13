@@ -11190,7 +11190,7 @@ var WithTheme = function (_React$Component2) {
 
         var _this3 = _possibleConstructorReturn(this, (WithTheme.__proto__ || Object.getPrototypeOf(WithTheme)).call(this, props));
 
-        var color_scheme = _colors2.default[_this3.props.config.color_scheme] || _colors2.default.cerise;
+        var color_scheme = _colors2.default[_this3.props.config.color_scheme.replace('-', '_')] || _colors2.default.cerise;
 
         _this3.state = {
             theme: (0, _styles.createMuiTheme)(color_scheme)
@@ -11203,7 +11203,7 @@ var WithTheme = function (_React$Component2) {
     _createClass(WithTheme, [{
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
-            var color_scheme = _colors2.default[nextProps.config.color_scheme] || _colors2.default.cerise;
+            var color_scheme = _colors2.default[nextProps.config.color_scheme.replace('-', '_')] || _colors2.default.cerise;
             this.setState({ theme: (0, _styles.createMuiTheme)(color_scheme) });
         }
     }, {
