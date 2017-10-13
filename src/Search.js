@@ -40,7 +40,7 @@ class Search extends React.Component {
 
     handleKeyDown(event) {
         const { active, results } = this.state
-        if(event.keyCode === 9 || event.keyCode === 40) {//tab or down
+        if(event.keyCode === 9 || event.keyCode === 40) { //tab or down
             const newActive = (active + 1) % results.length;
             this.setState({active: newActive});
             event.preventDefault();

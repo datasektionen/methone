@@ -1,7 +1,7 @@
 {
   "name": "methone",
   "description": "The worlds first Top-Bar-as-a-Service",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/datasektionen/Methone.git"
