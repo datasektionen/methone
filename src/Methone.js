@@ -101,9 +101,17 @@ class WithTheme extends React.Component {
     constructor(props) {
         super(props);
         const color_scheme = colors[this.props.config.color_scheme] || colors.cerise
-        this.setThemeColor(color_scheme.palette.primary1Color);
 
-        this.muiTheme = createMuiTheme(color_scheme);
+        this.state = {
+            theme: createMuiTheme(color_scheme)
+        }
+
+        this.setThemeColor(color_scheme.palette.primary1Color);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const color_scheme = colors[nextProps.config.color_scheme] || colors.cerise
+        this.setState({theme: createMuiTheme(color_scheme)})
     }
 
     setThemeColor(color) {
@@ -122,7 +130,7 @@ class WithTheme extends React.Component {
     }
 
     render() {
-        return (<MuiThemeProvider theme={this.muiTheme}>
+        return (<MuiThemeProvider theme={this.state.theme}>
             <Methone config={this.props.config} />
         </MuiThemeProvider>);
     }

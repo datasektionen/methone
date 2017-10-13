@@ -3,21 +3,19 @@ import ReactDOM from 'react-dom';
 
 import Methone from './Methone';
 
-const config = {
-  color_scheme: 'dark_blue',
+window.methone_conf = {
+  color_scheme: 'cerice',
   system_name: 'testSystem-dont_use',
-  links: [
-    {
-      str: 'Hem',
-      href: '/'
-    },
-    {
-      str: 'Nominera',
-      href: '/nominate'
+  links: [],
+  login_text: '',
+  login_href: ''
+  ...window.methone_conf,
+  update: config => {
+    window.methone_conf = {
+      ...window.methone_conf,
+      ...config
     }
-  ],
-  login_text: 'Logga in',
-  login_href: '/login'
-}
 
-ReactDOM.render(<Methone config={config} />, document.getElementById('root'));
+    ReactDOM.render(<Methone config={window.methone_conf} />, document.getElementById('methone-container-replace'));
+  }
+}

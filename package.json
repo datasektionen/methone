@@ -1,7 +1,7 @@
 {
   "name": "methone",
   "description": "The worlds first Top-Bar-as-a-Service",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/datasektionen/Methone.git"
@@ -9,14 +9,15 @@
   "bugs": {
     "url": "https://github.com/datasektionen/Methone/issues"
   },
-  "homepage": "https://github.com/datasektionen/Methone#readme",
+  "homepage": "https://methone.datasektionen.se/",
   "main": "build/Methone.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "npm": "webpack --config webpack-npm.config.js --progress --colors"
+    "npm": "webpack --config webpack-npm.config.js --progress --colors",
+    "prod": "webpack --config webpack-prod.config.js --progress --colors"
   },
   "devDependencies": {
     "babel-loader": "^7.1.2",
@@ -33,8 +34,6 @@
   },
   "peerDependencies": {
     "react": "^16.0.0",
-    "fuse.js": "^2.0.0",
-    "material-ui": "^0.19.4",
     "react-dom": "^16.0.0"
   }
 }
