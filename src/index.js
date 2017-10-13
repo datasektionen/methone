@@ -8,7 +8,7 @@ window.methone_conf = {
   system_name: 'testSystem-dont_use',
   links: [],
   login_text: '',
-  login_href: ''
+  login_href: '',
   ...window.methone_conf,
   update: config => {
     window.methone_conf = {

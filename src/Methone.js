@@ -100,7 +100,7 @@ class WithTheme extends React.Component {
 
     constructor(props) {
         super(props);
-        const color_scheme = colors[this.props.config.color_scheme] || colors.cerise
+        const color_scheme = colors[this.props.config.color_scheme.replace('-', '_')] || colors.cerise
 
         this.state = {
             theme: createMuiTheme(color_scheme)
@@ -110,7 +110,7 @@ class WithTheme extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const color_scheme = colors[nextProps.config.color_scheme] || colors.cerise
+        const color_scheme = colors[nextProps.config.color_scheme.replace('-', '_')] || colors.cerise
         this.setState({theme: createMuiTheme(color_scheme)})
     }
 
