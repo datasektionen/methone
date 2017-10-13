@@ -1,17 +1,19 @@
-import React from 'react';
-import MenuItem from 'material-ui/MenuItem';
-import Home from 'material-ui/svg-icons/action/home';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import Subheader from 'material-ui/Subheader';
-import Divider from 'material-ui/Divider';
-import Person from 'material-ui/svg-icons/social/person';
+import React, { Component } from 'react';
+
+import { ListItem, ListItemIcon, ListItemText, ListSubheader } from 'material-ui/List';
+import Divider from 'material-ui/Divider'
+
+import { withTheme } from 'material-ui/styles';
+
+import { Home, Person } from 'material-ui-icons';
 
 import Search from './Search';
 
-class AppDrawer extends React.Component {
+class AppDrawer extends Component {
     render() {
-        const primary1 = this.props.muiTheme.palette.primary1Color;
-        const primary2 = this.props.muiTheme.palette.primary2Color;
+        const { theme, config, closeDrawer } = this.props
+        const primary1 = theme.palette.primary1Color;
+        const primary2 = theme.palette.primary2Color;
 
         const blockStyle = {
             paddingTop: 100,
@@ -21,43 +23,43 @@ class AppDrawer extends React.Component {
             fontSize: 20,
             fontWeight: "bold",
             background: "linear-gradient(45deg, " + primary1 + " 0%," + primary2 + " 100%)",
-            color: this.props.muiTheme.palette.alternateTextColor,
+            color: theme.palette.alternateTextColor,
         };
 
         return (
             <div>
-                <div style={blockStyle}>{this.props.config.system_name}</div>
-                <Search drawerOpen={this.props} isMobile={true} />
+                <div style={blockStyle}>{config.system_name}</div>
+                <Search drawerOpen={this.props} isMobile={true} fuzzes={this.props.fuzzes} />
                 <Divider />
-                <Subheader>Navigation</Subheader>
-                <MenuItem primaryText="Startsida"
-                    leftIcon={<Home />}
-                    onClick={() => window.location.href='/'} />
+                <ListSubheader>Navigation</ListSubheader>
+                <ListItem button onClick={() => window.location.href='/'} >
+                    <ListItemIcon><Home /></ListItemIcon>
+                    <ListItemText inset primary="Hem"/>
+                </ListItem>
                 <Divider />
                 {this.props.config.links.map(item =>
                     item && item.props ? (
-                    <MenuItem
-                        insetChildren={true}
+                    <ListItem button
                         key={item.props.to}
-                        primaryText={item.props.children}
-                        containerElement={item}
-                        onClick={this.props.drawerClose} />
+                        onClick={closeDrawer} >
+                        {item}
+                    </ListItem>
                     ) : (
-                    <MenuItem
-                        insetChildren={true}
+                    <ListItem button
                         key={item.href}
-                        primaryText={item.str}
-                        onClick={() => window.location.href=item.href} />
+                        onClick={() => window.location.href=item.href} >
+                        <ListItemText inset primary={item.str} />
+                    </ListItem>
                     )
                 )}
                 <Divider />
-                <MenuItem
-                    leftIcon={<Person />}
-                    primaryText={this.props.config.login_text}
-                    onClick={() => window.location.href=this.props.config.login_href} />
+                <ListItem button onClick={() => window.location.href=config.login_href} >
+                    <ListItemIcon><Person /></ListItemIcon>
+                    <ListItemText inset primary={config.login_text} />
+                </ListItem>
             </div>
         )
     }
 }
 
-export default muiThemeable()(AppDrawer);
+export default withTheme()(AppDrawer);

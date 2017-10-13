@@ -1,4 +1,5 @@
-import * as colors from 'material-ui/styles/colors';
+import * as colors from 'material-ui/colors';
+
 import darkBlue from './colors/darkBlue';
 import cerise from './colors/cerise';
 import moneyGreen from './colors/moneyGreen';

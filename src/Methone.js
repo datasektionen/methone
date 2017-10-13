@@ -1,24 +1,38 @@
 import React from 'react';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import colors from './styles/colors';
 
 import Drawer from 'material-ui/Drawer';
-import Dialog from 'material-ui/Dialog';
 
 import TopBar from './TopBar';
 import AppDrawer from './AppDrawer';
-import Search from './Search';
+import SearchDialog from './SearchDialog';
+
+import fuzzyfile from './fuzzyfile';
+const fuzzes = fuzzyfile.fuzzes;
 
 class Methone extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            drawerOpen: false,
-            isMobile: window.innerWidth < 768
+            drawerOpen: true,
+            isMobile: window.innerWidth < 768,
+            fuzzes: fuzzes
         };
+
+        fetch('/fuzzyfile', {
+            credentials: 'same-origin'
+        }).then(res => {
+            if(res.ok) return res.json();
+            else throw res;
+        }).then(json => {
+            if(json.fuzzes.length)
+                this.setState({fuzzes: this.state.fuzzes.concat(json.fuzzes)})
+        }).catch(res => {
+            console.warn("Methone can't find a fuzzyfile for this system! Response was:", res);
+        });
 
         this.updateDimensions = this.updateDimensions.bind(this);
         this.keydown = this.keydown.bind(this);
@@ -58,28 +72,21 @@ class Methone extends React.Component {
                     (<Drawer
                         style={{fontFamily: "Lato"}}
                         open={this.state.drawerOpen}
-                        docked={false}
-                        onRequestChange={(open) => this.setState({drawerOpen: open})} >
+                        onRequestClose={() => this.setState({drawerOpen: false})} >
                         <AppDrawer
                             config={this.props.config}
                             isMobile={this.state.isMobile}
                             drawerOpen={this.state.drawerOpen}
-                            drawerClose={() => this.setState({drawerOpen: false})}
+                            closeDrawer={() => this.setState({drawerOpen: false})}
+                            fuzzes={this.state.fuzzes}
                         />
                     </Drawer>
                     ) : (
-                    <Dialog
-                        repositionOnUpdate={false}
-                        autoDetectWindowHeight={false}
-                        autoScrollBodyContent={true}
-                        modal={false}
-                        contentStyle={{width: '100%', transform: 'translate(0, 0)'}}
-                        bodyStyle={{padding: 0}}
-                        style={{paddingTop: "50px", height: '90vh'}}
+                    <SearchDialog
                         open={this.state.drawerOpen}
-                        onRequestClose={() => this.setState({drawerOpen: false})} >
-                        <Search drawerOpen={this.state} />
-                    </Dialog>)
+                        fuzzes={this.state.fuzzes}
+                        onRequestClose={() => this.setState({drawerOpen: false})} />
+                    )
                 }
             </div>
         )
@@ -96,7 +103,7 @@ class WithTheme extends React.Component {
         const color_scheme = colors[this.props.config.color_scheme] || colors.cerise
         this.setThemeColor(color_scheme.palette.primary1Color);
 
-        this.muiTheme = getMuiTheme(color_scheme);
+        this.muiTheme = createMuiTheme(color_scheme);
     }
 
     setThemeColor(color) {
@@ -115,10 +122,9 @@ class WithTheme extends React.Component {
     }
 
     render() {
-        return (<MuiThemeProvider muiTheme={this.muiTheme}>
+        return (<MuiThemeProvider theme={this.muiTheme}>
             <Methone config={this.props.config} />
         </MuiThemeProvider>);
-
     }
 }
 
