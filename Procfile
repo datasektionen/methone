@@ -1,1 +1,1 @@
-web: serve build -p $PORT
+web: npm run buildbar && serve build -p $PORT

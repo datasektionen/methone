@@ -1,7 +1,7 @@
 {
   "name": "methone",
   "description": "The worlds first Top-Bar-as-a-Service",
-  "version": "0.2.8",
+  "version": "0.2.11",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/datasektionen/Methone.git"
@@ -16,8 +16,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "module": "webpack --config webpack-module.config.js",
-    "postinstall": "npm run build && node copyBar.js"
+    "buildbar": "npm run build && copyBar.js",
+    "prepublish": "webpack --config webpack-module.config.js"
   },
   "dependencies": {
     "babel-loader": "^7.1.2",
