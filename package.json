@@ -1,7 +1,7 @@
 {
   "name": "methone",
   "description": "The worlds first Top-Bar-as-a-Service",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/datasektionen/Methone.git"
@@ -16,9 +16,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "npm": "webpack --config webpack-npm.config.js --progress --colors",
+    "module": "webpack --config webpack-module.config.js",
     "prod": "webpack --config webpack-prod.config.js --progress --colors",
-    "postinstall": "npm run prod"
+    "postinstall": "npm run module"
   },
   "dependencies": {
     "babel-loader": "^7.1.2",
