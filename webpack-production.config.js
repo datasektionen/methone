@@ -4,29 +4,36 @@ const buildPath = path.resolve(__dirname, 'build');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 
 const config = {
-  entry: [path.join(__dirname, '/src/index.js')],
-  // Render source-map file for final build
-  devtool: 'source-map',
-  // output config
+  entry: [require.resolve('whatwg-fetch'), path.join(__dirname, '/src/index.js')],
+  devtool: 'cheap-module-source-map',
   output: {
-    path: buildPath, // Path of output file
-    filename: 'bar.js', // Name of output file
+    path: buildPath,
+    filename: 'bar.js',
   },
   plugins: [
-    // Define production build to allow React to strip out unnecessary checks
     new webpack.DefinePlugin({
       'process.env':{
         'NODE_ENV': JSON.stringify('production')
       }
     }),
-    // Minify the bundle
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        // suppresses warnings, usually from module minification
+        compress: {
         warnings: false,
+        screw_ie8: true,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true
       },
+      output: {
+        comments: false
+      }
     }),
-    // Allows error warnings but does not stop compiling.
     new webpack.NoEmitOnErrorsPlugin()
   ],
   module: {

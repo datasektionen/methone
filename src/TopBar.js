@@ -54,7 +54,8 @@ class TopBar extends React.Component {
             backgroundColor: theme.palette.primary2Color,
             textTransform: "uppercase",
             fontSize: 14,
-            height: 50
+            height: 50,
+            boxSizing: 'border-box'
         };
 
         const loginButton = config.login_text ? (

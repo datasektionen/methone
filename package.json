@@ -1,7 +1,8 @@
 {
   "name": "methone",
+  "version": "0.3.2",
   "description": "The worlds first Top-Bar-as-a-Service",
-  "version": "0.2.11",
+  "main": "./lib/Methone.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/datasektionen/Methone.git"
@@ -10,28 +11,29 @@
     "url": "https://github.com/datasektionen/Methone/issues"
   },
   "homepage": "https://methone.datasektionen.se/",
-  "main": "build/Methone.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "buildbar": "npm run build && copyBar.js",
-    "prepublish": "webpack --config webpack-module.config.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack-production.config.js --progress --colors",
+    "gh-pages": "rc-tools run gh-pages",
+    "start": "rc-tools run server",
+    "pub": "rc-tools run update-self && rc-tools run pub",
+    "lint": "rc-tools run lint",
+    "prepublish": "rc-tools run guard",
+    "postinstall": "npm run build"
   },
   "dependencies": {
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
-    "fuse.js": "^2.0.0",
-    "material-ui": "^1.0.0-beta.16",
-    "material-ui-icons": "^1.0.0-beta.15",
+    "fuse.js": "^3.2.0",
+    "material-ui": "^1.0.0-beta.18",
+    "material-ui-icons": "^1.0.0-beta.17",
+    "rc-tools": "^7.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14",
-    "serve": "^6.2.0",
-    "webpack": "^3.7.1"
+    "serve": "^6.3.1",
+    "webpack": "^3.8.1",
+    "whatwg-fetch": "^2.0.3"
   },
   "peerDependencies": {
     "react": "^16.0.0",
