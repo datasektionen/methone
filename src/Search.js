@@ -65,7 +65,7 @@ class Search extends React.Component {
                     placeholder="Sök på Datasektionen..."
                     onChange={this.handleChange}
                     onKeyDown={this.handleKeyDown}
-                    ref={input => input && input.focus()}
+                    ref={input => !this.props.isMobile && input && input.focus()}
                     style={{width: '100%', padding: '15px'}} />
                 {results.length ? (
                 <List subheader={
