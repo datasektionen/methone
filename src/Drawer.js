@@ -9,10 +9,15 @@ import Search from './Search'
 
 export default class Drawer extends Component {
   render() {
-    const { open, config } = this.props
+    const { open, config, requestClose } = this.props
     const { lighter, darker, text } = this.props.color_scheme
 
     const gradient = `linear-gradient(45deg, ${lighter} 0%, ${darker} 100%)`
+
+    const linkClick = url => e => {
+      requestClose(e)
+      window.location.href = url
+    }
 
     return <Overlay {...this.props} >
       <div className={`drawer ${open ? 'open' : ''}`}>
@@ -26,10 +31,11 @@ export default class Drawer extends Component {
           Navigation
         </h4>
         <ul>
-          <li className='link' onClick={() => window.location.href='/'} >
+          <li className='link' onClick={linkClick('/')} >
             <Home className='icon' />
-            <span className='text'>Hem</span>
+            <span className='text'>Startsida</span>
           </li>
+          <hr className='divide' />
           {this.props.config.links.map(item =>
             item && item.props ? (
               <li class='link' key={item.props.to} onClick={requestClose} >
@@ -37,15 +43,19 @@ export default class Drawer extends Component {
                 <span className='text'>{item}</span>
               </li>
               ) : (
-              <li className='link' key={item.href} onClick={() => window.location.href=item.href} >
+              <li className='link' key={item.href} onClick={linkClick(item.href)} >
                 <div className='icon'></div>
                 <span className='text'>{item.str}</span>
-              </li>))}
-
-          <li className='link' onClick={() => window.location.href=config.login_href} >
-            <Person className='icon' />
-            <span className='text'>{config.login_text}</span>
-          </li>
+              </li>))
+          }
+          { config.login_href && config.login_text ? (
+            <li className='link' onClick={linkClick(config.login_href)} >
+              <hr className='divide' />
+              <Person className='icon' />
+              <span className='text'>{config.login_text}</span>
+            </li>
+          ) : false
+          }
         </ul>
       </div>
     </Overlay>

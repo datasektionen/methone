@@ -9,7 +9,7 @@ export default class SearchDialog extends Component {
   render() {
     const { open, requestClose, fuzzes } = this.props
     return <Overlay {...this.props}>
-      <div className='dialog'>
+      <div className={`dialog ${open ? 'open' : ''}`}>
         <Search {...this.props} />
       </div>
     </Overlay>

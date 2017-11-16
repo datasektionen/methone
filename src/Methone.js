@@ -30,6 +30,9 @@ class Methone extends React.Component {
     }).catch(res => {
       console.warn("Methone can't find a fuzzyfile for this system! Response was:", res);
     });
+
+    this.onResize = this.onResize.bind(this)
+    this.onKeyDown = this.onKeyDown.bind(this)
   }
 
   componentDidMount () {
@@ -42,11 +45,11 @@ class Methone extends React.Component {
     window.removeEventListener("resize", this.onResize);
   }
 
-  onResize = () => {
+  onResize() {
     this.setState({ isMobile: window.innerWidth < 768 });
   }
 
-  onKeyDown = event => {
+  onKeyDown(event) {
     if (event.keyCode === 27) { // escape
       this.setState({open: false});
     } else if ((event.metaKey === true || event.ctrlKey === true) && event.keyCode === 75) { // cmd+k
