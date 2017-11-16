@@ -1,0 +1,53 @@
+.drawer {
+  position: absolute;
+  left: -256px;
+  width: 256px;
+  height: 100%;
+  background-color: #fff;
+}
+
+.drawer.open {
+  left: 0;
+}
+
+.drawer h4 {
+  font-size: 14px;
+  margin-left: 15px;
+}
+
+.drawer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.drawer .link {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.drawer .link:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.drawer .link .text {
+  margin-left: 15px;
+}
+
+.drawer .link .icon {
+  height: 40px;
+  width: 40px;
+}
+
+.drawer .block {
+  padding-top: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 18px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+

@@ -1,0 +1,45 @@
+.topbar {
+    line-height: normal;
+    font-family: Lato, Arial;
+    z-index: 900;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 8px;
+}
+.topbar > div {
+  max-width: 1240;
+  position: relative;
+}
+
+.topbar .menu {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 10px;
+}
+
+.topbar .menu a {
+  color: inherit;
+  display: inline-block;
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  padding: 16px 11px 16px 11px;
+  cursor: pointer;
+
+}
+
+.topbar .login {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.topbar .login a {
+  color: inherit;
+  padding: 17px 16px 16px 16px;
+  display: block;
+  text-transform: uppercase;
+  font-size: 14px;
+  height: 50px;
+  box-sizing: border-box;
+}

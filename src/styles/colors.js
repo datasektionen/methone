@@ -1,39 +1,36 @@
-import * as colors from 'material-ui/colors';
+import colors from 'material-colors';
 
 import darkBlue from './colors/darkBlue';
 import cerise from './colors/cerise';
 import moneyGreen from './colors/moneyGreen';
 
-function materialScheme(color, dark) {
-    return {
-        fontFamily: 'Lato, sans-serif',
-        palette: {
-            primary1Color: colors[color][500],
-            primary2Color: colors[color][400],
-            alternateTextColor: dark ? "#222" : "#fff"
-        }
-    }
+function getColors(color, darkText) {
+  return {
+    darker: colors[color][500],
+    lighter: colors[color][400],
+    text: darkText ? "#222" : "#fff"
+  }
 }
 
 export default {
-    amber: materialScheme("amber", true),
-    blue: materialScheme("blue"),
-    blue_grey: materialScheme("blueGrey"),
-    cerise: cerise,
-    cyan: materialScheme("cyan"),
-    dark_blue: darkBlue,
-    deep_orange: materialScheme("deepOrange"),
-    deep_purple: materialScheme("deepPurple"),
-    green: materialScheme("green"),
-    indigo: materialScheme("indigo"),
-    light_blue: materialScheme("lightBlue"),
-    light_green: materialScheme("lightGreen"),
-    lime: materialScheme("lime", true),
-    money_green: moneyGreen,
-    orange: materialScheme("orange"),
-    pink: materialScheme("pink"),
-    purple: materialScheme("purple"),
-    red: materialScheme("red"),
-    teal: materialScheme("teal"),
-    yellow: materialScheme("yellow", true),
+  cerise: cerise,
+  dark_blue: darkBlue,
+  money_green: moneyGreen,
+  amber: getColors("amber", true),
+  blue: getColors("blue"),
+  blue_grey: getColors("blueGrey"),
+  cyan: getColors("cyan"),
+  deep_orange: getColors("deepOrange"),
+  deep_purple: getColors("deepPurple"),
+  green: getColors("green"),
+  indigo: getColors("indigo"),
+  light_blue: getColors("lightBlue"),
+  light_green: getColors("lightGreen"),
+  lime: getColors("lime", true),
+  orange: getColors("orange"),
+  pink: getColors("pink"),
+  purple: getColors("purple"),
+  red: getColors("red"),
+  teal: getColors("teal"),
+  yellow: getColors("yellow", true),
 }
