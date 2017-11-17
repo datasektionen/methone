@@ -18,21 +18,10 @@ class Methone extends React.Component {
         super(props);
         this.state = {
             drawerOpen: false,
-            isMobile: window.innerWidth < 768,
+            isMobile: false,
             fuzzes: fuzzes
         };
 
-        fetch('/fuzzyfile', {
-            credentials: 'same-origin'
-        }).then(res => {
-            if(res.ok) return res.json();
-            else throw res;
-        }).then(json => {
-            if(json.fuzzes.length)
-                this.setState({fuzzes: this.state.fuzzes.concat(json.fuzzes)})
-        }).catch(res => {
-            console.warn("Methone can't find a fuzzyfile for this system! Response was:", res);
-        });
 
         this.updateDimensions = this.updateDimensions.bind(this);
         this.keydown = this.keydown.bind(this);
@@ -52,11 +41,27 @@ class Methone extends React.Component {
     };
 
     componentDidMount () {
+        if(typeof window === 'undefined') return
+
+        fetch('/fuzzyfile', {
+            credentials: 'same-origin'
+        }).then(res => {
+            if(res.ok) return res.json();
+            else throw res;
+        }).then(json => {
+            if(json.fuzzes.length)
+                this.setState({fuzzes: this.state.fuzzes.concat(json.fuzzes)})
+        }).catch(res => {
+            console.warn("Methone can't find a fuzzyfile for this system! Response was:", res);
+        });
+
         document.body.addEventListener("keydown", this.keydown);
         window.addEventListener("resize", this.updateDimensions);
+        this.updateDimensions()
     }
 
     componentWillUnmount () {
+        if(typeof window === 'undefined') return
         window.removeEventListener("resize", this.updateDimensions);
     }
 
@@ -115,6 +120,7 @@ class WithTheme extends React.Component {
     }
 
     setThemeColor(color) {
+        if(typeof window === 'undefined') return
         // Update or add meta[name="theme-color"] tag according to color_scheme
         // Just in case it is incorrect, which it often is...
         var metaEl = document.querySelector('meta[name="theme-color"]');

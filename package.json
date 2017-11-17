@@ -1,6 +1,6 @@
 {
   "name": "methone",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "The worlds first Top-Bar-as-a-Service",
   "main": "./lib/Methone.js",
   "repository": {
