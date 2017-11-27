@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import Methone from 'methone'
 
 const config = {
-  color_scheme: 'dark-blue',
+  color_scheme: 'money_green',
   system_name: 'testSystem-dont_use',
-  links: [],
+  links: [{str: 'hello', href: '#'}],
   login_text: 'Logga in',
   login_href: '/login'
 }
