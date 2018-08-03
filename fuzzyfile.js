@@ -25,11 +25,11 @@ export default {
       "color": "#8bc34a",
       "href": "https://prometheus.datasektionen.se"
     },{
-      "name": "Zfinger",
-      "str": "xfinger zfinger",
-      "color": "#00bcd4",
-      "href": "https://zfinger.datasektionen.se"
-    },{
+      //"name": "Zfinger",
+      //"str": "xfinger zfinger",
+      //"color": "#00bcd4",
+      //"href": "https://zfinger.datasektionen.se"
+    //},{
       "name": "Skywhale - Valsystemet",
       "str": "val valsystem skywhale",
       "color": "#06b",
