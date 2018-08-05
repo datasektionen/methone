@@ -1,8 +1,10 @@
+import path from 'path'
 import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
 import external from 'rollup-plugin-peer-deps-external'
 import postcss from 'rollup-plugin-postcss'
 import resolve from 'rollup-plugin-node-resolve'
+import alias from 'rollup-plugin-alias'
 import url from 'rollup-plugin-url'
 
 import pkg from './package.json'
@@ -30,7 +32,12 @@ export default {
     babel({
       exclude: 'node_modules/**'
     }),
+    alias({
+      resolve: ['.js', '/index.js'],
+      '@material-ui/core': path.resolve(__dirname, 'node_modules', '@material-ui/core/es'),
+      '@material-ui/icons': path.resolve(__dirname, 'node_modules', '@material-ui/icons/es'),
+    }),
     resolve(),
-    commonjs()
+    commonjs(),
   ]
 }
