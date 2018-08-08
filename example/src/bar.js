@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Methone from './Methone';
+import Methone from 'methone';
 
 window.methone_conf = {
-  color_scheme: 'dark-blue',
-  system_name: 'testSystem-dont_use',
+  color_scheme: 'cerise',
+  system_name: 'Unconfigured System',
   links: [],
-  login_text: 'Logga in',
-  login_href: '/login',
   ...window.methone_conf,
   update: config => {
     window.methone_conf = {

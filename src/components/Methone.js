@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import colors from './styles/colors';
+import colors from '../styles/colors';
 
 import { Drawer } from '@material-ui/core';
 
