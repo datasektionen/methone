@@ -48,7 +48,9 @@ export function AppDrawer({ theme, config, drawerOpen, onClose, fuzzes }) {
       <ListSubheader>Navigation</ListSubheader>
       <ListItem button onClick={() => window.location.href='/'} >
         <ListItemIcon><Home /></ListItemIcon>
-        <ListItemText inset primary="Hem"/>
+        <ListItemText inset disableTypography>
+          Hem
+        </ListItemText>
       </ListItem>
 
       <Divider />
@@ -59,14 +61,18 @@ export function AppDrawer({ theme, config, drawerOpen, onClose, fuzzes }) {
           key={item.props.to}
           onClick={onClose}
         >
-          {item}
+          <ListItemText inset disableTypography>
+            {React.cloneElement(item, { style: { color: 'inherit' } })}
+          </ListItemText>
         </ListItem>
         :
         <ListItem button
           key={item.href}
           onClick={() => window.location.href=item.href}
         >
-          <ListItemText inset primary={item.str} />
+          <ListItemText inset disableTypography>
+            {item.str}
+          </ListItemText>
         </ListItem>
       )}
 
@@ -74,7 +80,9 @@ export function AppDrawer({ theme, config, drawerOpen, onClose, fuzzes }) {
 
       <ListItem button onClick={() => window.location.href=config.login_href} >
         <ListItemIcon><Person /></ListItemIcon>
-        <ListItemText inset primary={config.login_text} />
+        <ListItemText inset disableTypography>
+          {config.login_text}
+        </ListItemText>
       </ListItem>
     </Drawer>
   )

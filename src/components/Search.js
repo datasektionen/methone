@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import {
   List,
@@ -99,7 +99,7 @@ class Search extends React.Component {
                         <Avatar style={{backgroundColor:result.color}} />
                     }
                   </ListItemAvatar>
-                  <ListItemText>
+                  <ListItemText disableTypography>
                     {result.name}
                   </ListItemText>
                 </ListItem>

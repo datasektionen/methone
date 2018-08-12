@@ -2,8 +2,6 @@
 
 > The worlds first Top-Bar-as-a-Service
 
-[![NPM](https://img.shields.io/npm/v/methone.svg)](https://www.npmjs.com/package/methone) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
 ## Install
 
 ```bash
@@ -14,22 +12,24 @@ npm install --save methone
 
 ```jsx
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
-import MyComponent from 'methone'
+import Methone from 'methone'
 
 class Example extends Component {
   render () {
+    const config = {
+      color_scheme: 'dark-blue',
+      system_name: 'Example',
+      links: [
+        <Link to="/info">Info</Link>
+      ],
+      login_text: 'Login',
+      login_href: '/login',
+    }
     return (
-      <MyComponent />
+      <Methone config={config} />
     )
   }
 }
 ```
-
-```bash
-perl -i.bak -0pe 's/\ncreateSvgIcon\(.*?;\n//sg' index.es.js index.js
-```
-
-## License
-
-MIT © [addem1234](https://github.com/addem1234)
