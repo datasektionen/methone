@@ -7,7 +7,7 @@ import TopBar from './TopBar';
 import AppDrawer from './AppDrawer';
 import SearchDialog from './SearchDialog';
 
-import fuzzyfile from './fuzzyfile';
+import fuzzyfile from '../fuzzyfile';
 const fuzzes = fuzzyfile.fuzzes;
 
 class Methone extends React.Component {
