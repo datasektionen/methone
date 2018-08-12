@@ -4,19 +4,15 @@ import { BrowserRouter, Link } from 'react-router-dom'
 
 import Methone from 'methone'
 
-import './index.css'
+// This is an example that can be used during development
 
 window.methone_conf = {
   color_scheme: 'dark-blue',
-  system_name: 'testSystem-dont_use',
+  system_name: 'Example',
   links: [
-    {
-      href: '/test',
-      str: 'hello'
-    },
-    <Link to="/other">Other</Link>
+    <Link to="/info">Info</Link>
   ],
-  login_text: 'Logga in',
+  login_text: 'Login',
   login_href: '/login',
   ...window.methone_conf,
   update: config => {

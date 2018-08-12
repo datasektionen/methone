@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 
 import Methone from 'methone'
 
+// This is compiled and used as the /bar.js that other systems can use
+
 window.methone_conf = {
   color_scheme: 'cerise',
   system_name: 'Unconfigured System',

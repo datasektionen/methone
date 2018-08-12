@@ -1,21 +1,22 @@
 {
   "name": "methone-example",
-  "homepage": "https://addem1234.github.io/methone",
-  "version": "0.0.0",
-  "license": "MIT",
   "private": true,
   "dependencies": {
     "methone": "file:..",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.0.0-next.3e165448"
+    "react-scripts": "^2.0.0-next.3e165448",
+    "serve": "^9.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run bar",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+
+    "bar": "node bar/build.js",
+    "serve": "serve -s build"
   },
   "browserslist": {
     "development": [
