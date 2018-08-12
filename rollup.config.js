@@ -6,6 +6,7 @@ import postcss from 'rollup-plugin-postcss'
 import resolve from 'rollup-plugin-node-resolve'
 import alias from 'rollup-plugin-alias'
 import url from 'rollup-plugin-url'
+import prepack from 'rollup-plugin-prepack-up'
 
 import pkg from './package.json'
 
@@ -25,6 +26,7 @@ export default {
   ],
   plugins: [
     external(),
+    // prepack(),
     postcss({
       modules: true
     }),

@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter, Link } from 'react-router-dom'
 
 import Methone from 'methone'
 
@@ -12,7 +13,8 @@ window.methone_conf = {
     {
       href: '/test',
       str: 'hello'
-    }
+    },
+    <Link to="/other">Other</Link>
   ],
   login_text: 'Logga in',
   login_href: '/login',
@@ -23,7 +25,11 @@ window.methone_conf = {
       ...config
     }
 
-    ReactDOM.render(<Methone config={window.methone_conf} />, document.getElementById('methone-container-replace'))
+    const app = <BrowserRouter>
+      <Methone config={window.methone_conf} />
+    </BrowserRouter>
+
+    ReactDOM.render(app, document.getElementById('methone-container-replace'))
   }
 }
 

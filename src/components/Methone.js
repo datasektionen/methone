@@ -3,8 +3,6 @@ import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import colors from '../styles/colors';
 
-import { Drawer } from '@material-ui/core';
-
 import TopBar from './TopBar';
 import AppDrawer from './AppDrawer';
 import SearchDialog from './SearchDialog';
@@ -71,23 +69,19 @@ class Methone extends React.Component {
           openDrawer={() => this.setState({drawerOpen: true})} />
 
         {this.state.isMobile ?
-          (<Drawer
-            open={this.state.drawerOpen}
-            onClose={() => this.setState({drawerOpen: false})} >
-            <AppDrawer
-                config={this.props.config}
-                isMobile={this.state.isMobile}
-                drawerOpen={this.state.drawerOpen}
-                closeDrawer={() => this.setState({drawerOpen: false})}
-                fuzzes={this.state.fuzzes}
-            />
-          </Drawer>
-          ) : (
+         <AppDrawer
+            config={this.props.config}
+            isMobile={this.state.isMobile}
+            drawerOpen={this.state.drawerOpen}
+            onClose={() => this.setState({drawerOpen: false})}
+            fuzzes={this.state.fuzzes}
+          />
+          :
           <SearchDialog
             open={this.state.drawerOpen}
             fuzzes={this.state.fuzzes}
-            onClose={() => this.setState({drawerOpen: false})} />
-          )
+            onClose={() => this.setState({drawerOpen: false})}
+          />
         }
       </div>
     )
@@ -111,7 +105,6 @@ class WithTheme extends React.Component {
 
   getTheme(props) {
     const palette = colors[props.config.color_scheme.replace('-', '_')] || colors.cerise
-    console.log(palette)
     return createMuiTheme({
       palette,
       typography: {
@@ -143,7 +136,6 @@ class WithTheme extends React.Component {
   }
 
   render() {
-    console.log(this.state.theme)
     return (<MuiThemeProvider theme={this.state.theme}>
       <Methone config={this.props.config} />
     </MuiThemeProvider>);

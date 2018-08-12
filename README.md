@@ -26,6 +26,10 @@ class Example extends Component {
 }
 ```
 
+```bash
+perl -i.bak -0pe 's/\ncreateSvgIcon\(.*?;\n//sg' index.es.js index.js
+```
+
 ## License
 
 MIT © [addem1234](https://github.com/addem1234)
