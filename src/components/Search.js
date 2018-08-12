@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from 'react'
 
 import {
   List,
@@ -7,9 +7,9 @@ import {
   ListItemText,
   ListSubheader,
   Avatar
-} from '@material-ui/core/es';
+} from '@material-ui/core'
 
-import Fuse from 'fuse.js';
+import Fuse from 'fuse.js'
 
 const fuseOptions = {
   keys: ['str']
@@ -18,13 +18,13 @@ const fuseOptions = {
 class Search extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       results: [],
       active: 0,
     }
 
-    this.fuse = new Fuse(this.props.fuzzes, fuseOptions);
+    this.fuse = new Fuse(this.props.fuzzes, fuseOptions)
 
     this.resetState = this.resetState.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -32,34 +32,34 @@ class Search extends React.Component {
   }
 
   resetState() {
-    this.setState({results: this.props.isMobile ? [] : this.fuse.list, active: 0});
+    this.setState({results: this.props.isMobile ? [] : this.fuse.list, active: 0})
   }
 
   componentDidMount() {
-    this.resetState();
+    this.resetState()
   }
 
   handleChange(event) {
-    const results = this.fuse.search(event.target.value);
-    this.setState({results, active: 0});
+    const results = this.fuse.search(event.target.value)
+    this.setState({results, active: 0})
   }
 
   handleKeyDown(event) {
     const { active, results } = this.state
     if(event.keyCode === 40 || (event.keyCode === 9 && !event.shiftKey)) { //tab or down
-      const newActive = (active + 1) % results.length;
-      this.setState({active: newActive});
-      event.preventDefault();
-      event.stopPropagation();
+      const newActive = (active + 1) % results.length
+      this.setState({active: newActive})
+      event.preventDefault()
+      event.stopPropagation()
     }
     else if(event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) { // up or shift-tab
-      const newActive = (results.length + active - 1) % results.length;
-      this.setState({active: newActive});
-      event.preventDefault();
-      event.stopPropagation();
+      const newActive = (results.length + active - 1) % results.length
+      this.setState({active: newActive})
+      event.preventDefault()
+      event.stopPropagation()
     }
     else if(event.keyCode === 13 && results[active]) { // enter
-      window.location.href = results[active].href;
+      window.location.href = results[active].href
     }
   }
 
@@ -112,4 +112,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search;
+export default Search

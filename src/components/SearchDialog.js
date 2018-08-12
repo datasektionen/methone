@@ -1,6 +1,6 @@
 import React from 'react'
-import Dialog from '@material-ui/core/es/Dialog'
-import withStyles from '@material-ui/core/es/styles/withStyles'
+import Dialog from '@material-ui/core/Dialog'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 import Search from './Search'
 

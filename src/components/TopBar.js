@@ -1,7 +1,7 @@
 import React from 'react'
 
-import withTheme from '@material-ui/core/es/styles/withTheme'
-import Menu from '@material-ui/icons/es/Menu'
+import withTheme from '@material-ui/core/styles/withTheme'
+import Menu from '@material-ui/icons/Menu'
 
 import Delta from './Delta'
 

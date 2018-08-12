@@ -9,10 +9,10 @@ import {
   ListSubheader,
 } from '@material-ui/core/es'
 
-import withTheme from '@material-ui/core/es/styles/withTheme'
+import withTheme from '@material-ui/core/styles/withTheme'
 
-import Home from '@material-ui/icons/es/Home'
-import Person from '@material-ui/icons/es/Person'
+import Home from '@material-ui/icons/Home'
+import Person from '@material-ui/icons/Person'
 
 import Search from './Search'
 
