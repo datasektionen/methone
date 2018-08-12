@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/es/styles';
 import colors from '../styles/colors';
 
 import TopBar from './TopBar';

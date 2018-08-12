@@ -7,11 +7,12 @@ import {
   ListItemIcon,
   ListItemText,
   ListSubheader,
-} from '@material-ui/core'
+} from '@material-ui/core/es'
 
-import withTheme from '@material-ui/core/styles/withTheme'
+import withTheme from '@material-ui/core/es/styles/withTheme'
 
-import { Home, Person } from '@material-ui/icons'
+import Home from '@material-ui/icons/es/Home'
+import Person from '@material-ui/icons/es/Person'
 
 import Search from './Search'
 

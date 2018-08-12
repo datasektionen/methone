@@ -23,8 +23,8 @@
     "prepublish": "npm run build"
   },
   "peerDependencies": {
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
   },
   "dependencies": {
     "@babel/cli": "^7.0.0-rc.1",

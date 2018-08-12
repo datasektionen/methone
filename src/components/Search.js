@@ -7,7 +7,7 @@ import {
   ListItemText,
   ListSubheader,
   Avatar
-} from '@material-ui/core';
+} from '@material-ui/core/es';
 
 import Fuse from 'fuse.js';
 
