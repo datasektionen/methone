@@ -9,6 +9,8 @@ import {
   Avatar
 } from '@material-ui/core'
 
+import withTheme from '@material-ui/core/styles/withTheme'
+
 import Fuse from 'fuse.js'
 
 const fuseOptions = {
@@ -95,8 +97,8 @@ class Search extends React.Component {
                         height: '40px',
                         width: '40px'}} >
                       </div>
-                      : result.color &&
-                        <Avatar style={{backgroundColor:result.color}} />
+                      :
+                      <Avatar style={{backgroundColor:result.color || this.props.theme.palette.primary.main }} />
                     }
                   </ListItemAvatar>
                   <ListItemText disableTypography>
@@ -112,4 +114,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search
+export default withTheme()(Search)

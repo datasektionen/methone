@@ -1,6 +1,6 @@
 {
   "name": "methone",
-  "version": "0.3.9",
+  "version": "0.3.12",
   "description": "The worlds first Top-Bar-as-a-Service",
   "repository": {
     "type": "git",
@@ -12,7 +12,6 @@
   "homepage": "https://methone.datasektionen.se/",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
-  "jsnext:main": "dist/es/index.js",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
