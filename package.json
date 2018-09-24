@@ -1,6 +1,6 @@
 {
   "name": "methone",
-  "version": "0.3.12",
+  "version": "0.4.1",
   "description": "The worlds first Top-Bar-as-a-Service",
   "repository": {
     "type": "git",
@@ -20,7 +20,6 @@
     "dev": "babel src -d dist -w --source-maps & babel src -d dist/es -w --config-file ./babel.config.es.js --source-maps",
     "build": "babel src -d dist --source-maps && babel src -d dist/es --config-file ./babel.config.es.js --source-maps",
     "prepublish": "npm run build",
-
     "heroku-postbuild": "cd example && npm install && npm run build",
     "start": "cd example && npm run serve"
   },
@@ -28,36 +27,41 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
   },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.0",
+    "@babel/plugin-proposal-do-expressions": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-function-bind": "^7.0.0",
+    "@babel/plugin-proposal-function-sent": "^7.1.0",
+    "@babel/plugin-proposal-json-strings": "^7.0.0",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.0.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.0.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.0.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0"
+  },
   "dependencies": {
-    "@babel/cli": "^7.0.0-rc.1",
-    "@babel/core": "^7.0.0-rc.1",
-    "@babel/preset-env": "^7.0.0-rc.1",
-    "@babel/preset-react": "^7.0.0-rc.1",
-    "@babel/plugin-proposal-class-properties": "7.0.0-beta.54",
-    "@babel/plugin-proposal-decorators": "7.0.0-beta.54",
-    "@babel/plugin-proposal-do-expressions": "7.0.0-beta.54",
-    "@babel/plugin-proposal-export-default-from": "7.0.0-beta.54",
-    "@babel/plugin-proposal-export-namespace-from": "7.0.0-beta.54",
-    "@babel/plugin-proposal-function-bind": "7.0.0-beta.54",
-    "@babel/plugin-proposal-function-sent": "7.0.0-beta.54",
-    "@babel/plugin-proposal-json-strings": "7.0.0-beta.54",
-    "@babel/plugin-proposal-logical-assignment-operators": "7.0.0-beta.54",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "7.0.0-beta.54",
-    "@babel/plugin-proposal-numeric-separator": "7.0.0-beta.54",
-    "@babel/plugin-proposal-optional-chaining": "7.0.0-beta.54",
-    "@babel/plugin-proposal-pipeline-operator": "7.0.0-beta.54",
-    "@babel/plugin-proposal-throw-expressions": "7.0.0-beta.54",
-    "@babel/plugin-syntax-dynamic-import": "7.0.0-beta.54",
-    "@babel/plugin-syntax-import-meta": "7.0.0-beta.54",
-    "@material-ui/core": "^1.4.3",
-    "@material-ui/icons": "^2.0.1",
+    "@material-ui/core": "^1.5.1",
+    "@material-ui/icons": "^2.0.3",
     "fuse.js": "^3.2.1",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
   },
   "files": [
     "dist",
     "src"
   ],
-  "cacheDirectories": ["node_modules", "example/node_modules"]
+  "cacheDirectories": [
+    "node_modules",
+    "example/node_modules"
+  ]
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import withTheme from '@material-ui/core/styles/withTheme'
 import Menu from '@material-ui/icons/Menu'
@@ -87,28 +87,33 @@ function TopBar({ theme, config, isMobile, openDrawer }) {
   return (
     <div style={barStyle}>
       <div style={innerStyle}>
-        <Delta
-          deltaBackground={light}
-          foreground={contrastText}
-        />
-        <div style={menuStyle}>
-          {!isMobile && links}
-        </div>
-        <div style={loginStyle}>
-          {
-            isMobile ?
-            <a style={loginLinkStyle}
-              onClick={openDrawer}>
-              <Menu style={{color: contrastText, marginTop: -4}} />
-            </a>
-            :
-            config.login_text &&
-            <a style={loginLinkStyle}
-              href={config.login_href}>
-              {config.login_text}
-            </a>
-          }
-        </div>
+        {isMobile ?
+          <a style={{
+            ...loginLinkStyle,
+            width: 50
+          }}
+            onClick={openDrawer}>
+            <Menu style={{color: contrastText, marginTop: -4}} />
+          </a>
+          :
+          <Fragment>
+            <Delta
+              deltaBackground={light}
+              foreground={contrastText}
+            />
+            <div style={menuStyle}>
+              {links}
+            </div>
+            <div style={loginStyle}>
+              {config.login_text &&
+                <a style={loginLinkStyle}
+                  href={config.login_href}>
+                  {config.login_text}
+                </a>
+              }
+            </div>
+          </Fragment>
+        }
       </div>
     </div>
   )
