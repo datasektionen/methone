@@ -1,6 +1,6 @@
 {
   "name": "methone",
-  "version": "0.4.1",
+  "version": "0.4.3",
   "description": "The worlds first Top-Bar-as-a-Service",
   "repository": {
     "type": "git",
@@ -52,6 +52,7 @@
   "dependencies": {
     "@material-ui/core": "^1.5.1",
     "@material-ui/icons": "^2.0.3",
+    "camelcase": "^5.0.0",
     "fuse.js": "^3.2.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"

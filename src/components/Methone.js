@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import camelcase from 'camelcase'
 import colors from '../styles/colors'
 
 import TopBar from './TopBar'
@@ -104,7 +105,8 @@ class WithTheme extends React.Component {
   }
 
   getTheme(props) {
-    const palette = colors[props.config.color_scheme.replace('-', '_')] || colors.cerise
+    const scheme = props.config && props.config.color_scheme
+    const palette = colors[camelcase(scheme || 'cerise')]
     return createMuiTheme({
       palette,
       typography: {

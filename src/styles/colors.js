@@ -10,6 +10,6 @@ const defaultColors = Object.assign(...Object.entries(colors).map(toPalette));
 export default {
   ...defaultColors,
   cerise: { primary: cerise },
-  dark_blue: { primary: darkBlue },
-  money_green: { primary: moneyGreen },
+  darkBlue: { primary: darkBlue },
+  moneyBreen: { primary: moneyGreen },
 }
