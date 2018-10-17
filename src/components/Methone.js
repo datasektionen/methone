@@ -110,7 +110,8 @@ class WithTheme extends React.Component {
     return createMuiTheme({
       palette,
       typography: {
-        fontFamily: 'Lato, sans-serif'
+        fontFamily: 'Lato, sans-serif',
+        useNextVariants: true,
       }
     })
   }

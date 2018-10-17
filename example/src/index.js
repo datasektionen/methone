@@ -10,7 +10,7 @@ window.methone_conf = {
   color_scheme: 'dark-blue',
   system_name: 'Example',
   links: [
-    <Link to="/info">Info</Link>
+    <Link to="/info" key="info">Info</Link>
   ],
   login_text: 'Login',
   login_href: '/login',
