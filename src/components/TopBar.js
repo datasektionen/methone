@@ -21,14 +21,13 @@ const Bar = styled(props =>
   right: 0;
   z-index: 900;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 8px;
-  & div {
-    line-height: normal;
+  height: 50px;
+  & > div {
     padding: 0;
-    margin: auto;
+    margin: 0 auto;
     max-width: 1240px;
-    height: 50px;
     position: relative;
-
+    display: flex;
     & svg {
       fill: ${props => props.theme.primary.contrastText}
       background-color: ${props => props.theme.primary.light}
@@ -37,42 +36,48 @@ const Bar = styled(props =>
 `
 
 const Links = styled.div`
-  display: inline-block;
-  vertical-align: top;
-  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
   & a {
-    display: inline-block;
-    font-size: 15px;
-    line-height: 1.2px;
-    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    margin-left: 5px;
+    height: 50px;
     color: ${props => props.theme.primary.contrastText};
     text-decoration: none;
-    padding: 16px 11px 16px 11px;
     cursor: pointer;
+  }
+  & a:hover {
+    background-color: ${props => props.theme.primary.light};
   }
 `
 
 const Buttons = styled.div`
-  display: inline-block;
-  position: absolute;
-  right: 0;
-  top: 0;
+  display: flex;
   & a {
-    padding: 17px 16px 16px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    margin-left: ${props => props.left ? 0 : 5}px;
+    margin-right: ${props => props.right ? 0 : 5}px;
+    height: 50px;
     color: ${props => props.theme.primary.contrastText};
-    display: inline-block;
     background-color: ${props => props.theme.primary.light};
     text-transform: uppercase;
     font-size: 14px;
-    height: 50px;
-    box-sizing: border-box;
   }
 `
 
 const TopBar = ({ config, expandSearch, expandMenu }) =>
   <Bar>
-    <Buttons>
-      <a href='/'><Delta /></a>
+    <Buttons left>
+      <a href='/' style={{ width: '50px'}}>
+        <Delta />
+      </a>
     </Buttons>
 
     <Links>
@@ -91,7 +96,7 @@ const TopBar = ({ config, expandSearch, expandMenu }) =>
       }
     </Links>
 
-    <Buttons>
+    <Buttons side='right'>
       { false ?
         <a onClick={expandMenu}>
           <Menu />

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import camelcase from 'camelcase'
 
@@ -65,7 +65,7 @@ class Methone extends React.Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <TopBar
           config={this.props.config}
           isMobile={this.state.isMobile}
@@ -75,7 +75,7 @@ class Methone extends React.Component {
           fuzzes={this.state.fuzzes}
           onClose={() => this.setState({drawerOpen: false})}
         />
-      </div>
+      </Fragment>
     )
   }
 }
