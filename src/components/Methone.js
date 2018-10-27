@@ -1,7 +1,9 @@
 import React from 'react'
 
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import camelcase from 'camelcase'
+
+import { ThemeProvider } from "styled-components"
+
 import colors from '../styles/colors'
 
 import TopBar from './TopBar'
@@ -68,29 +70,18 @@ class Methone extends React.Component {
           config={this.props.config}
           isMobile={this.state.isMobile}
           openDrawer={() => this.setState({drawerOpen: true})} />
-
-        {this.state.isMobile ?
-         <AppDrawer
-            config={this.props.config}
-            isMobile={this.state.isMobile}
-            drawerOpen={this.state.drawerOpen}
-            onClose={() => this.setState({drawerOpen: false})}
-            fuzzes={this.state.fuzzes}
-          />
-          :
-          <SearchDialog
-            open={this.state.drawerOpen}
-            fuzzes={this.state.fuzzes}
-            onClose={() => this.setState({drawerOpen: false})}
-          />
-        }
+        <SearchDialog
+          open={this.state.drawerOpen}
+          fuzzes={this.state.fuzzes}
+          onClose={() => this.setState({drawerOpen: false})}
+        />
       </div>
     )
   }
 }
 
 
-// A helper component that just wrapps Methone with a "mui theme" used by material-ui.
+// A helper component that just wrapps Methone with a theme.
 // also sets the theme-color meta tag, because thats useful
 class WithTheme extends React.Component {
   constructor(props) {
@@ -106,14 +97,7 @@ class WithTheme extends React.Component {
 
   getTheme(props) {
     const scheme = props.config && props.config.color_scheme
-    const palette = colors[camelcase(scheme || 'cerise')]
-    return createMuiTheme({
-      palette,
-      typography: {
-        fontFamily: 'Lato, sans-serif',
-        useNextVariants: true,
-      }
-    })
+    return colors[camelcase(scheme || 'cerise')]
   }
 
   componentDidUpdate(prevProps) {
@@ -129,7 +113,7 @@ class WithTheme extends React.Component {
     // Just in case it is incorrect, which it often is...
     var el = document.querySelector('meta[name="theme-color"]')
     if(el) {
-      el.content = props.config.color_scheme
+      el.content = props.config.color_scheme // TODO should be hex code
     } else {
       el = document.createElement('meta')
       el.name = "theme-color"
@@ -139,9 +123,9 @@ class WithTheme extends React.Component {
   }
 
   render() {
-    return (<MuiThemeProvider theme={this.state.theme}>
+    return (<ThemeProvider theme={this.state.theme}>
       <Methone config={this.props.config} />
-    </MuiThemeProvider>)
+    </ThemeProvider>)
   }
 }
 

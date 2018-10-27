@@ -56,7 +56,8 @@
     "camelcase": "^5.0.0",
     "fuse.js": "^3.2.1",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "styled-components": "^4.0.2"
   },
   "files": [
     "dist",

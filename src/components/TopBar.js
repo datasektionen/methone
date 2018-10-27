@@ -1,122 +1,116 @@
 import React, { Fragment } from 'react'
 
-import withTheme from '@material-ui/core/styles/withTheme'
 import Menu from '@material-ui/icons/Menu'
+import Search from '@material-ui/icons/Search'
+
+import styled from 'styled-components'
 
 import Delta from './Delta'
 
-function TopBar({ theme, config, isMobile, openDrawer }) {
-  const { main, light, contrastText } = theme.palette.primary
-  const innerStyle = {
-    lineHeight: "normal",
-    padding: 0,
-    margin: "auto",
-    maxWidth: 1240,
-    position: "relative"
-  }
-  const barStyle = {
-    lineHeight: "normal",
-    backgroundColor: main,
-    fontFamily: "Lato, Arial",
-    position: "fixed",
-    right: 0,
-    left: 0,
-    top: 0,
-    zIndex: 900,
-    boxShadow: "rgba(0, 0, 0, 0.2) 0px 1px 8px"
-  }
-  const linkStyle = {
-    display: "inline-block",
-    fontSize: 15,
-    lineHeight: 1.2,
-    letterSpacing: "0.5px",
-    color: contrastText,
-    textDecoration: "none",
-    padding: "16px 11px 16px 11px",
-    cursor: "pointer"
-  }
-  const menuStyle = {
-    display: "inline-block",
-    verticalAlign: "top",
-    marginLeft: 10
-  }
-  const loginStyle = {
-    display: "inline-block",
-    position: "absolute",
-    right: 0,
-    top: 0
-  }
-  const loginLinkStyle = {
-    padding: "17px 16px 16px 16px",
-    color: contrastText,
-    display: "block",
-    backgroundColor: light,
-    textTransform: "uppercase",
-    fontSize: 14,
-    height: 50,
-    boxSizing: 'border-box'
-  }
-
-  const loginButton = config.login_text &&
-    <a style={loginLinkStyle}
-      href={config.login_href}>
-      {config.login_text}
-    </a>
-
-  const mobileNavigation =
-    <a style={loginLinkStyle}
-      onClick={openDrawer}>
-      <Menu style={{color: contrastText, marginTop: -4}} />
-    </a>
-
-  const links = config.links.map(item =>
-    React.isValidElement(item) ?
-      React.cloneElement(item, {
-        style: linkStyle,
-        key: item.to,
-        children: item.props.children.toUpperCase()
-      })
-    :
-      <a key={item.href}
-        href={item.href}
-        style={linkStyle}>
-        {item.barStr || item.str.toUpperCase()}
-      </a>
-  )
-
-  return (
-    <div style={barStyle}>
-      <div style={innerStyle}>
-        {isMobile ?
-          <a style={{
-            ...loginLinkStyle,
-            width: 50
-          }}
-            onClick={openDrawer}>
-            <Menu style={{color: contrastText, marginTop: -4}} />
-          </a>
-          :
-          <Fragment>
-            <Delta
-              deltaBackground={light}
-              foreground={contrastText}
-            />
-            <div style={menuStyle}>
-              {links}
-            </div>
-            <div style={loginStyle}>
-              {config.login_text &&
-                <a style={loginLinkStyle}
-                  href={config.login_href}>
-                  {config.login_text}
-                </a>
-              }
-            </div>
-          </Fragment>
-        }
-      </div>
+const Bar = styled(props =>
+  <div {...props} >
+    <div>
+      {props.children}
     </div>
-  )
-}
+  </div>)`
+  background-color: ${props => props.theme.primary.main};
+  font-family: Lato, sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 8px;
+  & div {
+    line-height: normal;
+    padding: 0;
+    margin: auto;
+    max-width: 1240px;
+    height: 50px;
+    position: relative;
 
-export default withTheme()(TopBar)
+    & svg {
+      fill: ${props => props.theme.primary.contrastText}
+      background-color: ${props => props.theme.primary.light}
+    }
+  }
+`
+
+const Links = styled.div`
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 10px;
+  & a {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 1.2px;
+    letter-spacing: 0.5px;
+    color: ${props => props.theme.primary.contrastText};
+    text-decoration: none;
+    padding: 16px 11px 16px 11px;
+    cursor: pointer;
+  }
+`
+
+const Buttons = styled.div`
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  & a {
+    padding: 17px 16px 16px 16px;
+    color: ${props => props.theme.primary.contrastText};
+    display: inline-block;
+    background-color: ${props => props.theme.primary.light};
+    text-transform: uppercase;
+    font-size: 14px;
+    height: 50px;
+    box-sizing: border-box;
+  }
+`
+
+const TopBar = ({ config, expandSearch, expandMenu }) =>
+  <Bar>
+    <Buttons>
+      <a href='/'><Delta /></a>
+    </Buttons>
+
+    <Links>
+      {
+        config.links.map(link =>
+          React.isValidElement(link) ?
+            React.cloneElement(link, {
+              key: link.to,
+              children: link.props.children.toUpperCase()
+            })
+          :
+            <a href={link.href}>
+              {link.barStr || link.str.toUpperCase()}
+            </a>
+          )
+      }
+    </Links>
+
+    <Buttons>
+      { false ?
+        <a onClick={expandMenu}>
+          <Menu />
+        </a>
+        :
+        <Fragment>
+          <a onClick={expandSearch}>
+            <Search />
+          </a>
+          {
+            config.login_href && config.login_text &&
+              <a href={config.login_href}>
+                {config.login_text}
+              </a>
+          }
+        </Fragment>
+      }
+
+    </Buttons>
+  </Bar>
+
+export default TopBar
