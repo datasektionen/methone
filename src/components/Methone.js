@@ -27,7 +27,7 @@ class Methone extends React.Component {
   }
 
   resize(event) {
-    const isMobile = this.barRef.current.offsetWidth < this.barRef.current.scrollWidth
+    const isMobile = this.linksRef.current.offsetWidth < this.linksRef.current.scrollWidth
     this.setState({ isMobile })
   }
 
@@ -58,12 +58,12 @@ class Methone extends React.Component {
     window.removeEventListener("resize", this.resize)
   }
 
-  barRef = React.createRef()
+  linksRef = React.createRef()
 
   render() {
     return (
       <TopBar
-        barRef={this.barRef}
+        linksRef={this.linksRef}
         config={this.props.config}
         isMobile={this.state.isMobile}
         menuOpen={this.state.menuOpen}
