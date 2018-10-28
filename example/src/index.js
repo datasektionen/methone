@@ -14,7 +14,15 @@ window.methone_conf = {
     {
       str: 'Test text',
       href: '/more/test'
-    }
+    },
+    {
+      str: 'Other text that is long',
+      href: '/more/text'
+    },
+    {
+      str: 'Another one',
+      href: '/another/one'
+    },
   ],
   login_text: 'Login',
   login_href: '/login',

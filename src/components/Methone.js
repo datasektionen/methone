@@ -11,34 +11,34 @@ import AppDrawer from './AppDrawer'
 import SearchDialog from './SearchDialog'
 
 import fuzzyfile from '../fuzzyfile'
-const fuzzes = fuzzyfile.fuzzes
 
 class Methone extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      drawerOpen: false,
-      isMobile: false,
-      fuzzes: fuzzes
+      searchOpen: false,
+      menuOpen: false,
+      fuzzes: fuzzyfile.fuzzes
     }
-    this.updateDimensions = this.updateDimensions.bind(this)
     this.keydown = this.keydown.bind(this)
+    this.resize = this.resize.bind(this)
   }
 
-  updateDimensions () {
-    this.setState({ isMobile: window.innerWidth < 768 })
-  }
-
-  keydown (event) {
+  keydown(event) {
     if (event.keyCode === 27) { // escape
-      this.setState({drawerOpen: false})
+      this.setState({searchOpen: false})
     } else if ((event.metaKey === true || event.ctrlKey === true) && event.keyCode === 75) { // cmd+k
       event.preventDefault()
-      this.setState({drawerOpen: !this.state.drawerOpen})
+      this.setState({searchOpen: !this.state.searchOpen})
     }
   }
 
-  componentDidMount () {
+  resize(event) {
+    const isMobile = this.barRef.current.offsetWidth < this.barRef.current.scrollWidth
+    this.setState({ isMobile })
+  }
+
+  componentDidMount() {
     if(typeof window === 'undefined') return
 
     fetch('/fuzzyfile', {
@@ -53,29 +53,31 @@ class Methone extends React.Component {
       console.warn("Methone can't find a fuzzyfile for this system! Response was:", res)
     })
 
-    document.body.addEventListener("keydown", this.keydown)
-    window.addEventListener("resize", this.updateDimensions)
-    this.updateDimensions()
+    window.addEventListener("keydown", this.keydown)
+    window.addEventListener("resize", this.resize)
+    this.resize()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if(typeof window === 'undefined') return
-    window.removeEventListener("resize", this.updateDimensions)
+
+    window.removeEventListener("keydown", this.keydown)
+    window.removeEventListener("resize", this.resize)
   }
+
+  barRef = React.createRef()
 
   render() {
     return (
-      <Fragment>
-        <TopBar
-          config={this.props.config}
-          isMobile={this.state.isMobile}
-          openDrawer={() => this.setState({drawerOpen: true})} />
-        <SearchDialog
-          open={this.state.drawerOpen}
-          fuzzes={this.state.fuzzes}
-          onClose={() => this.setState({drawerOpen: false})}
-        />
-      </Fragment>
+      <TopBar
+        barRef={this.barRef}
+        config={this.props.config}
+        isMobile={this.state.isMobile}
+        menuOpen={this.state.menuOpen}
+        searchOpen={this.state.searchOpen}
+        expandMenu={() => this.setState({menuOpen: true})}
+        expandSearch={() => this.setState({searchOpen: true})}
+      />
     )
   }
 }

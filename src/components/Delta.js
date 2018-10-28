@@ -1,7 +1,5 @@
 import React from 'react';
 
-//deltaBackground={light} foreground={contrastText}
-
 export const Delta = () => (
   <svg id="superdelta_img" width="26px" height="37px" viewBox="0 0 26 37" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <g id="delta_logo" strokeWidth={0.75} transform="translate(-19.000000, -14.000000)" >

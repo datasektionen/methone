@@ -7,16 +7,15 @@ import styled from 'styled-components'
 
 import Delta from './Delta'
 
-const Bar = styled(props =>
-  <div {...props} >
+const Bar = styled(React.forwardRef((props, ref) =>
+  <div {...props} ref={ref}>
     <div>
       {props.children}
     </div>
-  </div>)`
+  </div>))`
   background-color: ${props => props.theme.primary.main};
   font-family: Lato, sans-serif;
   position: fixed;
-  top: 0;
   left: 0;
   right: 0;
   z-index: 900;
@@ -49,15 +48,17 @@ const Links = styled.div`
     color: ${props => props.theme.primary.contrastText};
     text-decoration: none;
     cursor: pointer;
+    white-space: nowrap;
   }
   & a:hover {
     background-color: ${props => props.theme.primary.light};
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
 `
 
 const Buttons = styled.div`
   display: flex;
-  & a {
+  & a, & button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,11 +70,16 @@ const Buttons = styled.div`
     background-color: ${props => props.theme.primary.light};
     text-transform: uppercase;
     font-size: 14px;
+    &:hover {
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
   }
+
 `
 
-const TopBar = ({ config, expandSearch, expandMenu }) =>
-  <Bar>
+const TopBar = ({ config, isMobile, expandMenu, menuOpen, expandSearch, searchOpen, barRef }) => {
+  return (
+  <Bar ref={barRef}>
     <Buttons left>
       <a href='/' style={{ width: '50px'}}>
         <Delta />
@@ -82,6 +88,7 @@ const TopBar = ({ config, expandSearch, expandMenu }) =>
 
     <Links>
       {
+        !isMobile &&
         config.links.map(link =>
           React.isValidElement(link) ?
             React.cloneElement(link, {
@@ -89,33 +96,32 @@ const TopBar = ({ config, expandSearch, expandMenu }) =>
               children: link.props.children.toUpperCase()
             })
           :
-            <a href={link.href}>
+            <a href={link.href} key={link.href}>
               {link.barStr || link.str.toUpperCase()}
             </a>
           )
       }
     </Links>
 
-    <Buttons side='right'>
-      { false ?
-        <a onClick={expandMenu}>
+    <Buttons right>
+      { isMobile ?
+        <button onClick={expandMenu}>
           <Menu />
-        </a>
+        </button>
         :
-        <Fragment>
-          <a onClick={expandSearch}>
-            <Search />
-          </a>
-          {
-            config.login_href && config.login_text &&
-              <a href={config.login_href}>
-                {config.login_text}
-              </a>
-          }
-        </Fragment>
+        <button onClick={expandSearch}>
+          <Search />
+        </button>
       }
-
+      {
+        config.login_href && config.login_text &&
+          <a href={config.login_href}>
+            {config.login_text}
+          </a>
+      }
     </Buttons>
   </Bar>
+    )
+}
 
 export default TopBar
