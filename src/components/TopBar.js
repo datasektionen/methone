@@ -53,7 +53,6 @@ const Links = styled.div`
   }
   & a:hover {
     background-color: ${props => props.theme.primary.light};
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
   &.hide-me {
     flex: 0;
@@ -74,7 +73,7 @@ const SearchField = styled.div`
     border: none;
     height: 40px;
     margin: 0;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid ${props => props.theme.primary.contrastText};
     padding: 0 10px;
     box-shadow: none;
     display: block;
@@ -111,9 +110,6 @@ const Buttons = styled.div`
     background-color: ${props => props.theme.primary.light};
     text-transform: uppercase;
     font-size: 14px;
-    &:hover {
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    }
   }
 `
 
@@ -128,7 +124,7 @@ const SearchResults = styled.div`
     margin: 0 auto;
     padding: 10px 0;
     background: #fff;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
     list-style-type: none;
     li {
       padding: 5px 20px;
@@ -142,10 +138,13 @@ const SearchResults = styled.div`
       }
       display: flex;
       div.ball {
-        width: var(--size);
-        height: var(--size);
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
         background: #e07;
+        margin-top: 10px;
+        border: 5px solid #e075;
+        background-clip: content-box;
       }
       div.text {
         height: var(--size);
