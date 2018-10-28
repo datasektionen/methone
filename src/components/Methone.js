@@ -1,15 +1,8 @@
 import React, { Fragment } from 'react'
-
 import camelcase from 'camelcase'
-
 import { ThemeProvider } from "styled-components"
-
 import colors from '../styles/colors'
-
 import TopBar from './TopBar'
-import AppDrawer from './AppDrawer'
-import SearchDialog from './SearchDialog'
-
 import fuzzyfile from '../fuzzyfile'
 
 class Methone extends React.Component {
@@ -75,8 +68,8 @@ class Methone extends React.Component {
         isMobile={this.state.isMobile}
         menuOpen={this.state.menuOpen}
         searchOpen={this.state.searchOpen}
-        expandMenu={() => this.setState({menuOpen: true})}
-        expandSearch={() => this.setState({searchOpen: true})}
+        expandMenu={() => this.setState({menuOpen: !this.state.menuOpen})}
+        expandSearch={() => this.setState({searchOpen: !this.state.searchOpen})}
       />
     )
   }
