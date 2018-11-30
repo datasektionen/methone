@@ -144,7 +144,8 @@ class Search extends React.Component {
         className={classNames({ visible: isSearchOpen })}
       />
       <SearchResults>
-        {this.state.results.map((result, index) =>
+        {isSearchOpen &&
+          this.state.results.map((result, index) =>
             <SearchResult
               key={results.href || Math.random()}
               image={result.image}

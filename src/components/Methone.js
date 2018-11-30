@@ -79,8 +79,8 @@ class Methone extends React.Component {
         isMenuOpen={this.state.isMenuOpen}
         isSearchOpen={this.state.isSearchOpen}
         setSearchString={this.setSearchString}
-        toggleMenu={() => this.setState({isMenuOpen: !this.state.isMenuOpen})}
-        toggleSearch={() => this.setState({isSearchOpen: !this.state.isSearchOpen})}
+        toggleMenu={() => this.setState({isMenuOpen: !this.state.isMenuOpen, isSearchOpen: false})}
+        toggleSearch={() => this.setState({isSearchOpen: !this.state.isSearchOpen, isMenuOpen: false})}
       >
         <Search
           fuzzes={this.state.fuzzes}
