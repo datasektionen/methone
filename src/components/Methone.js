@@ -1,34 +1,46 @@
 import React, { Fragment } from 'react'
 import camelcase from 'camelcase'
-import { ThemeProvider } from "styled-components"
+import { ThemeProvider } from 'styled-components'
 import colors from '../styles/colors'
 import TopBar from './TopBar'
+import Search from './Search'
 import fuzzyfile from '../fuzzyfile'
 
 class Methone extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchOpen: false,
-      menuOpen: false,
+      isMenuOpen: false,
+      isSearchOpen: false,
+      searchString: '',
       fuzzes: fuzzyfile.fuzzes
     }
-    this.keydown = this.keydown.bind(this)
-    this.resize = this.resize.bind(this)
+    this.barRef = React.createRef()
   }
 
-  keydown(event) {
+  keydown = (event) => {
     if (event.keyCode === 27) { // escape
-      this.setState({searchOpen: false})
+      this.setState({isSearchOpen: false})
     } else if ((event.metaKey === true || event.ctrlKey === true) && event.keyCode === 75) { // cmd+k
       event.preventDefault()
-      this.setState({searchOpen: !this.state.searchOpen})
+      this.setState({isSearchOpen: !this.state.isSearchOpen})
     }
   }
 
-  resize(event) {
-    const isMobile = this.linksRef.current.offsetWidth < this.linksRef.current.scrollWidth
+  resize = (event) => {
+    const isMobile = this.barRef.current.offsetWidth < this.barRef.current.scrollWidth
     this.setState({ isMobile })
+    if(!isMobile) {
+      setTimeout(() =>
+        this.setState({
+          isMobile: this.barRef.current && this.barRef.current.offsetWidth < this.barRef.current.scrollWidth
+        })
+      , 10)
+    }
+  }
+
+  setSearchString = (searchString) => {
+    this.setState({ searchString })
   }
 
   componentDidMount() {
@@ -58,20 +70,24 @@ class Methone extends React.Component {
     window.removeEventListener("resize", this.resize)
   }
 
-  linksRef = React.createRef()
-
   render() {
-    return (
+    return <>
       <TopBar
-        linksRef={this.linksRef}
+        barRef={this.barRef}
         config={this.props.config}
         isMobile={this.state.isMobile}
-        menuOpen={this.state.menuOpen}
-        searchOpen={this.state.searchOpen}
-        expandMenu={() => this.setState({menuOpen: !this.state.menuOpen})}
-        expandSearch={() => this.setState({searchOpen: !this.state.searchOpen})}
-      />
-    )
+        isMenuOpen={this.state.isMenuOpen}
+        isSearchOpen={this.state.isSearchOpen}
+        setSearchString={this.setSearchString}
+        toggleMenu={() => this.setState({isMenuOpen: !this.state.isMenuOpen})}
+        toggleSearch={() => this.setState({isSearchOpen: !this.state.isSearchOpen})}
+      >
+        <Search
+          fuzzes={this.state.fuzzes}
+          isSearchOpen={this.state.isSearchOpen}
+        />
+      </TopBar>
+    </>
   }
 }
 
@@ -87,7 +103,7 @@ class WithTheme extends React.Component {
     }
 
     this.setTheme = this.setTheme.bind(this)
-    this.setTheme(props)
+    this.setTheme(this.state.theme)
   }
 
   getTheme(props) {
@@ -98,23 +114,23 @@ class WithTheme extends React.Component {
   componentDidUpdate(prevProps) {
     if(this.props.config.color_scheme !== prevProps.config.color_scheme) {
       this.setState({ theme: this.getTheme(props) })
-      this.setTheme(this.props)
+      this.setTheme(theme)
     }
   }
 
-  setTheme(props) {
+  setTheme(theme) {
     if(typeof window === 'undefined') return
     // Update or add meta[name="theme-color"] tag according to color_scheme
     // Just in case it is incorrect, which it often is...
-    var el = document.querySelector('meta[name="theme-color"]')
-    if(el) {
-      el.content = props.config.color_scheme // TODO should be hex code
-    } else {
+    let el = document.querySelector('meta[name="theme-color"]')
+    if(!el) {
       el = document.createElement('meta')
       el.name = "theme-color"
       el.content = props.config.color_scheme
       document.head.appendChild(el)
     }
+
+    el.content =  theme.primary.main
   }
 
   render() {
