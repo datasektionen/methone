@@ -18,6 +18,7 @@ const Bar = styled.div`
   left: 0;
   right: 0;
   top: 0;
+  z-index: 900;
 
   div {
     margin: 0 auto;
@@ -135,7 +136,7 @@ const TopBar = ({
         <button onClick={e => toggleSearch()}><Search /></button>
         {searchbar}
         {isMobile && <button onClick={e => toggleMenu()}><Menu /></button>}
-        {config.login_href && <a href={config.login_href}>{config.login_text}</a>}
+        {config.login_href && config.login_text && <a href={config.login_href}>{config.login_text}</a>}
       </Buttons>
     </div>
   </Bar>

@@ -7,7 +7,7 @@ import Methone from 'methone'
 // This is an example that can be used during development
 
 window.methone_conf = {
-  color_scheme: 'dark-blue',
+  color_scheme: 'cerise',
   system_name: 'Example',
   links: [
     <Link to="/info" key="info">Info</Link>,

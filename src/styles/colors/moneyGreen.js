@@ -1,4 +1,6 @@
 export default {
-  main: "#216C2A",
-  light: "#278032",
+  primary: {
+    main: "#216C2A",
+    light: "#278032",
+  }
 }
