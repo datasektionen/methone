@@ -13,14 +13,14 @@ const SearchBar = styled.input`
 
   height: 70%;
   align-self: center;
-  flex: 1;
+  flex: unset;
   width: 0;
 
   transition: flex 0.1s ease-in-out, margin 0.1s ease-in-out;
   &.visible {
     margin: 0 5px;
     width: unset;
-    flex: 20;
+    flex: 1000;
   }
 
   ::placeholder {
@@ -108,19 +108,18 @@ class Search extends React.Component {
     if(event.keyCode === 40 || (event.keyCode === 9 && !event.shiftKey)) { //tab or down
       const newActive = (active + 1) % results.length
       this.setState({active: newActive})
-      console.log(newActive)
+
       event.preventDefault()
       event.stopPropagation()
     }
     else if(event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) { // up or shift-tab
       const newActive = (results.length + active - 1) % results.length
       this.setState({active: newActive})
-      console.log(newActive)
+
       event.preventDefault()
       event.stopPropagation()
     }
     else if(event.keyCode === 13 && results[active]) { // enter
-      console.log('following link', results[active].href)
       window.location.href = results[active].href
     }
   }

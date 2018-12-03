@@ -10,6 +10,32 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
 
     <title>methone</title>
+    <script type="text/javascript">
+      window.methone_conf = {
+          system_name: "calypso",
+          color_scheme: "pink",
+          login_text: "Hellooo",
+          login_href: "/",
+          links: [
+              {
+                  str: "Redigera nyheter",
+                  href: "/admin/list?itemType=post"
+              },
+              {
+                  str: "Redigera event",
+                  href: "/admin/list?itemType=event"
+              },
+              {
+                  str: "Facebook-import",
+                  href: "/admin/import"
+              },
+              {
+                  str: "Ny post",
+                  href: "/admin/new"
+              }
+          ]
+      };
+    </script>
   </head>
 
   <body>

@@ -57,7 +57,7 @@ const Buttons = styled.div`
   transition: flex 0.5s ease-in-out;
   flex: 1;
   &.search {
-    flex: 20;
+    flex: 1000;
   }
 `;
 
@@ -80,7 +80,7 @@ const List = styled.div`
   transition: max-width 0.1s ease-in-out, margin-left 0.1s ease-in-out, opacity 0.5s ease-in-out;
   max-width: 100%;
   opacity: 1;
-  flex: 20;
+  flex: 1000;
   &.isSearchOpen {
     overflow: hidden;
     flex: 1;

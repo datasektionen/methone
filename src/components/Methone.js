@@ -113,7 +113,8 @@ class WithTheme extends React.Component {
 
   componentDidUpdate(prevProps) {
     if(this.props.config.color_scheme !== prevProps.config.color_scheme) {
-      this.setState({ theme: this.getTheme(props) })
+      const theme = this.getTheme(this.props)
+      this.setState({ theme })
       this.setTheme(theme)
     }
   }
