@@ -16,7 +16,7 @@ window.methone_conf = {
       ...config
     }
 
-    ReactDOM.render(<Methone config={window.methone_conf} />, document.getElementById('methone-container-replace'))
+    ReactDOM.render(React.createElement(Methone, {config: window.methone_conf}), document.getElementById('methone-container-replace'))
   }
 }
 

@@ -3,11 +3,7 @@ import { render } from "react-dom";
 import classNames from "classnames";
 import styled, { ThemeProvider } from "styled-components";
 
-import Menu from '@material-ui/icons/Menu'
-import Search from '@material-ui/icons/Search'
-
 import Delta from './Delta'
-
 
 const Bar = styled.div`
   background: ${({ theme }) => theme.primary.main};
@@ -133,9 +129,9 @@ const TopBar = ({
           )}
       </List>
       <Buttons className={classNames({ isSearchOpen })}>
-        <button onClick={e => toggleSearch()}><Search /></button>
+        <button onClick={e => toggleSearch()}><i className="fas fa-search" /></button>
         {searchbar}
-        {isMobile && <button onClick={e => toggleMenu()}><Menu /></button>}
+        {isMobile && <button onClick={e => toggleMenu()}><i className="fas fa-bars" /></button>}
         {config.login_href && config.login_text && <a href={config.login_href}>{config.login_text}</a>}
       </Buttons>
     </div>
