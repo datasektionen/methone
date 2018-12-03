@@ -97,8 +97,6 @@ const List = styled.div`
   }
 `;
 
-
-
 const TopBar = ({
   isMobile,
   isSearchOpen,
@@ -120,6 +118,7 @@ const TopBar = ({
           React.isValidElement(link) ?
             React.cloneElement(link, {
               key: link.to,
+              onClick: e => toggleMenu(),
               children: link.props.children.toUpperCase()
             })
           :
