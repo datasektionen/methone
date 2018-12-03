@@ -17,10 +17,10 @@ export default {
       "color": "#e83d84",
       "href": "https://datasektionen.se/studier"
     },{
-      "name": "Prometheus - Nyhetssystemet",
-      "str": "nyheter prometheus event post news",
-      "color": "#8bc34a",
-      "href": "https://prometheus.datasektionen.se"
+      "name": "Calypso - Nyhetssystemet",
+      "str": "nyheter calypso prometheus event post news",
+      "color": "#e91e63",
+      "href": "https://calypso.datasektionen.se"
     },{
       "name": "Zfinger",
       "str": "xfinger zfinger",
