@@ -47,6 +47,7 @@ const Buttons = styled.div`
 
     padding: 0 10px;
     margin: 0 1px;
+    width: max-content;
     height: 100%;
 
     :hover {
