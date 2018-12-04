@@ -55,6 +55,7 @@ const SearchResult = styled.a`
     cursor: pointer;
 
     height: var(--size);
+    width: initial;
 
     background: #fff;
     color: #000;

@@ -108,7 +108,7 @@ class WithTheme extends React.Component {
 
   getTheme(props) {
     const scheme = props.config && props.config.color_scheme
-    return colors[camelcase(scheme || 'cerise')]
+    return colors[camelcase(scheme)] || colors['cerise']
   }
 
   componentDidUpdate(prevProps) {
@@ -127,11 +127,10 @@ class WithTheme extends React.Component {
     if(!el) {
       el = document.createElement('meta')
       el.name = "theme-color"
-      el.content = props.config.color_scheme
       document.head.appendChild(el)
     }
 
-    el.content =  theme.primary.main
+    el.content = theme.primary.main
   }
 
   render() {
