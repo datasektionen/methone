@@ -10,7 +10,7 @@ class Methone extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isMenuOpen: false,
+      menuClicks: 0,
       isSearchOpen: false,
       searchString: '',
       fuzzes: fuzzyfile.fuzzes
@@ -29,7 +29,7 @@ class Methone extends React.Component {
 
   resize = (event) => {
     const isMobile = this.barRef.current.offsetWidth < this.barRef.current.scrollWidth
-    this.setState({ isMobile })
+    this.setState({ isMobile, menuClicks: 0 })
     if(!isMobile) {
       setTimeout(() =>
         this.setState({
@@ -76,11 +76,11 @@ class Methone extends React.Component {
         barRef={this.barRef}
         config={this.props.config}
         isMobile={this.state.isMobile}
-        isMenuOpen={this.state.isMenuOpen}
+        menuClicks={this.state.menuClicks}
         isSearchOpen={this.state.isSearchOpen}
         setSearchString={this.setSearchString}
-        toggleMenu={() => this.setState({isMenuOpen: !this.state.isMenuOpen, isSearchOpen: false})}
-        toggleSearch={() => this.setState({isSearchOpen: !this.state.isSearchOpen, isMenuOpen: false})}
+        toggleMenu={() => this.setState({menuClicks: this.state.menuClicks + 1, isSearchOpen: false})}
+        toggleSearch={() => this.setState({isSearchOpen: !this.state.isSearchOpen, menuClicks: false})}
       >
         <Search
           fuzzes={this.state.fuzzes}

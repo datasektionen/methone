@@ -23,7 +23,7 @@ const Bar = styled.div`
     align-items: flex-end;
   }
 
-  transition: top 0.2s;
+  transition: top ${({ menuClicks }) => menuClicks == 0 ? 0 : 0.2}s;
   &.isMobile {
     top: -${({ links }) => links * 50}px;
   }
@@ -103,13 +103,13 @@ const TopBar = ({
   isSearchOpen,
   toggleSearch,
   setSearchString,
-  isMenuOpen,
+  menuClicks,
   toggleMenu,
   config,
   barRef,
   children: searchbar
   }) =>
-  <Bar className={classNames({ isMobile, isMenuOpen })} links={config.links.length}>
+  <Bar className={classNames({ isMobile, isMenuOpen: menuClicks % 2 == 1 })} links={config.links.length} menuClicks={menuClicks}>
     <div ref={barRef}>
       <Buttons style={{flex: 0}}>
         <a href="/"><Delta /></a>
