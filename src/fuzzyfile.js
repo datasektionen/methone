@@ -71,7 +71,7 @@ export default {
       "name": "D-dagen",
       "str": "ddagen",
       "color": "red",
-      "href": "https://ddagen.se/"
+      "href": "https://ddagen.se"
     }
   ]
 }
