@@ -25,7 +25,7 @@ How to use
 ----------
 Everything works best when the parent element is an immidiate child of the body
 tag. You should probably lower your page content by 50 pixels.
-
+```html
   <body>
     <div id="methone-container-replace"> <!-- Should be a direct child of body -->
     <nav>This will be replaced</nav>
@@ -56,12 +56,13 @@ tag. You should probably lower your page content by 50 pixels.
     })
     // Only the provided keys will be updated.
   </script>
-
+```
+    
 Usage as a React component
 --------------------------
 
 If you are building a React app it is possible to include Methone as a component directly. If you do this you will be able to also use React Router with top-bar navigation. Instead of defining a `window.methone_conf` you directly pass a config property on the Methone element.
-
+```javascript
   config = {
     system_name: "meta-tv",
     color_scheme: "cerise"
@@ -87,6 +88,7 @@ If you are building a React app it is possible to include Methone as a component
     </div>
     </div>
   )
+```
 
 The implementation for Link elements is quite primitive, so they should probably follow the above format quite closely. If something else works, great, but dont count on it...
 
@@ -97,7 +99,7 @@ If you want local links that are only available in your system methone looks for
 
 An example fuzzyfile:
 Search is performed on the str value.
-
+```json
   {
     "@type": "fuzzyfile",
 
@@ -115,3 +117,4 @@ Search is performed on the str value.
     }
     ]
   }
+```
