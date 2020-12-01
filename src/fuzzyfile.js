@@ -66,6 +66,11 @@ export default {
       "str": "metaspexet",
       "color": "red",
       "href": "http://metaspexet.se"
+    },{
+      "name": "Damm",
+      "str": "damm historia",
+      "color": "#e83d84",
+      "href": "https://damm.datasektionen.se"
     }
   ]
 }
