@@ -71,6 +71,12 @@ export default {
       "str": "damm historia",
       "color": "#e83d84",
       "href": "https://damm.datasektionen.se"
+    },
+    {
+      "name": "D-dagen",
+      "str": "ddagen",
+      "color": "red",
+      "href": "https://ddagen.se"
     }
   ]
 }
