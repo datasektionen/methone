@@ -66,6 +66,12 @@ export default {
       "str": "metaspexet",
       "color": "red",
       "href": "http://metaspexet.se"
+    },
+    {
+      "name": "D-dagen",
+      "str": "ddagen",
+      "color": "red",
+      "href": "https://ddagen.se"
     }
   ]
 }
