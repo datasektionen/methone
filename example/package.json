@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "methone": "file:..",
-    "react": "^16.5.2",
+    "react": "^16.14.0",
     "react-dev-utils": "^6.1.1",
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1",
