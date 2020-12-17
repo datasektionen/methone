@@ -19,7 +19,7 @@
   "scripts": {
     "dev": "babel src -d dist -w --source-maps & babel src -d dist/es -w --config-file ./babel.config.es.js --source-maps",
     "build": "babel src -d dist --source-maps && babel src -d dist/es --config-file ./babel.config.es.js --source-maps",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "heroku-postbuild": "cd example && npm install && npm run build",
     "start": "cd example && npm run serve",
     "start:dev": "npm run dev & cd example && npm start"
