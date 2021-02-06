@@ -52,12 +52,49 @@ const CodeExample = () => {
 
 > The worlds first Top-Bar-as-a-Service
 
-## Install
+https://github.com/datasektionen/methone#readme
 
+## How to use
+
+Everything works best when the parent element is an immidiate child of the body
+tag. You should probably lower your page content by 50 pixels.
+----------------------------------------------------------------------
+  <body>
+    <div id="methone-container-replace"> <!-- Should be a direct child of body -->
+    <nav>This will be replaced</nav>
+    </div>
+    ....
+
+  <script>
+    window.methone_conf = {
+    system_name: "meta-tv",
+    color_scheme: "cerise"
+    login_text: "Login with trisslott", // Default null, null hides button
+    login_href: "/login",
+    links: [
+      {
+      str: "About us",
+      href: "http://my.system.se/about-us",
+      }, ...
+    ]
+    }
+  </script>
+
+  <script async src="//methone.datasektionen.se/bar.js"></script>
+  <script>
+    // The config can be updated dynamically!
+    window.methone_conf.update({
+    login_text: "Log out",
+    login_href: "/logout"
+    })
+    // Only the provided keys will be updated.
+  </script>
+----------------------------------------------------------------------
+
+## Usage (React example, functional component)
 
 npm install --save git+https://github.com/datasektionen/Methone.git
 
-## Usage (React example, functional component)
 ----------------------------------------------------------------------
 import React, { Component } from 'react'
 import { BrowserRouter, Link } from 'react-router-dom'
