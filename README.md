@@ -81,8 +81,9 @@ If you are building a React app it is possible to include Methone as a component
   }
 
   return (
-    <div>
+    <div id="application" className="cerise"> // To color header (if used)
     <Methone config={config} />
+    <Header title="Methone"> // Optional header displayed below the bar
     <div>
       ...
     </div>
