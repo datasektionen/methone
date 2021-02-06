@@ -47,7 +47,7 @@ const Example = () => {
 
 const CodeExample = () => {
   return (
-    <pre style={{width: "70%"}}>{`
+    <pre style={{width: "100%"}}>{`
 # methone
 
 > The worlds first Top-Bar-as-a-Service
