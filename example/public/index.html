@@ -8,32 +8,6 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
 
     <title>methone</title>
-    <script type="text/javascript">
-      window.methone_conf = {
-          system_name: "calypso",
-          color_scheme: "pink",
-          login_text: "Hellooo",
-          login_href: "/",
-          links: [
-              {
-                  str: "Redigera nyheter",
-                  href: "/admin/list?itemType=post"
-              },
-              {
-                  str: "Redigera event",
-                  href: "/admin/list?itemType=event"
-              },
-              {
-                  str: "Facebook-import",
-                  href: "/admin/import"
-              },
-              {
-                  str: "Ny post",
-                  href: "/admin/new"
-              }
-          ]
-      };
-    </script>
   </head>
 
   <body>
@@ -42,49 +16,5 @@
     </noscript>
 
     <div id="methone-container-replace"></div>
-    <div id="application">
-      <div id="content">
-        <pre>
-# methone
-
-> The worlds first Top-Bar-as-a-Service
-
-## Install
-
-```bash
-npm install --save methone
-```
-
-## Usage
-
-```jsx
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-
-import Methone from 'methone'
-
-class Example extends Component {
-  render () {
-    const config = {
-      color_scheme: 'dark-blue',
-      system_name: 'Example',
-      links: [
-        <Link to="/info">Info</Link>
-      ],
-      login_text: 'Login',
-      login_href: '/login',
-    }
-    return (
-      <Methone config={config} />
-    )
-  }
-}
-```
-
-        </pre>
-        <div style="height:200px;">
-        </div>
-      </div>
-    </div>
   </body>
 </html>
