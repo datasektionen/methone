@@ -77,6 +77,11 @@ export default {
       "str": "ddagen",
       "color": "red",
       "href": "https://ddagen.se"
-    }
+    },{
+      "name": "Duckumentation",
+      "str": "dokumentation api swagger duckumentation",
+      "color": "#4caf50",
+      "href": "https://duckumentation.datasektionen.se"
+    },
   ]
 }
