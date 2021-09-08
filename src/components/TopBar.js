@@ -39,7 +39,7 @@ const Buttons = styled.div`
 
   button, a {
     all: unset;
-
+    color: ${({ theme }) => theme.primary.contrastText}
     fill: ${({ theme }) => theme.primary.contrastText}
     background-color: ${({ theme }) => theme.primary.light}
     display: flex;
