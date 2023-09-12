@@ -26,47 +26,47 @@ How to use
 Everything works best when the parent element is an immidiate child of the body
 tag. You should probably lower your page content by 50 pixels.
 ```html
-  <body>
-    <div id="methone-container-replace"> <!-- Should be a direct child of body -->
-    <nav>This will be replaced</nav>
-    </div>
-    ....
+<body>
+  <div id="methone-container-replace"> <!-- Should be a direct child of body -->
+  <nav>This will be replaced</nav>
+  </div>
+  ....
 
-  <script>
-    window.methone_conf = {
-    system_name: "meta-tv",
-    color_scheme: "cerise"
-    login_text: "Login with trisslott", // Default null, null hides button
-    login_href: "/login",
-    links: [
-      {
-      str: "About us",
-      href: "http://my.system.se/about-us",
-      }, ...
-    ]
-    }
-  </script>
+<script>
+  window.methone_conf = {
+  system_name: "meta-tv",
+  color_scheme: "cerise",
+  login_text: "Login with trisslott", // Default null, null hides button
+  login_href: "/login",
+  links: [
+    {
+    str: "About us",
+    href: "http://my.system.se/about-us",
+    }, ...
+  ]
+  }
+</script>
 
-  <script async src="//methone.datasektionen.se/bar.js"></script>
-  <script>
-    // The config can be updated dynamically!
-    window.methone_conf.update({
-    login_text: "Log out",
-    login_href: "/logout"
-    })
-    // Only the provided keys will be updated.
-  </script>
+<script async src="//methone.datasektionen.se/bar.js"></script>
+<script>
+  // The config can be updated dynamically!
+  window.methone_conf.update({
+  login_text: "Log out",
+  login_href: "/logout"
+  })
+  // Only the provided keys will be updated.
+</script>
 ```
-    
+
 Usage as a React component
 --------------------------
 
 If you are building a React app it is possible to include Methone as a component directly. If you do this you will be able to also use React Router with top-bar navigation. Instead of defining a `window.methone_conf` you directly pass a config property on the Methone element.
 ```javascript
-  config = {
-    system_name: "meta-tv",
-    color_scheme: "cerise"
-    links: [
+config = {
+  system_name: "meta-tv",
+  color_scheme: "cerise",
+  links: [
     {
       str: "About us",
       href: "http://my.system.se/about-us",
@@ -77,18 +77,18 @@ If you are building a React app it is possible to include Methone as a component
       str: "Interchangable links should work",
       href: "/but/who?knows"
     }
-    ]
-  }
+  ]
+}
 
-  return (
-    <div id="application" className="cerise"> // To color header (if used)
-    <Methone config={config} />
-    <Header title="Methone"> // Optional header displayed below the bar
-    <div>
-      ...
-    </div>
-    </div>
-  )
+return (
+  <div id="application" className="cerise"> // To color header (if used)
+  <Methone config={config} />
+  <Header title="Methone"> // Optional header displayed below the bar
+  <div>
+    ...
+  </div>
+  </div>
+)
 ```
 
 The implementation for Link elements is quite primitive, so they should probably follow the above format quite closely. If something else works, great, but dont count on it...
@@ -101,21 +101,21 @@ If you want local links that are only available in your system methone looks for
 An example fuzzyfile:
 Search is performed on the str value.
 ```json
-  {
-    "@type": "fuzzyfile",
+{
+  "@type": "fuzzyfile",
 
-    "fuzzes": [
-    {
-      "name": "Lokalbokning - Datasektionen.se",
-      "str": "lokalbokning booking",
-      "color": "#FDDE00",
-      "href": "http://datasektionen.se/sektionen/lokalbokning"
-    },
-    {
-      "name": "Mottagningen - Datasektionen.se",
-      "str": "mottagningen",
-      "href": "/sektionen/mottagningen"
-    }
-    ]
+  "fuzzes": [
+  {
+    "name": "Lokalbokning - Datasektionen.se",
+    "str": "lokalbokning booking",
+    "color": "#FDDE00",
+    "href": "http://datasektionen.se/sektionen/lokalbokning"
+  },
+  {
+    "name": "Mottagningen - Datasektionen.se",
+    "str": "mottagningen",
+    "href": "/sektionen/mottagningen"
   }
+  ]
+}
 ```
