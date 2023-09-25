@@ -7,7 +7,7 @@ import Methone, { Header } from 'methone'
 // This is an example that can be used during development
 
 const Example = () => {
-  
+
   const methone_conf = {
     color_scheme: 'cerise',
     system_name: 'Example',
@@ -68,7 +68,7 @@ tag. You should probably lower your page content by 50 pixels.
   <script>
     window.methone_conf = {
     system_name: "meta-tv",
-    color_scheme: "cerise"
+    color_scheme: "cerise",
     login_text: "Login with trisslott", // Default null, null hides button
     login_href: "/login",
     links: [
