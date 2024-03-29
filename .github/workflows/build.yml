@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env: { NODE_OPTIONS: --openssl-legacy-provider }
+
+    strategy:
+      matrix:
+        node-version: [21.x, latest]
+
+    steps:
+    - name: Git checkout
+      uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm i && cd example/ && npm i
+
+    - name: Build methone
+      run: npm run build
+
+    - name: Build example website
+      run: cd example/ && npm run build
