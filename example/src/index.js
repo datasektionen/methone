@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Link } from 'react-router-dom'
 
@@ -7,9 +7,17 @@ import Methone, { Header } from 'methone'
 // This is an example that can be used during development
 
 const Example = () => {
+  const [colors, setColors] = useState([]);
+  useEffect(() => {
+    fetch('https://aurora.datasektionen.se/api/colors')
+      .then(res => res.json())
+      .then(res => setColors(res))
+  }, []);
+
+  const [color, setColor] = useState("cerise");
 
   const methone_conf = {
-    color_scheme: 'cerise',
+    color_scheme: color,
     system_name: 'Example',
     links: [
       <Link to="/info" key="info">Info</Link>,
@@ -32,12 +40,17 @@ const Example = () => {
 
   return (
     <BrowserRouter>
-      <div id="application" className="cerise">
+      <div id="application" className={color}>
         <Methone config={methone_conf} />
-        <Header title="Methone" action={{onClick: _ => alert("Hej!"), text: "Test"}}>
+        <Header title="Methone" action={{ onClick: _ => alert("Hej!"), text: "Test" }}>
           <Link to="#">« Tillbaka</Link>
         </Header>
-        <div style={{width: "100%", justifyContent: "center", alignItems: "center", display: "flex"}}>
+        <section className="color-picker">
+          <select style={{ margin: "0.5em", padding: "0.2em" }} value={color} onChange={e => setColor(e.target.value)}>
+            {colors.map(color => <option key={color} value={color}>{color.replace("-", " ")}</option>)}
+          </select>
+        </section>
+        <div style={{ width: "100%", justifyContent: "center", alignItems: "center", display: "flex" }}>
           <CodeExample />
         </div>
       </div>
@@ -47,7 +60,7 @@ const Example = () => {
 
 const CodeExample = () => {
   return (
-    <pre style={{width: "100%"}}>{`
+    <pre style={{ width: "100%" }}>{`
 # methone
 
 > The worlds first Top-Bar-as-a-Service
