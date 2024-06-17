@@ -50,8 +50,15 @@ const Buttons = styled.div`
     width: max-content;
     height: 100%;
 
+    transition: scale 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
     :hover {
       cursor: pointer;
+    }
+
+    :hover, :focus {
+      scale: 1.05;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     }
   }
 
@@ -76,6 +83,12 @@ const List = styled.div`
     height: 50px;
     padding: 0 10px;
     white-space: nowrap;
+
+    transition: background-color 0.15s ease-in-out;
+
+    :hover, :focus {
+      background-color: ${({ theme }) => theme.primary.light};
+    }
   }
 
   transition: max-width 0.1s ease-in-out, margin-left 0.1s ease-in-out, opacity 0.5s ease-in-out;
