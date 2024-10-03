@@ -137,7 +137,7 @@ const TopBar = ({
             React.cloneElement(link, {
               key: link.to,
               onClick: e => toggleMenu(),
-              className: window.location.pathname == link.props.to && "current",
+              className: window.location.pathname === link.props.to && "current",
               children: link.props.children.toUpperCase()
             })
           :
