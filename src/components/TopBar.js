@@ -91,6 +91,10 @@ const List = styled.div`
     }
   }
 
+  a.current {
+    background-color: ${({ theme }) => theme.primary.light};
+  }
+
   transition: max-width 0.1s ease-in-out, margin-left 0.1s ease-in-out, opacity 0.5s ease-in-out;
   max-width: 100%;
   opacity: 1;
@@ -133,6 +137,7 @@ const TopBar = ({
             React.cloneElement(link, {
               key: link.to,
               onClick: e => toggleMenu(),
+              className: window.location.pathname == link.props.to && "current",
               children: link.props.children.toUpperCase()
             })
           :
