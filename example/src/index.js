@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Link } from 'react-router-dom'
 
@@ -7,12 +7,7 @@ import Methone, { Header } from 'methone'
 // This is an example that can be used during development
 
 const Example = () => {
-  const [colors, setColors] = useState([]);
-  useEffect(() => {
-    fetch('https://aurora.datasektionen.se/api/colors')
-      .then(res => res.json())
-      .then(res => setColors(res))
-  }, []);
+  const colors = ["amber", "blue-grey", "blue", "cerise", "cyan", "dark-blue", "deep-orange", "deep-purple", "green", "indigo", "light-blue", "light-green", "lime", "money-green", "orange", "pink", "purple", "red", "teal", "yellow"];
 
   const [color, setColor] = useState("cerise");
 
