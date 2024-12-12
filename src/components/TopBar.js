@@ -86,7 +86,7 @@ const List = styled.div`
 
     transition: background-color 0.15s ease-in-out;
 
-    :hover, :focus {
+    :hover, :focus, .active {
       background-color: ${({ theme }) => theme.primary.light};
     }
   }
@@ -121,10 +121,10 @@ const TopBar = ({
   config,
   barRef,
   children: searchbar
-  }) =>
+}) =>
   <Bar className={classNames({ isMobile, isMenuOpen: menuClicks % 2 == 1 })} links={config.links.length} menuClicks={menuClicks}>
     <div ref={barRef}>
-      <Buttons style={{flex: 0}}>
+      <Buttons style={{ flex: 0 }}>
         <a href="/"><Delta /></a>
       </Buttons>
       <List className={classNames({ isMobile, isSearchOpen })}>
@@ -133,13 +133,14 @@ const TopBar = ({
             React.cloneElement(link, {
               key: link.to,
               onClick: e => toggleMenu(),
+              className: location.pathname === link.props.to && "active",
               children: link.props.children.toUpperCase()
             })
-          :
-            <a href={link.href} key={link.href}>
+            :
+            <a href={link.href} key={link.href} class={link.href === window.location.pathname ? "active" : ""}>
               {link.barStr || link.str.toUpperCase()}
             </a>
-          )}
+        )}
       </List>
       <Buttons className={classNames({ isSearchOpen })}>
         <button onClick={e => toggleSearch()}><i className="fas fa-search" /></button>

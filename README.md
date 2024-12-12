@@ -23,7 +23,7 @@ the master fuzzyfile will be loaded from the server.
 
 How to use
 ----------
-Everything works best when the parent element is an immidiate child of the body
+Everything works best when the parent element is an immediate child of the body
 tag. You should probably lower your page content by 50 pixels.
 ```html
 <body>
