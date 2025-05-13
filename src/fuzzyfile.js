@@ -7,6 +7,11 @@ export default {
       "color": "#e83d84",
       "href": "https://datasektionen.se/sektionen/organisation"
     },{
+      "name": "Aaallt - Resten",
+      "str": "aaallt aallt allt resten system alla",
+      "color": "#ffa726",
+      "href": "https://aaallt.datasektionen.se"
+    },{
       "name": "Näringsliv - Datasektionen.se",
       "str": "näringsliv industry contact",
       "color": "#e83d84",
@@ -22,10 +27,20 @@ export default {
       "color": "#e91e63",
       "href": "https://calypso.datasektionen.se"
     },{
+      "name": "Cashflow - Kvittosystemet",
+      "str": "kvitto kvitton budget",
+      "color": "#1b6c25",
+      "href": "https://cashflow.datasektionen.se"
+    },{
       "name": "Skywhale - Valsystemet",
       "str": "val valsystem skywhale",
       "color": "#06b",
       "href": "https://val.datasektionen.se"
+    },{
+      "name": "Styrdokument",
+      "str": "styrdokument stadgar reglemente",
+      "color": "#e93b85",
+      "href": "https://styrdokument.datasektionen.se"
     },{
       "name": "Pandora - Bokningssystemet",
       "str": "bandora bokning bil kamera lokalbokning",
@@ -56,6 +71,16 @@ export default {
       "str": "metaspexet",
       "color": "red",
       "href": "http://metaspexet.se"
+    },{
+      "name": "Tiki - Biljettsystem",
+      "str": "biljetter tiki biljettsystem",
+      "color": "#000000",
+      "href": "https://tiki.datasektionen.se/"
+    },{
+      "name": "MatterMost",
+      "str": "mattermost metamost",
+      "color": "#1e325c",
+      "href": "https://mattermost.datasektionen.se"
     },{
       "name": "Damm",
       "str": "damm historia",
