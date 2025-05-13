@@ -5,7 +5,7 @@ export default {
       "name": "Organisation - Datasektionen.se",
       "str": "organisation",
       "color": "#e83d84",
-      "href": "https://datasektionen.se/organisation"
+      "href": "https://datasektionen.se/sektionen/organisation"
     },{
       "name": "Näringsliv - Datasektionen.se",
       "str": "näringsliv industry contact",
@@ -21,11 +21,6 @@ export default {
       "str": "nyheter calypso prometheus event post news",
       "color": "#e91e63",
       "href": "https://calypso.datasektionen.se"
-    },{
-      "name": "Zfinger",
-      "str": "xfinger zfinger",
-      "color": "#00bcd4",
-      "href": "https://zfinger.datasektionen.se"
     },{
       "name": "Skywhale - Valsystemet",
       "str": "val valsystem skywhale",
@@ -56,11 +51,6 @@ export default {
       "str": "dbuggen tidning",
       "color": "#0ab87a",
       "href": "https://dbu.gg"
-    },{
-      "name": "Motioner",
-      "str": "motioner",
-      "color": "white",
-      "href": "https://motioner.datasektionen.se"
     },{
       "name": "Metaspexet",
       "str": "metaspexet",
