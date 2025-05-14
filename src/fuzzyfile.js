@@ -77,7 +77,7 @@ export default {
       "color": "#000000",
       "href": "https://tiki.datasektionen.se/"
     },{
-      "name": "MatterMost",
+      "name": "Mattermost",
       "str": "mattermost metamost",
       "color": "#1e325c",
       "href": "https://mattermost.datasektionen.se"
